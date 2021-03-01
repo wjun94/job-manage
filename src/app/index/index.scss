@@ -1,0 +1,77 @@
+.app-page {
+  min-height: 100%;
+
+  .img {
+    width: 16px;
+  }
+
+  header {
+    background-color: white;
+  }
+
+  .ant-layout-sider-children {
+    // overflow: auto;
+    // height: 100vh;
+    // position: fixed;
+    // left: 0px;
+    // z-index: 1;
+    // flex: 0 0 200px;
+    // max-width: 200px;
+    // min-width: 200px;
+    // width: 200px;
+  }
+
+  .app-main {
+    border-radius: 6px;
+    min-width: 700px;
+    min-height: calc(100% - 60px);
+    height: calc(100% - 60px);
+    margin: 0 16px;
+
+    .app-container {
+      padding: 16px;
+      background-color: white;
+      border-radius: 2px;
+    }
+  }
+
+  .trigger {
+    font-size: 18px;
+    line-height: 64px;
+    padding: 0 24px;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+
+  .login-out {
+    margin-right: 16px;
+  }
+
+  .trigger:hover {
+    color: #1890ff;
+  }
+
+  .info {
+    height: 32px;
+    line-height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 16px;
+    color: white;
+
+    p {
+      padding-left: 5px;
+      margin: 0;
+      overflow: hidden; //超出的文本隐藏
+      text-overflow: ellipsis; //溢出用省略号显示
+      white-space: nowrap; //溢出不换行
+    }
+  }
+
+  .ant-layout-footer {
+    margin: 14px;
+    background-color: white;
+    border-radius: 6px;
+    padding: 16px 0;
+    min-width: 600px;
+  }
+}

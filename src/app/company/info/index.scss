@@ -1,0 +1,35 @@
+.info-page {
+    height: 100%;
+    position: relative;
+    padding-bottom: 52px !important;
+
+    .c-info {
+        font-weight: 500;
+        margin: 8px 0;
+    }
+
+    .desc {
+        color: $grayFont;
+    }
+
+    footer {
+        position: absolute;
+        bottom: 16px;
+        right: 16px;
+
+        .after:last-child::after {
+            display: none;
+        }
+
+        img {
+            height: 12px;
+            width: 12px;
+            object-fit: cover;
+            margin-right: 3px;
+        }
+
+        p {
+            cursor: pointer;
+        }
+    }
+}

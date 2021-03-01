@@ -1,0 +1,7 @@
+.message-page {
+    .txt {
+        @include nowrap;
+        display: inline-block;
+        width: 150px;
+    }
+}

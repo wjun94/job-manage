@@ -1,0 +1,117 @@
+.login-page {
+  background-color: #8378bc;
+  height: 100%;
+  // background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
+  background-image: url("./bgm.png");
+  overflow: auto;
+  position: fixed;
+  width: 100%;
+
+  .left-center {
+    display: flex;
+    align-items: center;
+  }
+
+  .login-main {
+    width: 600px;
+    height: 342px;
+    padding-right: 20px;
+    border-radius: 6px;
+    background-color: white;
+    margin-bottom: 50px;
+    position: relative;
+
+    img {
+      width: 230px;
+      position: relative;
+      margin: 0 56px;
+      margin-top: 20px;
+    }
+
+    .header {
+      position: absolute;
+      margin: 0;
+      top: 32px;
+
+      h2 {
+        font-weight: bold;
+        margin-bottom: 2px;
+      }
+
+      .desc {
+        margin: 0;
+        color: #aeaeae;
+        font-size: 12px;
+      }
+    }
+
+    .footer {
+      font-size: 12px;
+      color: #aeaeae;
+      position: absolute;
+      bottom: 20px;
+      margin: 0;
+    }
+
+    form {
+      width: 180px;
+
+      input {
+        border-radius: 0;
+        background: white;
+        outline-style: none;
+        outline: none;
+        border-color: white;
+      }
+
+      input:focus {
+        border: 0;
+        box-shadow: 0 0 0 0;
+        outline: none;
+      }
+
+      .has-error {
+        border-color: #f5222d !important;
+      }
+
+      input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 1000px white inset !important;
+      }
+    }
+
+    .ant-input-affix-wrapper {
+      border: 1px solid white;
+      border-bottom: 1px solid #eeeeee;
+      border-radius: 0;
+      background: white;
+      outline-style: none;
+      outline: none;
+    }
+
+    .ant-input-affix-wrapper:focus,
+    .ant-input-affix-wrapper-focused {
+      box-shadow: 0 0 0 0;
+    }
+
+    .ant-form-item-has-error {
+      span.ant-input-affix-wrapper {
+        border-bottom: 1px solid #f5222d;
+      }
+    }
+
+    .ant-form-item-explain {
+      display: none;
+    }
+
+    .ant-form-item {
+      margin-bottom: 6px;
+    }
+
+    button {
+      margin-top: 10px;
+    }
+  }
+}

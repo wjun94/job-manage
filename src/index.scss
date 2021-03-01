@@ -1,0 +1,89 @@
+@import './css/layout.scss';
+
+@font-face {
+  font-family: 'DINOffc';
+  src: url('./assets/font/DINOffc-Bold.ttf') format('truetype'),
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  p,
+  h1,
+  h2,
+  h3 {
+    margin: 0;
+  }
+}
+
+#root {
+  height: 100%;
+
+  .app-page {
+    min-height: 100%;
+  }
+}
+
+body {
+  background-color: #f1f2f6;
+}
+
+
+
+.ant-table-pagination.ant-pagination {
+  padding-right: 20px;
+}
+
+.ant-drawer-footer {
+  text-align: right;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.animate {
+  // animation-duration: 100ms;
+  // animation-fill-mode: both;
+  // animation-name: fadeRoute;
+  // position: relative;
+}
+
+@keyframes fadeRoute {
+  from {
+    opacity: 0.4;
+    right: 300px;
+  }
+
+  to {
+    opacity: 1;
+    right: 0;
+  }
+}
+
+.nowrap {
+  overflow: hidden; //超出的文本隐藏
+  text-overflow: ellipsis; //溢出用省略号显示
+  white-space: nowrap; //溢出不换行
+}
+
+.after {
+  display: inline-block;
+
+  &::after {
+    content: '';
+    cursor: text;
+    border-left: 0.11em solid #7d7d7d;
+    display: inline-block;
+    height: 1em;
+    position: relative;
+    top: .15em;
+    margin: 0 .8em;
+  }
+}

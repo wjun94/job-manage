@@ -1,0 +1,157 @@
+/** flex布局 */
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-nowrap {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.flex-end {
+  display: flex;
+  align-items: flex-end;
+}
+
+/**
+  *  ——————-
+  * |   ●   |
+  * |   ●   |
+  *  ——————-
+  */
+
+.top-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/**
+    *  ——————-
+    * |●      |
+    * |       |
+    * |●      |
+    *  ——————-
+    */
+
+.left-line {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/**
+    *  ——————-
+    * |●      |
+    * |●      |
+    * |       |
+    *  ——————-
+    */
+
+.left-top-line {
+  display: flex;
+  flex-direction: column;
+}
+
+/**
+    *  ——————-
+    * | ●   ● |
+    * |       |
+    *  ——————-
+    */
+
+.both-sides {
+  display: flex;
+  justify-content: space-between;
+}
+
+/**
+    *  ————————-
+    * |         |
+    * |    ●    |
+    * |         |
+    *  ————————-
+    */
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/**
+    *  ————————-
+    * |    ●    |
+    * |         |
+    * |         |
+    *  ————————-
+    */
+.flex-top-center {
+  display: flex;
+  align-items: center;
+}
+
+/**
+    *  ————————-
+    * |         |
+    * | ●     ● |
+    * |         |
+    *  ————————-
+    */
+.both-sides-center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/**
+    *  ————————-
+    * |         |
+    * | ● ●     |
+    * |         |
+    *  ————————-
+    */
+.left-center {
+  display: flex;
+  align-items: center;
+}
+
+/**
+  *  ——————-
+  * |     ● |
+  * |     ● |
+  *  ——————-
+  */
+.right-line {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+/**
+    *  ————————-
+    * |  ●   ●  |
+    * |         |
+    * |  ●   ●  |
+    *  ————————-
+    */
+.topToBottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+}
+
+/**
+    *  ————————-
+    * |         |
+    * |         |
+    * |  ●   ●  |
+    *  ————————-
+    */
+.both-sides-end {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}

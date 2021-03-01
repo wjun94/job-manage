@@ -1,0 +1,5 @@
+export const SETCURRENT = 'appendWxUserSetCurrent'
+export const PAGESIZE = 'appendWxUserPageSize'
+export const SETLIST = 'setWxUserRankList'
+export const PAGINATION = 'WxUserRankPaginationProps'
+export const INIT = 'appendWxUserInit'

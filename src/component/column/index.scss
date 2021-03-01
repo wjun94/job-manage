@@ -1,0 +1,15 @@
+.row-content {
+    margin-bottom: 14px;
+
+    .col {
+        >div {
+            background-color: white;
+            height: 100px;
+
+            .value {
+                font-size: 24px;
+                font-weight: bold;
+            }
+        }
+    }
+}
