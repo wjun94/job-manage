@@ -10,7 +10,7 @@ export interface P {
 }
 
 export interface Node {
-    id: string
+    companyId: string
     name: string
     updateAt: string
     status: number
@@ -22,45 +22,52 @@ export default function Index(props: any) {
     const columns = [
         {
             key: 'name',
-            title: '岗位名称',
-            dataIndex: 'name'
+            title: '客户信息',
+            dataIndex: 'name',
+            render: (txt: string, record: Node) => <Button onClick={() => props.onNodeClick(record)} type="link">{txt}</Button>
         },
-        // {
-        //     key: 'updateAt',
-        //     title: '更新时间',
-        //     dataIndex: 'updateAt',
-        //     render: (text: string) => (text.split(" ").map((v, i) => <p className='update-at' key={"update" + i}>{v}</p>))
-        // },
+        {
+            key: 'createAt',
+            title: '手机状态',
+            dataIndex: 'createAt',
+            render: (text: string) => <span>待完善</span>
+        },
         {
             key: 'status',
-            title: '岗位状态',
+            title: '服务状态',
             dataIndex: 'status',
-            render: (txt: number) => <span>{txt === 1 ? '未发布' : (txt === 2 ? '已发布' : (txt === 3 ? '暂停' : '到期'))}</span>
+            render: (txt: number) => <span>待完善</span>
         },
         {
             key: 'ugt',
-            title: '急聘',
+            title: '业务员',
             dataIndex: 'ugt',
-            render: (ugt: boolean) => <span>{ugt ? '是' : '否'}</span>
+            render: (ugt: boolean) => <span>待完善</span>
         },
         {
             key: 'views',
-            title: '访问量',
-            dataIndex: 'views'
+            title: '售后',
+            dataIndex: 'views',
+            render: (ugt: boolean) => <span>待完善</span>
         },
         {
-            key: '',
-            title: '应聘情况',
-            dataIndex: '',
-            render: () => <Button type="link">查看</Button>,
+            key: 'a',
+            title: '合作次数',
+            dataIndex: 'a',
+            render: () => <span>待完善</span>,
+        },
+        {
+            key: 'b',
+            title: '洽谈次数',
+            dataIndex: 'b',
+            render: () => <span>待完善</span>,
         },
         {
             key: '',
             title: '操作选项',
             dataIndex: '',
-            render: (_: any, record: any) => <>
-                <Button onClick={() => props.onNodeClick(1, record)} type="link">编辑</Button>
-                <Button onClick={() => props.onNodeClick(2, record)} type="link">复制</Button>
+            render: (_: any, record: Node) => <>
+                <Button onClick={() => props.onNodeClick(1, record)} type="link">加入</Button>
             </>,
         },
     ]

@@ -15,6 +15,22 @@ class API extends Server {
    * @method get
    * @return {promise}
    */
+  async CompanyInfo(params = {}) {
+    try {
+      let result = await this.axios('get', `/CompanyInfoById`, params);
+      console.log(result)
+      return result
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
+   * @todo 获取企业列表
+   * @param params
+   * @method get
+   * @return {promise}
+   */
   async companyList(params = initPage) {
     try {
       let result = await this.axios('get', `/companyList`, params);

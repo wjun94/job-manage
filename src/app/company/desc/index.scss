@@ -1,0 +1,50 @@
+.info-page {
+    height: 100%;
+    position: relative;
+    padding-bottom: 52px !important;
+
+    .c-info {
+        font-weight: 500;
+        margin: 8px 0;
+    }
+
+    h2 {
+        span:first-child {
+            margin-right: 14px;
+        }
+    }
+
+    .desc {
+        color: $grayFont;
+        font-size: 12px;
+    }
+
+    footer {
+        position: absolute;
+        bottom: 16px;
+        right: 16px;
+
+        .after {
+            display: flex;
+
+            &:last-child::after {
+                display: none;
+            }
+
+            &::after {
+                top: .1em;
+            }
+        }
+
+        img {
+            height: 12px;
+            width: 12px;
+            object-fit: cover;
+            margin-right: 3px;
+        }
+
+        p {
+            cursor: pointer;
+        }
+    }
+}

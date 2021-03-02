@@ -82,12 +82,10 @@ export default class Home extends React.Component<P, any> {
      * @param node 节点属性
      * @memberof Table
      */
-    onOptions = async (type: number, node: Node) => {
-        switch (type) {
-            case 1:
-                // 编辑
-                break
-        }
+    onCompany = async (node: Node) => {
+        console.log(node)
+        const { companyId } = node
+        this.props.history.push({ pathname: '/company/desc', search: companyId ? `companyId=${companyId}` : '' })
     }
 
     render() {
@@ -95,7 +93,7 @@ export default class Home extends React.Component<P, any> {
         console.log(list)
         return <>
             <div className='position-page'>
-                <Table onNodeClick={this.onOptions} rowKey="companyId" pagination={paginationProps} list={list} />
+                <Table onNodeClick={this.onCompany} rowKey="companyId" pagination={paginationProps} list={list} />
             </div>
         </>
     }

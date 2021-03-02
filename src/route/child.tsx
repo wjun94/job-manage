@@ -66,8 +66,8 @@ const UserModify = Loadable({
     loading: () => <div>Loading...</div>,
 });
 
-const CompanyEdit = Loadable({
-    loader: () => import('../app/company/edit'),
+const CompanyDesc = Loadable({
+    loader: () => import('../app/company/desc'),
     loading: () => <div>Loading...</div>,
 });
 
@@ -108,7 +108,7 @@ LogLogin.preload()
 MsgEdit.preload()
 LogOperate.preload()
 ResumeHistory.preload()
-CompanyEdit.preload()
+CompanyDesc.preload()
 CompanySelect.preload()
 UserModify.preload()
 ResumeSearch.preload()
@@ -133,7 +133,12 @@ export const routes = [
             path: '/add',
             title: '添加客户',
             hide: true,
-            component: CompanyEdit
+            component: CompanyDesc
+        }, {
+            path: '/desc',
+            title: '单位详情',
+            hide: true,
+            component: CompanyDesc
         }, {
             path: '/me',
             title: '我的客户',
