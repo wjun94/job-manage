@@ -83,14 +83,12 @@ export default class Home extends React.Component<P, any> {
      * @memberof Table
      */
     onCompany = async (node: Node) => {
-        console.log(node)
         const { companyId } = node
         this.props.history.push({ pathname: '/customer/desc', search: companyId ? `companyId=${companyId}` : '' })
     }
 
     render() {
         const { paginationProps, list } = this.props
-        console.log(list)
         return <>
             <div className='position-page'>
                 <Table onNodeClick={this.onCompany} rowKey="companyId" pagination={paginationProps} list={list} />

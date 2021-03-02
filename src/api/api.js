@@ -1,7 +1,7 @@
 import Server from './server';
-// import {
-//   message
-// } from 'antd';
+import {
+  message
+} from 'antd';
 
 const initPage = {
   current: 1,
@@ -9,6 +9,23 @@ const initPage = {
 }
 
 class API extends Server {
+
+  /**
+   * @todo 更新公司信息
+   * @param params
+   * @method PATCH
+   * @return {promise}
+   */
+  async updateCompanyInfo(params = {}) {
+    try {
+      let result = await this.axios('PATCH', `/manageUpdateCompanyInfo`, params);
+      message.success('更新成功', 1.5);
+      return result.data
+    } catch (err) {
+      throw err;
+    }
+  }
+
   /**
    * @todo 获取企业列表
    * @param params
@@ -18,8 +35,7 @@ class API extends Server {
   async CompanyInfo(params = {}) {
     try {
       let result = await this.axios('get', `/CompanyInfoById`, params);
-      console.log(result)
-      return result
+      return result.data
     } catch (err) {
       throw err;
     }

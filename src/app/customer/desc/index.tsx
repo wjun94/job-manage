@@ -43,9 +43,12 @@ export interface P extends RouteComponentProps {
 })) as any)
 class App extends React.Component<P, {}> {
 
+  private id = ''
+
   async componentDidMount() {
     const id = window.$utils.getHashQuery('companyId')
-    const { data } = await window.$api.CompanyInfo({ id })
+    this.id = id
+    const data = await window.$api.CompanyInfo({ id })
     this.props.setData(data)
   }
 
@@ -56,7 +59,7 @@ class App extends React.Component<P, {}> {
   onFooter = (index: number) => {
     switch (index) {
       case 0:
-        this.props.history.push('/company/edit')
+        this.props.history.push({ pathname: '/customer/edit', search: this.id ? `companyId=${this.id}` : '' })
         break
       case 1:
         break

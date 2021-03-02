@@ -71,6 +71,11 @@ const CustomerDesc = Loadable({
     loading: () => <div>Loading...</div>,
 });
 
+const CustomerEdit = Loadable({
+    loader: () => import('../app/customer/edit'),
+    loading: () => <div>Loading...</div>,
+});
+
 const CustomerSelect = Loadable({
     loader: () => import('../app/customer/select'),
     loading: () => <div>Loading...</div>,
@@ -109,6 +114,7 @@ MsgEdit.preload()
 LogOperate.preload()
 ResumeHistory.preload()
 CustomerDesc.preload()
+CustomerEdit.preload()
 CustomerSelect.preload()
 UserModify.preload()
 ResumeSearch.preload()
@@ -139,6 +145,11 @@ export const routes = [
             title: '单位详情',
             hide: true,
             component: CustomerDesc
+        }, {
+            path: '/edit',
+            title: '编辑单位信息',
+            hide: true,
+            component: CustomerEdit
         }, {
             path: '/me',
             title: '我的客户',
