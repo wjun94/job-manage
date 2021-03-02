@@ -71,8 +71,8 @@ const CompanyEdit = Loadable({
     loading: () => <div>Loading...</div>,
 });
 
-const CompanyInfo = Loadable({
-    loader: () => import('../app/company/info'),
+const CompanySelect = Loadable({
+    loader: () => import('../app/company/select'),
     loading: () => <div>Loading...</div>,
 });
 
@@ -109,7 +109,7 @@ MsgEdit.preload()
 LogOperate.preload()
 ResumeHistory.preload()
 CompanyEdit.preload()
-CompanyInfo.preload()
+CompanySelect.preload()
 UserModify.preload()
 ResumeSearch.preload()
 AdvertiseList.preload()
@@ -123,28 +123,52 @@ UserSafety.preload()
 export const routes = [
     {
         path: '/company',
-        title: '单位管理',
+        title: '客户管理',
         icon: <img alt="log" className='anticon img anticon-pic-center' src={CompanyPng} />,
         children: [{
-            path: '/info',
-            title: '单位信息',
-            component: CompanyInfo
+            path: '/select',
+            title: '客户查询',
+            component: CompanySelect
         }, {
-            path: '/edit',
-            title: '修改信息',
+            path: '/add',
+            title: '添加客户',
             hide: true,
             component: CompanyEdit
         }, {
-            path: '/logo',
-            title: '单位Logo',
+            path: '/me',
+            title: '我的客户',
             component: CompanyLogo
         }, {
-            path: '/QRCode',
-            title: '公众号二维码',
+            path: '/reserve',
+            title: '预约客户',
             component: CompanyQRCode
         }, {
-            path: '/doc',
-            title: '文档管理',
+            path: '/contact',
+            title: '今日联系',
+            component: CompanyDoc
+        }, {
+            path: '/not',
+            title: '私库未联系',
+            component: CompanyDoc
+        }, {
+            path: '/away',
+            title: '30天脱离',
+            component: CompanyDoc
+        }, {
+            path: '/expected',
+            title: '未合作',
+            component: CompanyDoc
+        }, {
+            path: '/being',
+            title: '正合作',
+            component: CompanyDoc
+        }, {
+            path: '/former',
+            title: '原合作',
+            component: CompanyDoc
+        }, {
+            path: '/pub',
+            title: '公库',
             component: CompanyDoc
         }]
     },

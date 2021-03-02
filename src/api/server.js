@@ -46,7 +46,7 @@ export default class Server {
         params: ['get', 'put'].includes(method.toLowerCase()) ? params : {},
         data: params,
         headers: {
-          Authorization: window.$utils.getCookie("jobToken")
+          Authorization: window.$utils.getCookie("manageToken")
         },
         validateStatus: (status) => {
           return status >= 200 && status < 300;

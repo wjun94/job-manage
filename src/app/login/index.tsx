@@ -13,18 +13,15 @@ import LeftPng from './left.png'
 
 class App extends React.Component<FormProps, {}> {
   componentDidMount() {
-    // if (window.$utils.getCookie("jobToken")) {
+    // if (window.$utils.getCookie("manageToken")) {
     //   this.props.history.push('/')
     // }
   }
   handleSubmit = async (values) => {
-    const res = await window.$api.loginCompany(values)
-    window.$utils.setCookie("jobToken", res)
-    this.props.history.push('/')
+    const res = await window.$api.login(values)
+    window.$utils.setCookie("manageToken", res)
+    this.props.history.push('/company/select')
   };
-  onRegist = () => {
-    this.props.history.push('/regist')
-  }
   render() {
     return (
       <div className='login-page flex-center'>
@@ -32,7 +29,7 @@ class App extends React.Component<FormProps, {}> {
           <img alt="log" src={LeftPng} />
           <div className='right'>
             <div className='header'>
-              <h2>龙港人才网企业登入</h2>
+              <h2>温州千选才网业务员后台</h2>
               <p className='desc'>一款专门做招聘的平台</p>
             </div>
 
@@ -53,9 +50,6 @@ class App extends React.Component<FormProps, {}> {
               <Form.Item >
                 <Button block type="primary" htmlType="submit" className="login-form-button">
                   登录
-                </Button>
-                <Button block onClick={this.onRegist} className="login-form-button">
-                  注册
                 </Button>
               </Form.Item>
             </Form>
