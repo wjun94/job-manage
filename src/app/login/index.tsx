@@ -20,7 +20,7 @@ class App extends React.Component<FormProps, {}> {
   handleSubmit = async (values) => {
     const res = await window.$api.login(values)
     window.$utils.setCookie("manageToken", res)
-    this.props.history.push('/company/select')
+    this.props.history.push('/customer/select')
   };
   render() {
     return (

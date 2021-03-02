@@ -14,7 +14,7 @@ const initState = {
     list: [],
 }
 
-const recruitListReducer = (state = initState, action: any) => {
+const customerListReducer = (state = initState, action: any) => {
     switch (action.type) {
         case SETLIST:
             return {
@@ -49,7 +49,7 @@ const recruitListReducer = (state = initState, action: any) => {
 }
 
 const obj = {
-    recruitListReducer
+    customerListReducer
 }
 
 export default obj

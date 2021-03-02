@@ -21,13 +21,13 @@ const RecruitList = Loadable({
     loading: () => <div>Loading...</div>,
 });
 
-const CompanyDoc = Loadable({
-    loader: () => import('../app/company/doc'),
+const CustomerDoc = Loadable({
+    loader: () => import('../app/customer/doc'),
     loading: () => <div>Loading...</div>,
 });
 
-const CompanyLogo = Loadable({
-    loader: () => import('../app/company/logo'),
+const CustomerLogo = Loadable({
+    loader: () => import('../app/customer/logo'),
     loading: () => <div>Loading...</div>,
 });
 
@@ -36,8 +36,8 @@ const ContractList = Loadable({
     loading: () => <div>Loading...</div>,
 });
 
-const CompanyQRCode = Loadable({
-    loader: () => import('../app/company/QRCode'),
+const CustomerQRCode = Loadable({
+    loader: () => import('../app/customer/QRCode'),
     loading: () => <div>Loading...</div>,
 });
 
@@ -66,13 +66,13 @@ const UserModify = Loadable({
     loading: () => <div>Loading...</div>,
 });
 
-const CompanyDesc = Loadable({
-    loader: () => import('../app/company/desc'),
+const CustomerDesc = Loadable({
+    loader: () => import('../app/customer/desc'),
     loading: () => <div>Loading...</div>,
 });
 
-const CompanySelect = Loadable({
-    loader: () => import('../app/company/select'),
+const CustomerSelect = Loadable({
+    loader: () => import('../app/customer/select'),
     loading: () => <div>Loading...</div>,
 });
 
@@ -101,80 +101,80 @@ const RecruitEdit = Loadable({
     loading: () => <div>Loading...</div>,
 });
 
-CompanyLogo.preload()  // 预加载
+CustomerLogo.preload()  // 预加载
 MsgList.preload()
 RecruitEdit.preload()
 LogLogin.preload()
 MsgEdit.preload()
 LogOperate.preload()
 ResumeHistory.preload()
-CompanyDesc.preload()
-CompanySelect.preload()
+CustomerDesc.preload()
+CustomerSelect.preload()
 UserModify.preload()
 ResumeSearch.preload()
 AdvertiseList.preload()
-CompanyDoc.preload()
+CustomerDoc.preload()
 RecruitList.preload()
 ContractList.preload()
-CompanyQRCode.preload()
+CustomerQRCode.preload()
 ResumeList.preload()
 UserSafety.preload()
 
 export const routes = [
     {
-        path: '/company',
+        path: '/customer',
         title: '客户管理',
         icon: <img alt="log" className='anticon img anticon-pic-center' src={CompanyPng} />,
         children: [{
             path: '/select',
             title: '客户查询',
-            component: CompanySelect
+            component: CustomerSelect
         }, {
             path: '/add',
             title: '添加客户',
             hide: true,
-            component: CompanyDesc
+            component: CustomerDesc
         }, {
             path: '/desc',
             title: '单位详情',
             hide: true,
-            component: CompanyDesc
+            component: CustomerDesc
         }, {
             path: '/me',
             title: '我的客户',
-            component: CompanyLogo
+            component: CustomerLogo
         }, {
             path: '/reserve',
             title: '预约客户',
-            component: CompanyQRCode
+            component: CustomerQRCode
         }, {
             path: '/contact',
             title: '今日联系',
-            component: CompanyDoc
+            component: CustomerDoc
         }, {
             path: '/not',
             title: '私库未联系',
-            component: CompanyDoc
+            component: CustomerDoc
         }, {
             path: '/away',
             title: '30天脱离',
-            component: CompanyDoc
+            component: CustomerDoc
         }, {
             path: '/expected',
             title: '未合作',
-            component: CompanyDoc
+            component: CustomerDoc
         }, {
             path: '/being',
             title: '正合作',
-            component: CompanyDoc
+            component: CustomerDoc
         }, {
             path: '/former',
             title: '原合作',
-            component: CompanyDoc
+            component: CustomerDoc
         }, {
             path: '/pub',
             title: '公库',
-            component: CompanyDoc
+            component: CustomerDoc
         }]
     },
     {

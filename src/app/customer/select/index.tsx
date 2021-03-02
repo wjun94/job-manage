@@ -1,7 +1,7 @@
 import React from 'react'
 import { RouteComponentProps } from 'react-router'
 import { connect } from 'react-redux'
-import { setCurrent, setList, setPageSize, init, setPagination, setPaginationProps } from '@/store/recruit/list/action'
+import { setCurrent, setList, setPageSize, init, setPagination, setPaginationProps } from '@/store/customer/list/action'
 import Table, { Node } from './table'
 import './index.scss'
 
@@ -19,7 +19,7 @@ export interface P extends RouteComponentProps {
 }
 
 @(connect((state: any) => {
-    return ({ ...state.recruitListReducer })
+    return ({ ...state.customerListReducer })
 }, (dispatch) => ({
     setList(list: []) {
         dispatch(setList(list))
@@ -85,7 +85,7 @@ export default class Home extends React.Component<P, any> {
     onCompany = async (node: Node) => {
         console.log(node)
         const { companyId } = node
-        this.props.history.push({ pathname: '/company/desc', search: companyId ? `companyId=${companyId}` : '' })
+        this.props.history.push({ pathname: '/customer/desc', search: companyId ? `companyId=${companyId}` : '' })
     }
 
     render() {

@@ -2,12 +2,12 @@ import {
     createStore,
     combineReducers,
 } from 'redux'
-import recruitListReducer from './recruit/list/reducer'
-import companyInfoReducer from './company/info/reducer'
+import customerListReducer from './customer/list/reducer'
+import customerDescReducer from './customer/desc/reducer'
 
 export default createStore(
     combineReducers({
-        ...recruitListReducer,
-        ...companyInfoReducer,
+        ...customerListReducer,
+        ...customerDescReducer,
     }),
 )

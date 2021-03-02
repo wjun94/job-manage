@@ -6,7 +6,7 @@ const initState = {
     data: null,
 }
 
-const companyInfoReducer = (state = initState, action: any) => {
+const customerDescReducer = (state = initState, action: any) => {
     switch (action.type) {
         case SETDATA:
             for (let i in action.data) {
@@ -24,7 +24,7 @@ const companyInfoReducer = (state = initState, action: any) => {
 }
 
 const obj = {
-    companyInfoReducer
+    customerDescReducer
 }
 
 export default obj
