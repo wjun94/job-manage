@@ -24,13 +24,13 @@ const ENV = process.env.REACT_APP_SECRET_CODE
 let apiUrl;
 switch (ENV) {
   case 'production':
-    apiUrl = '/api/v1'
+    apiUrl = '/api/v1/manage'
     break
   case 'pre':
-    apiUrl = '/api/v1'
+    apiUrl = '/api/v1/manage'
     break
   default:
-    apiUrl = '/api/v1'
+    apiUrl = '/api/v1/manage'
 }
 
 export default class Server {

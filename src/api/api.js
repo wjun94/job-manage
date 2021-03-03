@@ -18,7 +18,7 @@ class API extends Server {
    */
   async updateCompanyInfo(params = {}) {
     try {
-      let result = await this.axios('PATCH', `/manageUpdateCompanyInfo`, params);
+      let result = await this.axios('PATCH', `/updateCompanyInfo`, params);
       message.success('更新成功', 1.5);
       return result.data
     } catch (err) {
@@ -34,7 +34,7 @@ class API extends Server {
    */
   async CompanyInfo(params = {}) {
     try {
-      let result = await this.axios('get', `/CompanyInfoById`, params);
+      let result = await this.axios('get', `/companyInfo`, params);
       return result.data
     } catch (err) {
       throw err;
@@ -65,7 +65,7 @@ class API extends Server {
    */
   async login(params = {}) {
     try {
-      let result = await this.axios('POST', `/loginManage`, params);
+      let result = await this.axios('POST', `/login`, params);
       return result.data
     } catch (err) {
       throw err;
