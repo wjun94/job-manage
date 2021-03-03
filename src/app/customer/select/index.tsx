@@ -90,7 +90,7 @@ export default class Home extends React.Component<P, any> {
     render() {
         const { paginationProps, list } = this.props
         return <>
-            <div className='position-page'>
+            <div className='customer-select app-container'>
                 <Table onNodeClick={this.onCompany} rowKey="companyId" pagination={paginationProps} list={list} />
             </div>
         </>

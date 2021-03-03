@@ -18,6 +18,9 @@ body {
   h2,
   h3 {
     margin: 0;
+    text-align: justify;
+    // 保留空格
+    white-space: pre-wrap;
   }
 }
 

@@ -11,7 +11,7 @@ import './index.scss'
 import routes, { routes as tabs } from '../../route/child'
 
 const { SubMenu } = Menu;
-const { Header, Sider, Content, Footer } = Layout;
+const { Header, Sider, Content } = Layout;
 
 export interface S {
     collapsed: boolean
@@ -123,8 +123,10 @@ export default class SiderDemo extends React.Component<RouteComponentProps, S> {
                                 }
                             </Switch>
                         </div>
+                        {/* <div className='footer-div'>
+                            <Footer className='flex-center'><p>Job Admin ©2020 Created by Hangzhou</p></Footer>
+                        </div> */}
                     </Content>
-                    <Footer style={{ textAlign: 'center' }}>Job Admin ©2020 Created by Hangzhou</Footer>
                 </Layout>
             </Layout>
         );

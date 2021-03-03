@@ -76,7 +76,7 @@ class App extends React.Component<P, {}> {
     const scaleObj = scaleArr.find(v => scale === v.value)
     const typeObj = typeArr.find(v => type === v.value)
     return (
-      <div className='app-container info-page'>
+      <div className='app-container customer-desc'>
         <h2><span>ID:{companyId}</span><span>{name}</span></h2>
         <p className='c-info'>
           <span className='after'>{typeObj ? typeObj.label : '-'}</span>
@@ -86,7 +86,7 @@ class App extends React.Component<P, {}> {
           <span className='after'>人数：{scaleObj ? scaleObj.label : '-'}</span>
           <span>创办时间：{foundAt ? moment(foundAt).format('YYYY') + '年' : '-'}</span>
         </p>
-        <p className='desc'>{desc || '暂无描述'}</p>
+        <p className='desc'>{`${desc}` || '暂无描述'}</p>
         <footer className='left-center'>
           {
             [{ label: '修改信息', icon: editPng }, { label: '联系人', icon: contractPng }, { label: '合同', icon: contactPng }].map((item, i) => (
