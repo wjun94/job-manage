@@ -106,6 +106,16 @@ const RecruitEdit = Loadable({
     loading: () => <div>Loading...</div>,
 });
 
+const ContactList = Loadable({
+    loader: () => import('../app/contact/list'),
+    loading: () => <div>Loading...</div>,
+});
+
+const ContactEdit = Loadable({
+    loader: () => import('../app/contact/edit'),
+    loading: () => <div>Loading...</div>,
+});
+
 CustomerLogo.preload()  // 预加载
 MsgList.preload()
 RecruitEdit.preload()
@@ -125,10 +135,28 @@ ContractList.preload()
 CustomerQRCode.preload()
 ResumeList.preload()
 UserSafety.preload()
+ContactList.preload()
+ContactEdit.preload()
 
 export const routes = [
     {
+        path: '/contact',
+        title: '联系人管理',
+        children: [{
+            path: '/list',
+            title: '联系人列表',
+            hide: true,
+            component: ContactList
+        }, {
+            path: '/edit',
+            title: '编辑联系人',
+            hide: true,
+            component: ContactEdit
+        }]
+    },
+    {
         path: '/company',
+        title: '单位管理',
         children: [{
             path: '/desc',
             title: '单位详情',

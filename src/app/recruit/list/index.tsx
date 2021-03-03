@@ -1,7 +1,7 @@
 import React from 'react'
 import { RouteComponentProps } from 'react-router'
 import { connect } from 'react-redux'
-import { setCurrent, setList, setPageSize, init, setPagination, setPaginationProps } from '@/store/customer/list/action'
+import { setCurrent, setList, setPageSize, init, setPagination, setPaginationProps } from '@/store/customer/select/action'
 import { Tabs, Button, message, Modal } from 'antd';
 import Column from '@/component/column'
 import Table, { Node } from './table'
@@ -23,7 +23,7 @@ export interface P extends RouteComponentProps {
 const { TabPane } = Tabs;
 
 @(connect((state: any) => {
-    return ({ ...state.customerListReducer })
+    return ({ ...state.customerSelectReducer })
 }, (dispatch) => ({
     setList(list: []) {
         dispatch(setList(list))

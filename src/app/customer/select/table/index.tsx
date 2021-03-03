@@ -3,7 +3,6 @@ import { Table, Button } from 'antd'
 import { TablePaginationConfig } from 'antd/lib/table/interface'
 
 export interface P {
-    rowSelection: any
     list: Node[]
     pagination: TablePaginationConfig
     onNodeClick: Function
@@ -17,8 +16,8 @@ export interface Node {
     views: number
 }
 
-export default function Index(props: any) {
-    const { pagination, list, rowSelection } = props
+export default function Index(props: P) {
+    const { pagination, list } = props
     const columns = [
         {
             key: 'name',
@@ -72,6 +71,6 @@ export default function Index(props: any) {
         },
     ]
     return <div className='recruit-list-table'>
-        <Table bordered columns={columns} rowSelection={rowSelection} rowKey="id" pagination={pagination} dataSource={list} />
+        <Table bordered columns={columns} rowKey="companyId" pagination={pagination} dataSource={list} />
     </div>
 }

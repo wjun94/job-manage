@@ -27,6 +27,21 @@ class API extends Server {
   }
 
   /**
+   * @todo 联系人信息
+   * @param params
+   * @method get
+   * @return {promise}
+   */
+  async contact(params = {}) {
+    try {
+      let result = await this.axios('get', `/contact`, params);
+      return result.data
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
    * @todo 获取企业列表
    * @param params
    * @method get
@@ -36,6 +51,54 @@ class API extends Server {
     try {
       let result = await this.axios('get', `/companyInfo`, params);
       return result.data
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
+   * @todo 更新联系人
+   * @param params
+   * @method patch
+   * @return {promise}
+   */
+  async updateContact(params = {}) {
+    try {
+      let result = await this.axios('patch', `/updateContact`, params);
+      message.success("操作成功")
+      return result
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
+   * @todo 创建联系人
+   * @param params
+   * @method post
+   * @return {promise}
+   */
+  async createContact(params = {}) {
+    try {
+      let result = await this.axios('post', `/createContact`, params);
+      message.success("操作成功")
+      return result
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
+   * @todo 获取联系人列表
+   * @param params
+   * @method get
+   * @return {promise}
+   */
+  async contactList(params = initPage) {
+    try {
+      let result = await this.axios('get', `/contactList`, params);
+      console.log(result)
+      return result
     } catch (err) {
       throw err;
     }

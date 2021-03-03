@@ -1,7 +1,7 @@
 import React from 'react'
 import { RouteComponentProps } from 'react-router'
 import { connect } from 'react-redux'
-import { setCurrent, setList, setPageSize, init, setPagination, setPaginationProps } from '@/store/customer/list/action'
+import { setCurrent, setList, setPageSize, init, setPagination, setPaginationProps } from '@/store/customer/select/action'
 import Table, { Node } from './table'
 import './index.scss'
 
@@ -19,7 +19,7 @@ export interface P extends RouteComponentProps {
 }
 
 @(connect((state: any) => {
-    return ({ ...state.customerListReducer })
+    return ({ ...state.customerSelectReducer })
 }, (dispatch) => ({
     setList(list: []) {
         dispatch(setList(list))
@@ -69,7 +69,7 @@ export default class Home extends React.Component<P, any> {
     changePageSize = async (pageSize: number, current: number) => {
         await this.props.setPageSize(pageSize)
         await this.props.setCurrent(current)
-        this.getData()
+        // this.getData()
     }
 
     changePage = async (current: number) => {
@@ -91,7 +91,7 @@ export default class Home extends React.Component<P, any> {
         const { paginationProps, list } = this.props
         return <>
             <div className='customer-select app-container'>
-                <Table onNodeClick={this.onCompany} rowKey="companyId" pagination={paginationProps} list={list} />
+                <Table onNodeClick={this.onCompany} pagination={paginationProps} list={list} />
             </div>
         </>
     }

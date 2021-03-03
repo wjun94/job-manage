@@ -62,6 +62,7 @@ class App extends React.Component<P, {}> {
         this.props.history.push({ pathname: '/company/edit', search: this.id ? `companyId=${this.id}` : '' })
         break
       case 1:
+        this.props.history.push({ pathname: '/contact/list', search: this.id ? `companyId=${this.id}` : '' })
         break
       case 2:
         break
