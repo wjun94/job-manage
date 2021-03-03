@@ -29,7 +29,11 @@ export interface P extends RouteComponentProps {
     dispatch(setData(data))
   },
 })) as any)
-class App extends React.Component<P, {}> {
+class App extends React.Component<P, { visible: boolean }> {
+
+  state = {
+    visible: false
+  }
 
   private id = ''
 
@@ -61,11 +65,20 @@ class App extends React.Component<P, {}> {
    * @todo 添加通话记录
    */
   onAddRecord = () => {
+    this.setState({ visible: true })
+  }
 
+  handleOk = () => {
+    this.handleCancel()
+  }
+
+  handleCancel = () => {
+    this.setState({ visible: false })
   }
 
   render() {
     const { data } = this.props
+    const { visible } = this.state
     if (!data) return '';
     const { type, companyId, name, prov, city, area, desc, scale, ind, amount, foundAt, entrant, createAt, updateAt } = data
     const indObj = indArr.find(v => ind === v.value)
@@ -107,13 +120,13 @@ class App extends React.Component<P, {}> {
         </div>
         <Row className='app-container customer-desc-main'>
           {
-            infoArr.map(item => <Col span={8}><span className='label'>{item.label}</span><span>{item.value}</span></Col>)
+            infoArr.map(item => <Col key={item.label} span={8}><span className='label'>{item.label}</span><span>{item.value}</span></Col>)
           }
         </Row>
         <div className='app-container customer-desc-footer'>
           <Button onClick={() => this.onAddRecord()} type="primary">添加通话记录</Button>
         </div>
-        <Modal />
+        <Modal handleOk={() => this.handleOk()} handleCancel={() => this.handleCancel()} visible={visible} />
       </>
     );
   }
