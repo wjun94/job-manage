@@ -8,7 +8,7 @@ import { scaleArr, indArr, typeArr } from '../../data'
 import contactPng from '@/assets/images/contact.png'
 import editPng from '@/assets/images/edit.png'
 import { connect } from 'react-redux'
-import { setData } from '@/store/customer/desc/action'
+import { setData } from '@/store/company/desc/action'
 import contractPng from '@/assets/images/contract1.png'
 import { RouteComponentProps } from 'react-router'
 import moment from 'moment';
@@ -35,7 +35,7 @@ export interface P extends RouteComponentProps {
 }
 
 @(connect((state: any) => {
-  return ({ ...state.customerDescReducer })
+  return ({ ...state.companyDescReducer })
 }, (dispatch) => ({
   setData(data: {}) {
     dispatch(setData(data))

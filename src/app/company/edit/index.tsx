@@ -8,7 +8,7 @@ import { Form, Input, Cascader, Button, Select, Col, DatePicker } from 'antd'
 import options from '../../data/cities'
 import { scaleArr, indArr, typeArr } from '../../data'
 import { connect } from 'react-redux'
-import { setData } from '@/store/customer/desc/action'
+import { setData } from '@/store/company/desc/action'
 import { RouteComponentProps } from 'react-router'
 import moment from 'moment';
 
@@ -39,7 +39,7 @@ export interface FormNode extends Node {
 }
 
 @(connect((state: any) => {
-  return ({ ...state.customerDescReducer })
+  return ({ ...state.companyDescReducer })
 }, (dispatch) => ({
   setData(data: {}) {
     dispatch(setData(data))

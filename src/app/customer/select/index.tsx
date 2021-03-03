@@ -84,7 +84,7 @@ export default class Home extends React.Component<P, any> {
      */
     onCompany = async (node: Node) => {
         const { companyId } = node
-        this.props.history.push({ pathname: '/customer/desc', search: companyId ? `companyId=${companyId}` : '' })
+        this.props.history.push({ pathname: '/company/desc', search: companyId ? `companyId=${companyId}` : '' })
     }
 
     render() {

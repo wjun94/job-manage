@@ -66,13 +66,13 @@ const UserModify = Loadable({
     loading: () => <div>Loading...</div>,
 });
 
-const CustomerDesc = Loadable({
-    loader: () => import('../app/customer/desc'),
+const CompanyDesc = Loadable({
+    loader: () => import('../app/company/desc'),
     loading: () => <div>Loading...</div>,
 });
 
 const CustomerEdit = Loadable({
-    loader: () => import('../app/customer/edit'),
+    loader: () => import('../app/company/edit'),
     loading: () => <div>Loading...</div>,
 });
 
@@ -113,7 +113,7 @@ LogLogin.preload()
 MsgEdit.preload()
 LogOperate.preload()
 ResumeHistory.preload()
-CustomerDesc.preload()
+CompanyDesc.preload()
 CustomerEdit.preload()
 CustomerSelect.preload()
 UserModify.preload()
@@ -128,6 +128,20 @@ UserSafety.preload()
 
 export const routes = [
     {
+        path: '/company',
+        children: [{
+            path: '/desc',
+            title: '单位详情',
+            hide: true,
+            component: CompanyDesc
+        }, {
+            path: '/edit',
+            title: '编辑单位信息',
+            hide: true,
+            component: CustomerEdit
+        },]
+    },
+    {
         path: '/customer',
         title: '客户管理',
         icon: <img alt="log" className='anticon img anticon-pic-center' src={CompanyPng} />,
@@ -139,17 +153,7 @@ export const routes = [
             path: '/add',
             title: '添加客户',
             hide: true,
-            component: CustomerDesc
-        }, {
-            path: '/desc',
-            title: '单位详情',
-            hide: true,
-            component: CustomerDesc
-        }, {
-            path: '/edit',
-            title: '编辑单位信息',
-            hide: true,
-            component: CustomerEdit
+            component: CompanyDesc
         }, {
             path: '/me',
             title: '我的客户',
