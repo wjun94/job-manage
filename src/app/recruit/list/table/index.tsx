@@ -1,6 +1,7 @@
 import React from 'react'
 import { Table, Button } from 'antd'
 import { TablePaginationConfig } from 'antd/lib/table/interface'
+import moment from 'moment';
 
 export interface P {
     rowSelection: any
@@ -29,7 +30,7 @@ export default function Index(props: any) {
             key: 'updateAt',
             title: '更新时间',
             dataIndex: 'updateAt',
-            render: (text: string) => (text.split(" ").map((v, i) => <p className='update-at' key={"update" + i}>{v}</p>))
+            render: (text: string) => <span>{moment(text).format('LL')}</span>
         },
         {
             key: 'status',
