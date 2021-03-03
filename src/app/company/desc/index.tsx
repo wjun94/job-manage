@@ -13,27 +13,9 @@ import contractPng from '@/assets/images/contract1.png'
 import { RouteComponentProps } from 'react-router'
 import { Row, Col, Button } from 'antd';
 import moment from 'moment';
+import { Node } from './type'
+import Modal from './modal'
 
-export interface Node {
-  name: string
-  ind: string
-  scale: string
-  addr: string
-  web: string
-  desc: string
-  prov: string
-  city: string
-  area: string
-  amount: number
-  foundAt: string
-  entrant: string
-  createAt: string
-  updateAt: string
-}
-
-export interface FormNode extends Node {
-  address: any
-}
 
 export interface P extends RouteComponentProps {
   data: Node | any
@@ -73,6 +55,13 @@ class App extends React.Component<P, {}> {
       case 2:
         break
     }
+  }
+
+  /**
+   * @todo 添加通话记录
+   */
+  onAddRecord = () => {
+
   }
 
   render() {
@@ -122,8 +111,9 @@ class App extends React.Component<P, {}> {
           }
         </Row>
         <div className='app-container customer-desc-footer'>
-          <Button type="primary">添加通话记录</Button>
+          <Button onClick={() => this.onAddRecord()} type="primary">添加通话记录</Button>
         </div>
+        <Modal />
       </>
     );
   }
