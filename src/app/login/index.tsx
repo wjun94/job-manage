@@ -19,8 +19,17 @@ class App extends React.Component<FormProps, {}> {
   }
   handleSubmit = async (values) => {
     const res = await window.$api.login(values)
-    window.$utils.setCookie("manageToken", res)
-    this.props.history.push('/customer/select')
+    window.$utils.setCookie("manageToken", res.token)
+    delete res.token
+    window.localStorage.setItem("userInfo", JSON.stringify(res))
+    // window.$user = res
+    const href = window.location.href.match(/^[\w\W]+[#]/)
+    if (href) {
+      window.location.href = href[0] + "/customer/select"
+    } else {
+      this.props.history.push('/customer/select')
+      window.location.reload();
+    }
   };
   render() {
     return (

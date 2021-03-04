@@ -15,7 +15,7 @@ import { Row, Col, Button } from 'antd';
 import moment from 'moment';
 import { Node } from './type'
 import Modal from './modal'
-
+import Descript from './descript'
 
 export interface P extends RouteComponentProps {
   data: Node | any
@@ -40,8 +40,10 @@ class App extends React.Component<P, { visible: boolean }> {
   async componentDidMount() {
     const id = window.$utils.getHashQuery('companyId')
     this.id = id
-    const data = await window.$api.CompanyInfo({ id })
+    const data = await window.$api.companyInfo({ id })
     this.props.setData(data)
+    const record = await window.$api.recordList({ id })
+    console.log(record)
   }
 
   /**
@@ -68,7 +70,10 @@ class App extends React.Component<P, { visible: boolean }> {
     this.setState({ visible: true })
   }
 
-  handleOk = () => {
+  handleOk = (values: any) => {
+    const { contact = [] } = this.props.data
+    const result = contact.find(item => values.manageId === item.id)
+    window.$api.createRecord({ ...result, ...values, manageId: window.$user.id, manageName: window.$user.name })
     this.handleCancel()
   }
 
@@ -80,7 +85,7 @@ class App extends React.Component<P, { visible: boolean }> {
     const { data } = this.props
     const { visible } = this.state
     if (!data) return '';
-    const { type, companyId, name, prov, city, area, desc, scale, ind, amount, foundAt, entrant, createAt, updateAt } = data
+    const { type, companyId, name, prov, city, area, desc, scale, ind, amount, foundAt, entrant, createAt, updateAt, contact } = data
     const indObj = indArr.find(v => ind === v.value)
     const scaleObj = scaleArr.find(v => scale === v.value)
     const typeObj = typeArr.find(v => type === v.value)
@@ -125,8 +130,9 @@ class App extends React.Component<P, { visible: boolean }> {
         </Row>
         <div className='app-container customer-desc-footer'>
           <Button onClick={() => this.onAddRecord()} type="primary">添加通话记录</Button>
+          <Descript />
         </div>
-        <Modal handleOk={() => this.handleOk()} handleCancel={() => this.handleCancel()} visible={visible} />
+        <Modal list={contact} handleOk={this.handleOk} handleCancel={() => this.handleCancel()} visible={visible} />
       </>
     );
   }

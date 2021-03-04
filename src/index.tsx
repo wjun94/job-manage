@@ -20,12 +20,22 @@ declare global {
   interface Window {
     $api: any;
     $utils: any;
-    pub: any;
+    $user: {
+      createAt: string
+      email: string
+      id: string
+      level: number
+      name: string
+      phone: string
+    };
   }
 }
 
 window.$api = Api
 window.$utils = Utils
+const user = window.localStorage.getItem("userInfo")
+window.$user = user ? JSON.parse(user) : {}
+
 
 ReactDOM.render(
   <React.StrictMode>

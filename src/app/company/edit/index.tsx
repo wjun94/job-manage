@@ -50,7 +50,7 @@ class App extends React.Component<P> {
   async componentDidMount() {
     if (!this.props.data) {
       const id = window.$utils.getHashQuery('companyId')
-      const data = await window.$api.CompanyInfo({ id })
+      const data = await window.$api.companyInfo({ id })
       await this.props.setData(data)
     }
   }

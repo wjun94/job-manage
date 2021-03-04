@@ -14,4 +14,5 @@ export interface Node {
     createAt: string
     updateAt: string
     address: any
+    contact: any[]
 }

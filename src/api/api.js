@@ -47,7 +47,7 @@ class API extends Server {
    * @method get
    * @return {promise}
    */
-  async CompanyInfo(params = {}) {
+  async companyInfo(params = {}) {
     try {
       let result = await this.axios('get', `/companyInfo`, params);
       return result.data
@@ -89,6 +89,40 @@ class API extends Server {
   }
 
   /**
+   * @todo 获取聊天记录列表
+   * @param params
+   * @method get
+   * @return {promise}
+   */
+  async recordList(params = {}) {
+    try {
+      let result = await this.axios('get', `/recordList`, {
+        ...initPage,
+        ...params
+      });
+      return result
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
+   * @todo 创建聊天记录
+   * @param params
+   * @method post
+   * @return {promise}
+   */
+  async createRecord(params = {}) {
+    try {
+      let result = await this.axios('post', `/createRecord`, params);
+      message.success("添加成功")
+      return result
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
    * @todo 获取联系人列表
    * @param params
    * @method get
@@ -97,7 +131,6 @@ class API extends Server {
   async contactList(params = initPage) {
     try {
       let result = await this.axios('get', `/contactList`, params);
-      console.log(result)
       return result
     } catch (err) {
       throw err;
@@ -113,7 +146,6 @@ class API extends Server {
   async companyList(params = initPage) {
     try {
       let result = await this.axios('get', `/companyList`, params);
-      console.log(result)
       return result
     } catch (err) {
       throw err;

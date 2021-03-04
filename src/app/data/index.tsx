@@ -38,6 +38,8 @@ export const typeData: any = [
     },
 ];
 
+export const recordArr = [{ label: "正常", value: 1 }, { label: "没联系上", value: 2 }, { label: "空号", value: 3 }, { label: "错号", value: 4 }]
+
 export const jobTypeArr: any = [
     {
         label: '互联网',
