@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { Modal, Form, Input, Select, DatePicker, Radio } from 'antd'
 import { recordArr } from '@/app/data'
-// import { Node } from '../type'
+import { RecordNode } from '../type'
 
 const { TextArea } = Input
 const { Option } = Select
@@ -14,7 +14,7 @@ export interface P {
     visible: boolean
     handleOk: Function
     handleCancel: Function
-    list: any[]
+    list: RecordNode[]
 }
 
 export default function Index(props: P) {

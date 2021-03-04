@@ -1,0 +1,35 @@
+.descript {
+    button {
+        margin-left: 20px;
+    }
+
+    .no-data {
+        text-align: center;
+        color: #7d7d7d;
+    }
+
+
+
+    table {
+
+        // border-bottom: 14px solid white;
+
+    }
+
+    tr.ant-descriptions-row {
+        border-bottom: 1px solid #f0f0f0 !important;
+        margin-bottom: -1px;
+    }
+
+    // .ant-descriptions-row {
+    //     height: 1px;
+
+    //     .border {
+    //         border-bottom: 1px solid #f0f0f0;
+    //     }
+    // }
+}
+
+.descript-content {
+    margin-bottom: 14px;
+}

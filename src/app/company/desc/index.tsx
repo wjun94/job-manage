@@ -8,31 +8,36 @@ import { scaleArr, indArr, typeArr } from '../../data'
 import contactPng from '@/assets/images/contact.png'
 import editPng from '@/assets/images/edit.png'
 import { connect } from 'react-redux'
-import { setData } from '@/store/company/desc/action'
+import { setData, setList } from '@/store/company/desc/action'
 import contractPng from '@/assets/images/contract1.png'
 import { RouteComponentProps } from 'react-router'
-import { Row, Col, Button } from 'antd';
+import { Row, Col } from 'antd';
 import moment from 'moment';
-import { Node } from './type'
+import { CompInfoNode, ContactNode } from './type'
 import Modal from './modal'
 import Descript from './descript'
 
 export interface P extends RouteComponentProps {
-  data: Node | any
-  setData: (node: any) => void
+  data: CompInfoNode | any
+  list: ContactNode[]
+  setData: (node: CompInfoNode) => void
+  setList: (node: ContactNode[]) => void
 }
 
 @(connect((state: any) => {
   return ({ ...state.companyDescReducer })
 }, (dispatch) => ({
-  setData(data: {}) {
+  setData(data: CompInfoNode) {
     dispatch(setData(data))
+  },
+  setList(list: CompInfoNode[]) {
+    dispatch(setList(list))
   },
 })) as any)
 class App extends React.Component<P, { visible: boolean }> {
 
   state = {
-    visible: false
+    visible: false,
   }
 
   private id = ''
@@ -43,7 +48,7 @@ class App extends React.Component<P, { visible: boolean }> {
     const data = await window.$api.companyInfo({ id })
     this.props.setData(data)
     const record = await window.$api.recordList({ id })
-    console.log(record)
+    await this.props.setList(record.data)
   }
 
   /**
@@ -82,7 +87,7 @@ class App extends React.Component<P, { visible: boolean }> {
   }
 
   render() {
-    const { data } = this.props
+    const { data, list } = this.props
     const { visible } = this.state
     if (!data) return '';
     const { type, companyId, name, prov, city, area, desc, scale, ind, amount, foundAt, entrant, createAt, updateAt, contact } = data
@@ -99,6 +104,7 @@ class App extends React.Component<P, { visible: boolean }> {
       { label: '售后：', value: '-' },
       { label: '共洽谈数：', value: '-' },
     ]
+    console.log(list)
     return (
       <>
         <div className='app-container customer-desc'>
@@ -129,8 +135,7 @@ class App extends React.Component<P, { visible: boolean }> {
           }
         </Row>
         <div className='app-container customer-desc-footer'>
-          <Button onClick={() => this.onAddRecord()} type="primary">添加通话记录</Button>
-          <Descript />
+          <Descript onNodeClick={this.onAddRecord} list={list} />
         </div>
         <Modal list={contact} handleOk={this.handleOk} handleCancel={() => this.handleCancel()} visible={visible} />
       </>

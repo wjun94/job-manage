@@ -1,58 +1,67 @@
 import React from 'react'
-// import { Badge } from 'antd';
+import { Button, Badge, Radio } from 'antd';
+import { recordArr } from '@/app/data'
+import { ContactNode } from '../type'
+import './index.scss'
 
-export default function Index(props: {}) {
+export interface P {
+    onNodeClick: Function
+    list: ContactNode[]
+}
+
+export default function Index(props: P) {
+    const { onNodeClick, list } = props
     return (
-        <div className='ant-descriptions ant-descriptions-bordered'>
-            <div className='ant-descriptions-header'>
-                <div className='ant-descriptions-title'>标题</div>
+        <>
+            <div className='ant-descriptions-small descript ant-descriptions-bordered'>
+                <div className='ant-descriptions-header'>
+                    <div className='ant-descriptions-title'>通话记录列表</div>
+                    <Radio.Group buttonStyle="outline">
+                        {
+                            recordArr.map(v => <Radio.Button key={v.label} value={v.value}>{v.label}</Radio.Button>)
+                        }
+                    </Radio.Group>
+                    <Button onClick={() => onNodeClick()} type="primary">添加通话记录</Button>
+                </div>
             </div>
-            <div className='ant-descriptions-view '>
-                <table>
-                    <tbody>
-                        <tr className='ant-descriptions-row'>
-                            <td className='ant-descriptions-item-content' rowSpan={3}>
-                                张老师<br />
-                                联系电话:13588222222<br />
-                                固定电话:13588222222<br />
-                                邮箱:13588222222
-                            </td>
-                            <td style={{ display: 'none' }} className='ant-descriptions-item-content' />
-                        </tr>
-                        <tr className='ant-descriptions-row'>
-                            <th className='ant-descriptions-item-label'>创建时间</th>
-                            <td className='ant-descriptions-item-content'>2020</td>
+            {
+                list && list.length ? <div className='ant-descriptions-view '>
+                    {
+                        list.map(item => (
+                            <React.Fragment key={item.id}>
+                                <div className='ant-descriptions-small descript-content ant-descriptions-bordered'>
+                                    <table>
+                                        <tbody>
+                                            <tr className='ant-descriptions-row'>
+                                                <td className='ant-descriptions-item-content' rowSpan={3}>
+                                                    {item.name}<br />
+                                                    联系电话:{item.phone || '-'}<br />
+                                                    固定电话:{'-'}<br />
+                                                    邮箱:{item.email || '-'}
+                                                </td>
+                                            </tr>
+                                            <tr className='ant-descriptions-row'>
+                                                <th className='ant-descriptions-item-label'>创建时间</th>
+                                                <td className='ant-descriptions-item-content'><Badge color="green" text={item.createAt} /></td>
 
-                            <th className='ant-descriptions-item-label'>预约时间</th>
-                            <td className='ant-descriptions-item-content'>-</td>
+                                                <th className='ant-descriptions-item-label'>预约时间</th>
+                                                <td className='ant-descriptions-item-content'>{item.ceserveAt || '-'}</td>
 
-                            <th className='ant-descriptions-item-label'>联系人</th>
-                            <td className='ant-descriptions-item-content'>小项</td>
-                        </tr>
-                        <tr className='ant-descriptions-row'>
-                            <td className='ant-descriptions-item-content'>通话内容...</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-
-        // <Descriptions
-        //     bordered
-        //     title="通话记录列表"
-        //     size="small"
-        //     column={2}
-        //     extra={<Button type="primary">Edit</Button>}
-        // >
-        //     <Descriptions.Item label="" labelStyle={{ display: 'none' }}><span ref={el => spanEl = el}>通话时间11</span></Descriptions.Item>
-        //     <Descriptions.Item label="通话记录" span={4}>通话记录...</Descriptions.Item>
-        //     <Descriptions.Item label="通话时间">2020</Descriptions.Item>
-        //     <Descriptions.Item label="预约时间">2021</Descriptions.Item>
-        //     <Descriptions.Item label="联系人">小向</Descriptions.Item>
-        //     <Descriptions.Item label="状态">
-        //         <Badge status="processing" text="正常" />
-        //     </Descriptions.Item>
-        // </Descriptions>
+                                                <th className='ant-descriptions-item-label'>联系人</th>
+                                                <td className='ant-descriptions-item-content'>{item.manageName}</td>
+                                            </tr>
+                                            <tr className='ant-descriptions-row'>
+                                                <td className='ant-descriptions-item-content border' colSpan={6}>{item.content}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </React.Fragment>
+                        ))
+                    }
+                </div> : <p className='no-data'>暂无数据</p>
+            }
+        </>
     )
 }
+

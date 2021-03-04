@@ -1,9 +1,11 @@
 import {
-    SETDATA
+    SETDATA,
+    SETLIST
 } from './action-type'
 
 const initState = {
     data: null,
+    list: [],
 }
 
 const companyDescReducer = (state = initState, action: any) => {
@@ -18,6 +20,9 @@ const companyDescReducer = (state = initState, action: any) => {
                 ...state,
                 data: action.data
             }
+        case SETLIST:
+            console.log(action.list)
+            return { ...state, list: action.list }
         default:
             return state
     }
