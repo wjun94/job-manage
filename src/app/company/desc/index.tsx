@@ -12,10 +12,10 @@ import { setData, setList } from '@/store/company/desc/action'
 import contractPng from '@/assets/images/contract1.png'
 import { RouteComponentProps } from 'react-router'
 import { Row, Col } from 'antd';
-import moment from 'moment';
 import { CompInfoNode, ContactNode } from './type'
 import Modal from './modal'
 import Descript from './descript'
+import moment from 'moment';
 
 export interface P extends RouteComponentProps {
   data: CompInfoNode | any
@@ -123,11 +123,11 @@ class App extends React.Component<P, { visible: boolean, total: number }> {
     const typeObj = typeArr.find(v => type === v.value)
     const infoArr = [
       { label: '录入人：', value: entrant },
-      { label: '上次洽谈时间：', value: list[0] ? list[0].createAt : '-' },
+      { label: '上次洽谈时间：', value: list[0] ? moment(list[0].createAt).calendar() : '-' },
       { label: '录入时间：', value: moment(createAt).calendar() },
       { label: '所属人：', value: '-' },
       { label: '下次洽谈时间：', value: '-' },
-      { label: '更新时间：', value: updateAt ? moment(updateAt).format('LL') : '-' },
+      { label: '更新时间：', value: updateAt ? moment(updateAt).calendar() : '-' },
       { label: '售后：', value: '-' },
       { label: '共洽谈数：', value: total },
     ]

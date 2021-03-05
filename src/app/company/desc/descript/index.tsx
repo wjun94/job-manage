@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, Badge, Radio } from 'antd';
 import { recordArr } from '@/app/data'
 import { ContactNode } from '../type'
+import moment from 'moment';
 import './index.scss'
 
 export interface P {
@@ -45,10 +46,10 @@ export default function Index(props: P) {
                                         </tr>
                                         <tr>
                                             <th>创建时间</th>
-                                            <td><Badge color={item.status === 1 ? 'green' : '#f5222d'} text={item.createAt} /></td>
+                                            <td><Badge color={item.status === 1 ? 'green' : '#f5222d'} text={moment(item.createAt).calendar()} /></td>
 
                                             <th>预约时间</th>
-                                            <td>{item.ceserveAt || '-'}</td>
+                                            <td>{item.ceserveAt ? moment(item.ceserveAt).calendar() : '-'}</td>
 
                                             <th>联系人</th>
                                             <td>{item.manageName}</td>
