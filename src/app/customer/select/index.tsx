@@ -2,7 +2,8 @@ import React from 'react'
 import { RouteComponentProps } from 'react-router'
 import { connect } from 'react-redux'
 import { setCurrent, setList, setPageSize, init, setPagination, setPaginationProps } from '@/store/customer/select/action'
-import Table, { Node } from './table'
+import Table from './table'
+import { companyInfoListNode } from '@/app/customer/select/type'
 import './index.scss'
 
 export interface P extends RouteComponentProps {
@@ -15,7 +16,7 @@ export interface P extends RouteComponentProps {
     setPaginationProps: Function
     setCurrent: Function
     paginationProps: any,
-    list: Node[]
+    list: companyInfoListNode[]
 }
 
 @(connect((state: any) => {
@@ -78,11 +79,27 @@ export default class Home extends React.Component<P, any> {
     }
 
     /**
+     * @todo 点击加入
+     * @param node
+     * @memberof table
+     */
+    onOptions = (node: companyInfoListNode) => {
+        const id = node.manageId ? '' : window.$user.id
+        window.$api.updateManageId({
+            companyId: node.companyId,
+            manageId: id,
+            serviceId: id
+        })
+        node.manageId = id
+        this.props.setList(this.props.list)
+    }
+
+    /**
      * @param type 1:编辑 2:是否急聘
      * @param node 节点属性
      * @memberof Table
      */
-    onCompany = async (node: Node) => {
+    onCompany = async (node: companyInfoListNode) => {
         const { companyId } = node
         this.props.history.push({ pathname: '/company/desc', search: companyId ? `companyId=${companyId}` : '' })
     }
@@ -91,7 +108,7 @@ export default class Home extends React.Component<P, any> {
         const { paginationProps, list } = this.props
         return <>
             <div className='customer-select app-container'>
-                <Table onNodeClick={this.onCompany} pagination={paginationProps} list={list} />
+                <Table onOptions={this.onOptions} onNodeClick={this.onCompany} pagination={paginationProps} list={list} />
             </div>
         </>
     }

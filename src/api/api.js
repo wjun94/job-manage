@@ -16,6 +16,22 @@ class API extends Server {
    * @method PATCH
    * @return {promise}
    */
+  async updateManageId(params = {}) {
+    try {
+      let result = await this.axios('PATCH', `/updateManageId`, params);
+      message.success(params.manageId ? '加入成功' : '脱库成功', 1.5);
+      return result.data
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
+   * @todo 更新公司信息
+   * @param params
+   * @method PATCH
+   * @return {promise}
+   */
   async updateCompanyInfo(params = {}) {
     try {
       let result = await this.axios('PATCH', `/updateCompanyInfo`, params);
