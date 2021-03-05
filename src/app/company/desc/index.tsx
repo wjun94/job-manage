@@ -34,10 +34,11 @@ export interface P extends RouteComponentProps {
     dispatch(setList(list))
   },
 })) as any)
-class App extends React.Component<P, { visible: boolean }> {
+class App extends React.Component<P, { visible: boolean, total: number }> {
 
   state = {
     visible: false,
+    total: 0,
   }
 
   private id = ''
@@ -47,8 +48,18 @@ class App extends React.Component<P, { visible: boolean }> {
     this.id = id
     const data = await window.$api.companyInfo({ id })
     this.props.setData(data)
-    const record = await window.$api.recordList({ id })
+    this.getRecordList()
+  }
+
+  /**
+   * @patam status 通话状态
+   */
+  getRecordList = async (status: number = 0) => {
+    const record = await window.$api.recordList({ id: this.id, status })
     await this.props.setList(record.data)
+    this.setState({
+      total: record.total
+    })
   }
 
   /**
@@ -75,10 +86,18 @@ class App extends React.Component<P, { visible: boolean }> {
     this.setState({ visible: true })
   }
 
-  handleOk = (values: any) => {
+  handleOk = async (values: ContactNode) => {
     const { contact = [] } = this.props.data
+    values.ceserveAt = values.ceserveAt ? moment(values.ceserveAt).format('YYYY-MM-DD HH:mm') : ''
     const result = contact.find(item => values.manageId === item.id)
-    window.$api.createRecord({ ...result, ...values, manageId: window.$user.id, manageName: window.$user.name })
+    const obj = { ...result, ...values, manageId: window.$user.id, manageName: window.$user.name }
+    await window.$api.createRecord(obj)
+    let { list = [] } = this.props
+    list = [obj, ...list]
+    this.setState({
+      total: this.state.total + 1
+    })
+    await this.props.setList(list)
     this.handleCancel()
   }
 
@@ -86,9 +105,17 @@ class App extends React.Component<P, { visible: boolean }> {
     this.setState({ visible: false })
   }
 
+  /**
+   * @param e
+   * @member Descript
+   */
+  onRadio = (e) => {
+    this.getRecordList(e.target.value)
+  }
+
   render() {
     const { data, list } = this.props
-    const { visible } = this.state
+    const { visible, total } = this.state
     if (!data) return '';
     const { type, companyId, name, prov, city, area, desc, scale, ind, amount, foundAt, entrant, createAt, updateAt, contact } = data
     const indObj = indArr.find(v => ind === v.value)
@@ -96,15 +123,14 @@ class App extends React.Component<P, { visible: boolean }> {
     const typeObj = typeArr.find(v => type === v.value)
     const infoArr = [
       { label: '录入人：', value: entrant },
-      { label: '上次洽谈时间：', value: '-' },
-      { label: '录入时间：', value: moment(createAt).format('LL') },
+      { label: '上次洽谈时间：', value: list[0] ? list[0].createAt : '-' },
+      { label: '录入时间：', value: moment(createAt).calendar() },
       { label: '所属人：', value: '-' },
       { label: '下次洽谈时间：', value: '-' },
       { label: '更新时间：', value: updateAt ? moment(updateAt).format('LL') : '-' },
       { label: '售后：', value: '-' },
-      { label: '共洽谈数：', value: '-' },
+      { label: '共洽谈数：', value: total },
     ]
-    console.log(list)
     return (
       <>
         <div className='app-container customer-desc'>
@@ -135,7 +161,7 @@ class App extends React.Component<P, { visible: boolean }> {
           }
         </Row>
         <div className='app-container customer-desc-footer'>
-          <Descript onNodeClick={this.onAddRecord} list={list} />
+          <Descript onRadio={this.onRadio} onNodeClick={this.onAddRecord} list={list} />
         </div>
         <Modal list={contact} handleOk={this.handleOk} handleCancel={() => this.handleCancel()} visible={visible} />
       </>

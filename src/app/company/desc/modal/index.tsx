@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { Modal, Form, Input, Select, DatePicker, Radio } from 'antd'
 import { recordArr } from '@/app/data'
 import { RecordNode } from '../type'
@@ -20,6 +20,9 @@ export interface P {
 export default function Index(props: P) {
     const { visible, handleOk, handleCancel, list } = props
     let formEl: any = useRef('form');
+    useEffect(() => {
+        formEl.current !== 'form' && formEl.resetFields();
+    })
     function onSubmit() {
         formEl.validateFields().then(res => {
             handleOk(res)
@@ -46,7 +49,7 @@ export default function Index(props: P) {
             <Form.Item
                 name="ceserveAt"
             >
-                <DatePicker placeholder="预约通话时间" />
+                <DatePicker showTime format="YYYY-MM-DD HH:mm" placeholder="预约通话时间" />
             </Form.Item>
             <Form.Item name='status' rules={[{ required: true, message: '请选择单位联系人' }]}>
                 <Radio.Group buttonStyle="solid">

@@ -7,18 +7,20 @@ import './index.scss'
 export interface P {
     onNodeClick: Function
     list: ContactNode[]
+    onRadio: Function
 }
 
 export default function Index(props: P) {
-    const { onNodeClick, list } = props
+    const { onNodeClick, list, onRadio } = props
+    const result = [{ label: '全部', value: 0 }, ...recordArr]
     return (
         <>
             <div className='ant-descriptions-small descript ant-descriptions-bordered'>
                 <div className='ant-descriptions-header'>
                     <div className='ant-descriptions-title'>通话记录列表</div>
-                    <Radio.Group buttonStyle="outline">
+                    <Radio.Group defaultValue={0} onChange={(e) => onRadio(e)} buttonStyle="outline">
                         {
-                            recordArr.map(v => <Radio.Button key={v.label} value={v.value}>{v.label}</Radio.Button>)
+                            result.map(v => <Radio.Button key={v.label} value={v.value}>{v.label}</Radio.Button>)
                         }
                     </Radio.Group>
                     <Button onClick={() => onNodeClick()} type="primary">添加通话记录</Button>
@@ -29,33 +31,33 @@ export default function Index(props: P) {
                     {
                         list.map(item => (
                             <React.Fragment key={item.id}>
-                                <div className='ant-descriptions-small descript-content ant-descriptions-bordered'>
-                                    <table>
-                                        <tbody>
-                                            <tr className='ant-descriptions-row'>
-                                                <td className='ant-descriptions-item-content' rowSpan={3}>
+                                <table className='main'>
+                                    <tbody>
+                                        <tr className='left-content'>
+                                            <td width="220" rowSpan={3}>
+                                                <div>
                                                     {item.name}<br />
                                                     联系电话:{item.phone || '-'}<br />
-                                                    固定电话:{'-'}<br />
+                                                    固定电话:{item.fixedNum || '-'}<br />
                                                     邮箱:{item.email || '-'}
-                                                </td>
-                                            </tr>
-                                            <tr className='ant-descriptions-row'>
-                                                <th className='ant-descriptions-item-label'>创建时间</th>
-                                                <td className='ant-descriptions-item-content'><Badge color="green" text={item.createAt} /></td>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>创建时间</th>
+                                            <td><Badge color={item.status === 1 ? 'green' : '#f5222d'} text={item.createAt} /></td>
 
-                                                <th className='ant-descriptions-item-label'>预约时间</th>
-                                                <td className='ant-descriptions-item-content'>{item.ceserveAt || '-'}</td>
+                                            <th>预约时间</th>
+                                            <td>{item.ceserveAt || '-'}</td>
 
-                                                <th className='ant-descriptions-item-label'>联系人</th>
-                                                <td className='ant-descriptions-item-content'>{item.manageName}</td>
-                                            </tr>
-                                            <tr className='ant-descriptions-row'>
-                                                <td className='ant-descriptions-item-content border' colSpan={6}>{item.content}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                            <th>联系人</th>
+                                            <td>{item.manageName}</td>
+                                        </tr>
+                                        <tr className='ant-descriptions-row content'>
+                                            <td colSpan={6}>{item.content}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </React.Fragment>
                         ))
                     }

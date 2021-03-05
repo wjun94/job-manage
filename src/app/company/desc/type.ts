@@ -39,6 +39,7 @@ export interface ContactNode {
     createAt: string
     email: string
     manageId: string
+    fixedNum: string
     manageName: string
     name: string
     phone: string

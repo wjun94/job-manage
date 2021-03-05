@@ -33,3 +33,55 @@
 .descript-content {
     margin-bottom: 14px;
 }
+
+/*表格样式*/
+table.main {
+    background: #ccc;
+    // margin: 10px auto;
+    margin: 14px 0;
+    border-collapse: collapse;
+
+    /*border-collapse:collapse合并内外边距
+    (去除表格单元格默认的2个像素内外边距*/
+    th,
+    td {
+        height: 25px;
+        line-height: 25px;
+        text-align: center;
+        border: 1px solid #f0f0f0;
+        padding: 0 14px;
+    }
+
+    th {
+        background: #fafafa;
+        font-weight: normal;
+    }
+
+    tr {
+        background: #fff;
+    }
+
+    // tr td:hover {
+    //     background: #cc0;
+    // }
+
+    td a {
+        color: #06f;
+        text-decoration: none;
+    }
+
+    td a:hover {
+        color: #06f;
+        text-decoration: underline;
+    }
+
+    .content td {
+        text-align: left;
+        padding: 6px 14px;
+    }
+
+    .left-content td {
+        text-align: left;
+        padding: 6px 14px;
+    }
+}

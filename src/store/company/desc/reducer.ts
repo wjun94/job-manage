@@ -21,7 +21,6 @@ const companyDescReducer = (state = initState, action: any) => {
                 data: action.data
             }
         case SETLIST:
-            console.log(action.list)
             return { ...state, list: action.list }
         default:
             return state
