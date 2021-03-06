@@ -154,14 +154,39 @@ class API extends Server {
   }
 
   /**
+   * @todo 预约客户列表
+   * @param params
+   * @method get
+   * @return {promise}
+   */
+  async reserveList(params = {}) {
+    console.log({
+      ...initPage,
+      params
+    })
+    try {
+      let result = await this.axios('get', `/reserveList`, {
+        ...initPage,
+        ...params
+      });
+      return result
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
    * @todo 获取企业列表
    * @param params
    * @method get
    * @return {promise}
    */
-  async companyList(params = initPage) {
+  async companyList(params = {}) {
     try {
-      let result = await this.axios('get', `/companyList`, params);
+      let result = await this.axios('get', `/companyList`, {
+        ...initPage,
+        ...params
+      });
       return result
     } catch (err) {
       throw err;

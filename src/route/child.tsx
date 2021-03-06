@@ -81,6 +81,16 @@ const CustomerSelect = Loadable({
     loading: () => <div>Loading...</div>,
 });
 
+const CustomerMe = Loadable({
+    loader: () => import('../app/customer/me'),
+    loading: () => <div>Loading...</div>,
+});
+
+const CustomerReserve = Loadable({
+    loader: () => import('../app/customer/reserve'),
+    loading: () => <div>Loading...</div>,
+});
+
 const LogOperate = Loadable({
     loader: () => import('../app/log/operate'),
     loading: () => <div>Loading...</div>,
@@ -126,6 +136,8 @@ ResumeHistory.preload()
 CompanyDesc.preload()
 CustomerEdit.preload()
 CustomerSelect.preload()
+CustomerMe.preload()
+CustomerReserve.preload()
 UserModify.preload()
 ResumeSearch.preload()
 AdvertiseList.preload()
@@ -185,11 +197,11 @@ export const routes = [
         }, {
             path: '/me',
             title: '我的客户',
-            component: CustomerLogo
+            component: CustomerMe
         }, {
             path: '/reserve',
             title: '预约客户',
-            component: CustomerQRCode
+            component: CustomerReserve
         }, {
             path: '/contact',
             title: '今日联系',

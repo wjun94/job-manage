@@ -66,7 +66,7 @@ export default function Index(props: P) {
             dataIndex: '',
             render: (_: any, record: Node) => <>
                 <Button onClick={() => props.onNodeClick(record)} type="link">编辑</Button>
-                {list.length <= 1 && <Button onClick={() => props.onOptions(record)} danger type="link">删除</Button>}
+                {/* {list.length <= 1 && <Button onClick={() => props.onOptions(record)} danger type="link">删除</Button>} */}
             </>,
         },
     ]

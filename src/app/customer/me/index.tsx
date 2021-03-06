@@ -1,9 +1,9 @@
 import React from 'react'
 import { RouteComponentProps } from 'react-router'
 import { connect } from 'react-redux'
-import { setCurrent, setList, setPageSize, init, setPagination, setPaginationProps } from '@/store/customer/select/action'
-import Table from '../../../component/reserve-table'
+import { setCurrent, setList, setPageSize, init, setPagination, setPaginationProps } from '@/store/customer/me/action'
 import { companyInfoListNode } from '@/app/customer/select/type'
+import Table from '@/component/reserve-table'
 import './index.scss'
 
 export interface P extends RouteComponentProps {
@@ -20,7 +20,7 @@ export interface P extends RouteComponentProps {
 }
 
 @(connect((state: any) => {
-    return ({ ...state.customerSelectReducer })
+    return ({ ...state.customerMeReducer })
 }, (dispatch) => ({
     setList(list: []) {
         dispatch(setList(list))
@@ -52,7 +52,7 @@ export default class Home extends React.Component<P, any> {
      */
     getData = async () => {
         const { current, pageSize } = this.props
-        const { data, total } = await window.$api.companyList({ current: current, pageSize: pageSize })
+        const { data, total } = await window.$api.companyList({ current: current, pageSize: pageSize, manageId: window.$user.id })
         const paginationProps = {
             showSizeChanger: true,
             showQuickJumper: false,
@@ -109,7 +109,7 @@ export default class Home extends React.Component<P, any> {
     render() {
         const { paginationProps, list } = this.props
         return <>
-            <div className='customer-select app-container'>
+            <div className='customer-me app-container'>
                 <Table onOptions={this.onOptions} onNodeClick={this.onCompany} pagination={paginationProps} list={list} />
             </div>
         </>

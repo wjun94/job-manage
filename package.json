@@ -1,7 +1,7 @@
 {
   "name": "react-ts-cli",
   "version": "0.1.0",
-  "proxy": "http://localhost:7020",
+  "proxy": "http://localhost:7021",
   "private": true,
   "dependencies": {
     "@babel/core": "7.12.17",

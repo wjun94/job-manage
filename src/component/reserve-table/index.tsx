@@ -32,7 +32,7 @@ export default function Index(props: P) {
             key: 'record',
             title: '通话状态',
             dataIndex: 'record',
-            render: (record) => <span>{recordArr.find(item => item.value === record.status)?.label}</span>
+            render: (record) => <span>{recordArr.find(item => item.value === record.status)?.label || '-'}</span>
         },
         {
             key: 'status',
