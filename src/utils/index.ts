@@ -1,3 +1,5 @@
+import moment, { unitOfTime } from 'moment';
+
 /**
  *  @todo 设备环境
  */
@@ -33,6 +35,15 @@ export function isLicenseNo(str) {
  */
 export function setStorage(name, value) {
     localStorage.setItem(name, JSON.stringify(value));
+}
+
+/**
+ * @todo 计算相差多少天
+ * @param date 日期
+ * @param unitOfTime 'day' | 'hour' | 'minute' | 'second' | 'millisecond'
+ */
+export function diffTime(date, unitOfTime: unitOfTime.Diff = 'millisecond') {
+    return moment(date).diff(moment(), unitOfTime)
 }
 
 /**

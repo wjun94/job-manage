@@ -117,18 +117,20 @@ class App extends React.Component<P, { visible: boolean, total: number }> {
     const { data, list } = this.props
     const { visible, total } = this.state
     if (!data) return '';
-    const { type, companyId, name, prov, city, area, desc, scale, ind, amount, foundAt, entrant, createAt, updateAt, contact } = data
+    const { type, companyId, name, prov, city, area, desc, scale, ind, amount, foundAt, entrant, createAt, updateAt, contact, service, manage } = data
     const indObj = indArr.find(v => ind === v.value)
     const scaleObj = scaleArr.find(v => scale === v.value)
     const typeObj = typeArr.find(v => type === v.value)
+    const ceserveAt = list.find(item => item.ceserveAt)
+    const recordAt = list.find(item => item.ceserveAt ? window.$utils.diffTime(item.ceserveAt) <= 0 : true)?.createAt
     const infoArr = [
       { label: '录入人：', value: entrant },
-      { label: '上次洽谈时间：', value: list[0] ? moment(list[0].createAt).calendar() : '-' },
+      { label: '上次联系时间：', value: recordAt ? moment(recordAt).calendar() : '-' },
       { label: '录入时间：', value: moment(createAt).calendar() },
-      { label: '所属人：', value: '-' },
-      { label: '下次洽谈时间：', value: '-' },
+      { label: '所属人：', value: manage.name || '-' },
+      { label: '下次洽谈时间：', value: ceserveAt && window.$utils.diffTime(ceserveAt.ceserveAt) > 0 ? moment(ceserveAt.ceserveAt).calendar() : '-' },
       { label: '更新时间：', value: updateAt ? moment(updateAt).calendar() : '-' },
-      { label: '售后：', value: '-' },
+      { label: '售后：', value: service.name },
       { label: '共洽谈数：', value: total },
     ]
     return (

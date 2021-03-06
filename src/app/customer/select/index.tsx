@@ -79,7 +79,7 @@ export default class Home extends React.Component<P, any> {
     }
 
     /**
-     * @todo 点击加入
+     * @todo 点击加入或脱离
      * @param node
      * @memberof table
      */
@@ -91,6 +91,8 @@ export default class Home extends React.Component<P, any> {
             serviceId: id
         })
         node.manageId = id
+        node.manage.name = node.manageId ? window.$user.name : ''
+        node.service.name = node.manageId ? window.$user.name : ''
         this.props.setList(this.props.list)
     }
 

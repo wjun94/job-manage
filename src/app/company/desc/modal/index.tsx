@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react'
-import { Modal, Form, Input, Select, DatePicker, Radio } from 'antd'
+import { Modal, Form, Input, Select, DatePicker, Radio, message } from 'antd'
 import { recordArr } from '@/app/data'
 import { RecordNode } from '../type'
 
@@ -25,6 +25,10 @@ export default function Index(props: P) {
     })
     function onSubmit() {
         formEl.validateFields().then(res => {
+            if (window.$utils.diffTime(res.ceserveAt) < 0) {
+                message.error("预约日期不能小于当期日期")
+                return
+            }
             handleOk(res)
         }).catch(err => {
             console.log(err)
