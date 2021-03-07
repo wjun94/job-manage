@@ -2,7 +2,7 @@ import React from 'react'
 import { RouteComponentProps } from 'react-router'
 import { connect } from 'react-redux'
 import { setCurrent, setList, setPageSize, init, setPagination, setPaginationProps } from '@/store/customer/reserve/action'
-import Table from '@/component/reserve-table'
+import Table from './table'
 import { companyInfoListNode } from '@/app/customer/select/type'
 import './index.scss'
 
@@ -44,8 +44,6 @@ export interface P extends RouteComponentProps {
 export default class Home extends React.Component<P, any> {
 
     async componentDidMount() {
-        const result = await window.$api.reserveList({ manageId: window.$user.id })
-        console.log(result)
         this.getData()
     }
 
@@ -54,7 +52,7 @@ export default class Home extends React.Component<P, any> {
      */
     getData = async () => {
         const { current, pageSize } = this.props
-        const { data, total } = await window.$api.companyList({ current: current, pageSize: pageSize, manageId: window.$user.id })
+        let { data, total } = await window.$api.reserveList({ current: current, pageSize: pageSize, manageId: window.$user.id })
         const paginationProps = {
             showSizeChanger: true,
             showQuickJumper: false,
@@ -66,7 +64,7 @@ export default class Home extends React.Component<P, any> {
             onChange: (current: number) => { this.changePage(current) },
         }
         this.props.setPaginationProps(paginationProps)
-        this.props.setList(data)
+        this.props.setList(data.map(v => (Object.assign({}, v, v.cInfo))))
     }
 
     changePageSize = async (pageSize: number, current: number) => {
