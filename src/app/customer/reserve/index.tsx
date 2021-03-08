@@ -3,7 +3,7 @@ import { RouteComponentProps } from 'react-router'
 import { connect } from 'react-redux'
 import { setCurrent, setList, setPageSize, init, setPagination, setPaginationProps } from '@/store/customer/reserve/action'
 import Table from './table'
-import { companyInfoListNode } from '@/app/customer/select/type'
+import { CompanySelectNode } from '@/app/interface'
 import './index.scss'
 
 export interface P extends RouteComponentProps {
@@ -16,7 +16,7 @@ export interface P extends RouteComponentProps {
     setPaginationProps: Function
     setCurrent: Function
     paginationProps: any,
-    list: companyInfoListNode[]
+    list: CompanySelectNode[]
 }
 
 @(connect((state: any) => {
@@ -52,7 +52,7 @@ export default class Home extends React.Component<P, any> {
      */
     getData = async () => {
         const { current, pageSize } = this.props
-        let { data, total } = await window.$api.reserveList({ current: current, pageSize: pageSize, manageId: window.$user.id })
+        let { data, total } = await window.$api.reserveList({ current: current, pageSize: pageSize, manageId: window.$user.id, status: 'reserve_at' })
         const paginationProps = {
             showSizeChanger: true,
             showQuickJumper: false,
@@ -83,14 +83,25 @@ export default class Home extends React.Component<P, any> {
      * @param node
      * @memberof table
      */
-    onOptions = (node: companyInfoListNode) => {
+    onOptions = (node: CompanySelectNode) => {
+        if (node.manageId) {
+            // 踢出
+            window.$api.outCompany({
+                companyId: node.companyId,
+                manageId: node.manageId,
+                serviceId: node.serviceId
+            })
+        } else {
+            // 加入
+            window.$api.addCompany({
+                companyId: node.companyId,
+                manageId: window.$user.id,
+                serviceId: window.$user.id
+            })
+        }
         const id = node.manageId ? '' : window.$user.id
-        window.$api.updateManageId({
-            companyId: node.companyId,
-            manageId: id,
-            serviceId: id
-        })
         node.manageId = id
+        node.serviceId = id
         node.manage.name = node.manageId ? window.$user.name : ''
         node.service.name = node.manageId ? window.$user.name : ''
         this.props.setList(this.props.list)
@@ -101,7 +112,7 @@ export default class Home extends React.Component<P, any> {
      * @param node 节点属性
      * @memberof Table
      */
-    onCompany = async (node: companyInfoListNode) => {
+    onCompany = async (node: CompanySelectNode) => {
         const { companyId } = node
         this.props.history.push({ pathname: '/company/desc', search: companyId ? `companyId=${companyId}` : '' })
     }

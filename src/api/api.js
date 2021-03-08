@@ -11,6 +11,38 @@ const initPage = {
 class API extends Server {
 
   /**
+   * @todo 踢出公司
+   * @param params
+   * @method PATCH
+   * @return {promise}
+   */
+  async outCompany(params = {}) {
+    try {
+      let result = await this.axios('PATCH', `/outCompany`, params);
+      message.success('踢出成功');
+      return result.data
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
+   * @todo 添加公司
+   * @param params
+   * @method PATCH
+   * @return {promise}
+   */
+  async addCompany(params = {}) {
+    try {
+      let result = await this.axios('PATCH', `/addCompany`, params);
+      message.success('加入成功');
+      return result.data
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
    * @todo 更新公司信息
    * @param params
    * @method PATCH
@@ -19,7 +51,7 @@ class API extends Server {
   async updateManageId(params = {}) {
     try {
       let result = await this.axios('PATCH', `/updateManageId`, params);
-      message.success(params.manageId ? '加入成功' : '脱库成功', 1.5);
+      message.success(params.manageId ? '加入成功' : '踢出成功', 1.5);
       return result.data
     } catch (err) {
       throw err;
@@ -160,10 +192,6 @@ class API extends Server {
    * @return {promise}
    */
   async reserveList(params = {}) {
-    console.log({
-      ...initPage,
-      params
-    })
     try {
       let result = await this.axios('get', `/reserveList`, {
         ...initPage,

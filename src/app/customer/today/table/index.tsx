@@ -59,16 +59,16 @@ export default function Index(props: P) {
             render: (recordCount) => <span>{recordCount}</span>,
         },
         {
-            key: 'reserveAt',
-            title: '预约时间',
-            dataIndex: 'reserveAt',
-            render: (reserveAt) => <span>{moment(reserveAt).calendar()}</span>,
+            key: 'createAt',
+            title: '联系时间',
+            dataIndex: 'createAt',
+            render: (createAt) => <span>{moment(createAt).calendar()}</span>,
         },
         {
-            key: 'createAt',
+            key: 'cInfo',
             title: '入库时间',
-            dataIndex: 'createAt',
-            render: (createAt) => <span>{moment(createAt).format('LL') || '-'}</span>
+            dataIndex: 'cInfo',
+            render: (cInfo) => <span>{moment(cInfo.createAt).format('LL') || '-'}</span>
         }, {
             key: 'c',
             title: '剩余脱裤',
