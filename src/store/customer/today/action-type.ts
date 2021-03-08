@@ -1,0 +1,5 @@
+export const SETCURRENT = 'appendTodayCurrent'
+export const PAGESIZE = 'appendTodayPageSize'
+export const SETLIST = 'setTodayRankList'
+export const PAGINATION = 'TodayRankPaginationProps'
+export const INIT = 'appendTodayInit'

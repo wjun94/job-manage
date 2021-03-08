@@ -1,7 +1,7 @@
 import React from 'react'
 import { RouteComponentProps } from 'react-router'
 import { connect } from 'react-redux'
-import { setCurrent, setList, setPageSize, init, setPagination, setPaginationProps } from '@/store/customer/today/action'
+import { setCurrent, setList, setPageSize, init, setPagination, setPaginationProps } from '@/store/customer/select/action'
 import Table from './table'
 import { CompanySelectNode } from '@/app/interface'
 import './index.scss'
@@ -20,7 +20,7 @@ export interface P extends RouteComponentProps {
 }
 
 @(connect((state: any) => {
-    return ({ ...state.customerTodayReducer })
+    return ({ ...state.customerSelectReducer })
 }, (dispatch) => ({
     setList(list: []) {
         dispatch(setList(list))
@@ -52,7 +52,7 @@ export default class Home extends React.Component<P, any> {
      */
     getData = async () => {
         const { current, pageSize } = this.props
-        let { data, total } = await window.$api.reserveList({ current: current, pageSize: pageSize, manageId: window.$user.id, status: 2 })
+        const { data, total } = await window.$api.companyList({ current: current, pageSize: pageSize })
         const paginationProps = {
             showSizeChanger: true,
             showQuickJumper: false,
@@ -64,7 +64,7 @@ export default class Home extends React.Component<P, any> {
             onChange: (current: number) => { this.changePage(current) },
         }
         this.props.setPaginationProps(paginationProps)
-        this.props.setList(data.map(v => (Object.assign({}, v.cInfo, v))))
+        this.props.setList(data)
     }
 
     changePageSize = async (pageSize: number, current: number) => {
@@ -120,7 +120,7 @@ export default class Home extends React.Component<P, any> {
     render() {
         const { paginationProps, list } = this.props
         return <>
-            <div className='customer-reserve app-container'>
+            <div className='customer-select app-container'>
                 <Table onOptions={this.onOptions} onNodeClick={this.onCompany} pagination={paginationProps} list={list} />
             </div>
         </>

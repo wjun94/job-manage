@@ -1,0 +1,5 @@
+export const SETCURRENT = 'appendNotCurrent'
+export const PAGESIZE = 'appendNotPageSize'
+export const SETLIST = 'setNotRankList'
+export const PAGINATION = 'NotRankPaginationProps'
+export const INIT = 'appendNotInit'

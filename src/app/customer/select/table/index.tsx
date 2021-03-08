@@ -32,7 +32,7 @@ export default function Index(props: P) {
             key: 'record',
             title: '通话状态',
             dataIndex: 'record',
-            render: (record) => record ? <Badge color={record.status === 1 ? '#009688' : '#f5222d'} text={<span>{record ? recordArr.find(item => item.value === record.status)?.label : '-'}</span>} /> : '-'
+            render: (record) => record && record.status ? <Badge color={record.status === 1 ? '#009688' : '#f5222d'} text={<span>{record ? recordArr.find(item => item.value === record.status)?.label : '-'}</span>} /> : '-'
         },
         {
             key: 'status',

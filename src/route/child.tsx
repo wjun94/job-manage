@@ -96,6 +96,11 @@ const CustomerToday = Loadable({
     loading: () => <div>Loading...</div>,
 });
 
+const CustomerNot = Loadable({
+    loader: () => import('../app/customer/not'),
+    loading: () => <div>Loading...</div>,
+});
+
 const LogOperate = Loadable({
     loader: () => import('../app/log/operate'),
     loading: () => <div>Loading...</div>,
@@ -144,6 +149,7 @@ CustomerSelect.preload()
 CustomerMe.preload()
 CustomerReserve.preload()
 CustomerToday.preload()
+CustomerNot.preload()
 UserModify.preload()
 ResumeSearch.preload()
 AdvertiseList.preload()
@@ -215,7 +221,7 @@ export const routes = [
         }, {
             path: '/not',
             title: '私库未联系',
-            component: CustomerDoc
+            component: CustomerNot
         }, {
             path: '/away',
             title: '30天脱离',
