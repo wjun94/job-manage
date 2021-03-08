@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table, Button } from 'antd'
+import { Table, Button, Badge } from 'antd'
 import { TablePaginationConfig } from 'antd/lib/table/interface'
 import { CompanySelectNode } from '@/app/interface'
 import { recordArr } from '@/app/data'
@@ -32,7 +32,7 @@ export default function Index(props: P) {
             key: 'record',
             title: '通话状态',
             dataIndex: 'record',
-            render: (record) => <span>{record ? recordArr.find(item => item.value === record.status)?.label : '-'}</span>
+            render: (record) => record ? <Badge color={record.status === 1 ? '#009688' : '#f5222d'} text={<span>{record ? recordArr.find(item => item.value === record.status)?.label : '-'}</span>} /> : '-'
         },
         {
             key: 'status',

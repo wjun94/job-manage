@@ -88,7 +88,7 @@ class App extends React.Component<P, { visible: boolean, total: number }> {
 
   handleOk = async (values: ContactNode) => {
     const { contact = [] } = this.props.data
-    values.ceserveAt = values.ceserveAt ? moment(values.ceserveAt).format('YYYY-MM-DD HH:mm') : ''
+    values.reserveAt = values.reserveAt ? moment(values.reserveAt).format('YYYY-MM-DD HH:mm') : ''
     const result = contact.find(item => values.manageId === item.id)
     const obj = { ...result, ...values, manageId: window.$user.id, manageName: window.$user.name }
     await window.$api.createRecord(obj)
@@ -121,14 +121,14 @@ class App extends React.Component<P, { visible: boolean, total: number }> {
     const indObj = indArr.find(v => ind === v.value)
     const scaleObj = scaleArr.find(v => scale === v.value)
     const typeObj = typeArr.find(v => type === v.value)
-    const ceserveAt = list.find(item => item.ceserveAt)
-    const recordAt = list.find(item => item.ceserveAt ? window.$utils.diffTime(item.ceserveAt) <= 0 : true)?.createAt
+    const reserveAt = list.find(item => item.reserveAt)
+    const recordAt = list.find(item => item.reserveAt ? window.$utils.diffTime(item.reserveAt) <= 0 : true)?.createAt
     const infoArr = [
       { label: '录入人：', value: entrant },
       { label: '上次联系时间：', value: recordAt ? moment(recordAt).calendar() : '-' },
       { label: '录入时间：', value: moment(createAt).calendar() },
       { label: '所属人：', value: manage.name || '-' },
-      { label: '下次洽谈时间：', value: ceserveAt && window.$utils.diffTime(ceserveAt.ceserveAt) > 0 ? moment(ceserveAt.ceserveAt).calendar() : '-' },
+      { label: '下次洽谈时间：', value: reserveAt && window.$utils.diffTime(reserveAt.reserveAt) > 0 ? moment(reserveAt.reserveAt).calendar() : '-' },
       { label: '更新时间：', value: updateAt ? moment(updateAt).calendar() : '-' },
       { label: '售后：', value: service.name },
       { label: '共洽谈数：', value: total },

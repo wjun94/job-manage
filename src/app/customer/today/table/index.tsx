@@ -68,10 +68,10 @@ export default function Index(props: P) {
             key: 'cInfo',
             title: '入库时间',
             dataIndex: 'cInfo',
-            render: (cInfo) => <span>{moment(cInfo.createAt).format('LL') || '-'}</span>
+            render: (cInfo) => <span>{cInfo.createAt ? moment(cInfo.createAt).format('LL') : '-'}</span>
         }, {
             key: 'c',
-            title: '剩余脱裤',
+            title: '剩余脱库',
             dataIndex: 'c',
             render: () => <span>待完善</span>
         },

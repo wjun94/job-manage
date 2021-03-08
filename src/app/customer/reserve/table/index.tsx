@@ -71,9 +71,9 @@ export default function Index(props: P) {
             render: (createAt) => <span>{moment(createAt).format('LL') || '-'}</span>
         }, {
             key: 'c',
-            title: '剩余脱裤',
+            title: '剩余脱库',
             dataIndex: 'c',
-            render: () => <span>待完善</span>
+            render: (_, data) => <span>{data.addAt ? window.$utils.distanceTime(data.addAt) + '天' : '-'}</span>
         },
         {
             key: '',
@@ -84,6 +84,7 @@ export default function Index(props: P) {
             </>,
         },
     ]
+    console.log(list)
     return <div className='recruit-list-table'>
         <Table bordered columns={columns} rowKey="id" pagination={pagination} dataSource={list} />
     </div>

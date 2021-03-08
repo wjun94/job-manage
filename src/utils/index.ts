@@ -47,6 +47,22 @@ export function diffTime(date, unitOfTime: unitOfTime.Diff = 'millisecond') {
 }
 
 /**
+ * @todo 添加天数
+ * @param date 日期
+ * @param days 添加天数
+ */
+export function addTime(date, days = 90) {
+    return moment(date).add(days, "days").calendar()
+}
+
+/**
+ * @todo 距今还有几天
+ */
+export function distanceTime(date) {
+    return diffTime(addTime(date), 'days')
+}
+
+/**
  * @todo 读取storage
  * @param {string} name
  * @param {string} value

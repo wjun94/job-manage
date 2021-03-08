@@ -49,7 +49,7 @@ export default function Index(props: P) {
                                             <td><Badge color={item.status === 1 ? 'green' : '#f5222d'} text={moment(item.createAt).calendar()} /></td>
 
                                             <th>预约时间</th>
-                                            <td>{item.ceserveAt ? moment(item.ceserveAt).calendar() : '-'}</td>
+                                            <td>{item.reserveAt ? moment(item.reserveAt).calendar() : '-'}</td>
 
                                             <th>联系人</th>
                                             <td>{item.manageName}</td>

@@ -18,7 +18,7 @@ export interface CompInfoNode {
 }
 
 export interface RecordNode {
-    ceserveAt: ""
+    reserveAt: ""
     companyId: "8579547"
     content: "123"
     createAt: "2021-03-04 22:48:07"
@@ -33,7 +33,7 @@ export interface RecordNode {
 
 export interface ContactNode {
     id: string
-    ceserveAt: string
+    reserveAt: string
     companyId: string
     content: string
     createAt: string

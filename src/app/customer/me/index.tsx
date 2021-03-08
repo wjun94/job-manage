@@ -3,7 +3,7 @@ import { RouteComponentProps } from 'react-router'
 import { connect } from 'react-redux'
 import { setCurrent, setList, setPageSize, init, setPagination, setPaginationProps } from '@/store/customer/me/action'
 import { CompanySelectNode } from '@/app/interface'
-import Table from '@/component/reserve-table'
+import Table from './table'
 import './index.scss'
 
 export interface P extends RouteComponentProps {

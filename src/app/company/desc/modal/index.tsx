@@ -25,7 +25,7 @@ export default function Index(props: P) {
     })
     function onSubmit() {
         formEl.validateFields().then(res => {
-            if (window.$utils.diffTime(res.ceserveAt) < 0) {
+            if (window.$utils.diffTime(res.reserveAt) < 0) {
                 message.error("预约日期不能小于当期日期")
                 return
             }
@@ -51,7 +51,7 @@ export default function Index(props: P) {
                 <TextArea rows={2} placeholder="请输入通话內容" />
             </Form.Item>
             <Form.Item
-                name="ceserveAt"
+                name="reserveAt"
             >
                 <DatePicker showTime format="YYYY-MM-DD HH:mm" placeholder="预约通话时间" />
             </Form.Item>
