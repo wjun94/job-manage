@@ -10,6 +10,16 @@ const setArr = (arr): Node[] => {
     }))
 }
 
+export const sortArr = [
+    { label: '登录时间', value: 'login_at' },
+    { label: '开通时间', value: 'c_at' },
+    { label: '注册时间', value: 'b_at' },
+    { label: '到期时间', value: 'a_at' }
+]
+
+export const statusArr: Node[] = setArr(['已合作', '未合作', '体验中', '已到期', '已终止'])
+
+
 export const scaleArr: Node[] = setArr(['小于20人', '20-50人', '50-100人', '100-500人', '500-1000人', '1000人以上', '5000人以上'])
 
 export const typeArr: Node[] = setArr(['合资', '独资', '国有', '私营', '全民所有制', '集体所有制', '股份制', '有限责任'])

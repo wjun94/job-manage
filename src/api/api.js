@@ -80,9 +80,30 @@ class API extends Server {
    * @method get
    * @return {promise}
    */
+  async instituteAllList(params = {}) {
+    try {
+      let result = await this.axios('get', `/instituteAllList`, {
+        ...initPage,
+        ...params
+      });
+      return result
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
+   * @todo 私库未联系
+   * @param params
+   * @method get
+   * @return {promise}
+   */
   async customerNotList(params = {}) {
     try {
-      let result = await this.axios('get', `/customerNotList`, params);
+      let result = await this.axios('get', `/customerNotList`, {
+        ...initPage,
+        ...params
+      });
       return result
     } catch (err) {
       throw err;

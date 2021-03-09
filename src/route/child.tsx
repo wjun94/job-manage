@@ -136,7 +136,13 @@ const ContactEdit = Loadable({
     loading: () => <div>Loading...</div>,
 });
 
+const InstituteAll = Loadable({
+    loader: () => import('../app/institute/all'),
+    loading: () => <div>Loading...</div>,
+});
+
 CustomerLogo.preload()  // 预加载
+InstituteAll.preload()
 MsgList.preload()
 RecruitEdit.preload()
 LogLogin.preload()
@@ -245,18 +251,33 @@ export const routes = [
         }]
     },
     {
-        path: '/recruit',
-        title: '职位管理',
+        path: '/institute',
+        title: '单位管理',
         icon: <img alt="log" className='anticon img anticon-pic-center' src={PosPng} />,
         children: [{
-            path: '/list',
-            title: '职位列表',
-            component: RecruitList
+            path: '/all',
+            title: '全部单位',
+            component: InstituteAll
         }, {
-            path: '/edit',
-            hide: true,
-            title: '职位编辑',
-            component: RecruitEdit
+            path: '/not',
+            title: '未注册',
+            component: InstituteAll
+        }, {
+            path: '/experience',
+            title: '体验中',
+            component: InstituteAll
+        }, {
+            path: '/cooperation',
+            title: '合作中',
+            component: InstituteAll
+        }, {
+            path: '/maturity',
+            title: '已到期',
+            component: InstituteAll
+        }, {
+            path: '/end',
+            title: '已终止',
+            component: InstituteAll
         }]
     },
     {
