@@ -46,7 +46,7 @@ class App extends React.Component<P, { visible: boolean, total: number }> {
   async componentDidMount() {
     const id = window.$utils.getHashQuery('companyId')
     this.id = id
-    const data = await window.$api.companyInfo({ id })
+    const data = await window.$api.companyDesc({ id })
     this.props.setData(data)
     this.getRecordList()
   }

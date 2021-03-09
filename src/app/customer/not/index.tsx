@@ -64,7 +64,6 @@ export default class Home extends React.Component<P, any> {
             onChange: (current: number) => { this.changePage(current) },
         }
         this.props.setPaginationProps(paginationProps)
-        console.log(data)
         this.props.setList(data)
     }
 

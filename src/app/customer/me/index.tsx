@@ -52,7 +52,7 @@ export default class Home extends React.Component<P, any> {
      */
     getData = async () => {
         const { current, pageSize } = this.props
-        const { data, total } = await window.$api.companyList({ current: current, pageSize: pageSize, manageId: window.$user.id })
+        const { data, total } = await window.$api.customerList({ current: current, pageSize: pageSize, manageId: window.$user.id })
         const paginationProps = {
             showSizeChanger: true,
             showQuickJumper: false,

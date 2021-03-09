@@ -105,14 +105,14 @@ class API extends Server {
   }
 
   /**
-   * @todo 获取企业列表
+   * @todo 获取企业信息
    * @param params
    * @method get
    * @return {promise}
    */
-  async companyInfo(params = {}) {
+  async companyDesc(params = {}) {
     try {
-      let result = await this.axios('get', `/companyInfo`, params);
+      let result = await this.axios('get', `/companyDesc`, params);
       return result.data
     } catch (err) {
       throw err;
@@ -201,14 +201,14 @@ class API extends Server {
   }
 
   /**
-   * @todo 预约客户列表
+   * @todo 预约客户和今日联系列表
    * @param params
    * @method get
    * @return {promise}
    */
-  async reserveList(params = {}) {
+  async reserveAndTodayList(params = {}) {
     try {
-      let result = await this.axios('get', `/reserveList`, {
+      let result = await this.axios('get', `/reserveAndTodayList`, {
         ...initPage,
         ...params
       });
@@ -224,9 +224,9 @@ class API extends Server {
    * @method get
    * @return {promise}
    */
-  async companyList(params = {}) {
+  async customerList(params = {}) {
     try {
-      let result = await this.axios('get', `/companyList`, {
+      let result = await this.axios('get', `/customerList`, {
         ...initPage,
         ...params
       });
