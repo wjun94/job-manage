@@ -75,6 +75,21 @@ class API extends Server {
   }
 
   /**
+   * @todo 私库未联系
+   * @param params
+   * @method get
+   * @return {promise}
+   */
+  async customerNotList(params = {}) {
+    try {
+      let result = await this.axios('get', `/customerNotList`, params);
+      return result
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
    * @todo 联系人信息
    * @param params
    * @method get

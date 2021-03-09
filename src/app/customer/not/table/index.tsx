@@ -34,12 +34,6 @@ export default function Index(props: P) {
             render: (txt: number) => <span>待完善</span>
         },
         {
-            key: 'manage',
-            title: '业务员',
-            dataIndex: 'manage',
-            render: (manage) => <span>{manage.name || '-'}</span>
-        },
-        {
             key: 'service',
             title: '售后',
             dataIndex: 'service',

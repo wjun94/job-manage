@@ -51,7 +51,7 @@ export function diffTime(date, unitOfTime: unitOfTime.Diff = 'millisecond') {
  * @param date 日期
  * @param days 添加天数
  */
-export function addTime(date, days = 90) {
+export function addTime(date, days = 365) {
     return moment(date).add(days, "days").calendar()
 }
 

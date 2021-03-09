@@ -69,7 +69,7 @@ export default function Index(props: P) {
             key: 'time',
             title: '联系时间',
             dataIndex: 'time',
-            render: (_, data) => <span>{data.record ? moment(data.record.createAt).calendar() : '-'}</span>,
+            render: (_, data) => <span>{data.record && data.record.createAt ? moment(data.record.createAt).calendar() : '-'}</span>,
         },
         {
             key: 'recordCount',
