@@ -88,14 +88,12 @@ export default class Home extends React.Component<P, any> {
             // 踢出
             window.$api.outCompany({
                 companyId: node.companyId,
-                manageId: node.manageId,
                 serviceId: node.serviceId
             })
         } else {
             // 加入
             window.$api.addCompany({
                 companyId: node.companyId,
-                manageId: window.$user.id,
                 serviceId: window.$user.id
             })
         }

@@ -222,14 +222,14 @@ class API extends Server {
   }
 
   /**
-   * @todo 预约客户和今日联系列表
+   * @todo 客户管理/预约客户 列表
    * @param params
    * @method get
    * @return {promise}
    */
-  async reserveAndTodayList(params = {}) {
+  async customerReserveList(params = {}) {
     try {
-      let result = await this.axios('get', `/reserveAndTodayList`, {
+      let result = await this.axios('get', `/customerReserveList`, {
         ...initPage,
         ...params
       });
@@ -240,7 +240,25 @@ class API extends Server {
   }
 
   /**
-   * @todo 获取企业列表
+   * @todo 客户管理/今日联系  列表
+   * @param params
+   * @method get
+   * @return {promise}
+   */
+  async customerTodayList(params = {}) {
+    try {
+      let result = await this.axios('get', `/customerTodayList`, {
+        ...initPage,
+        ...params
+      });
+      return result
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
+   * @todo 企业管理/客户查询 列表
    * @param params
    * @method get
    * @return {promise}
@@ -248,6 +266,24 @@ class API extends Server {
   async customerList(params = {}) {
     try {
       let result = await this.axios('get', `/customerList`, {
+        ...initPage,
+        ...params
+      });
+      return result
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
+   * @todo 企业管理/我的客户 列表
+   * @param params
+   * @method get
+   * @return {promise}
+   */
+  async customerMeList(params = {}) {
+    try {
+      let result = await this.axios('get', `/customerMeList`, {
         ...initPage,
         ...params
       });

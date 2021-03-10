@@ -55,7 +55,7 @@ class App extends React.Component<P, { visible: boolean, total: number }> {
    * @patam status 通话状态
    */
   getRecordList = async (status: number = 0) => {
-    const record = await window.$api.recordList({ id: this.id, status })
+    const record = await window.$api.recordList({ companyId: this.id, status })
     await this.props.setList(record.data)
     this.setState({
       total: record.total

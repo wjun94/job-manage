@@ -34,7 +34,7 @@ export default class Home extends React.Component<RouteComponentProps, S> {
      */
     getData = async () => {
         const { current, pageSize } = this.state
-        const { data, total } = await window.$api.contactList({ current: current, pageSize: pageSize, id: this.companyId })
+        const { data, total } = await window.$api.contactList({ current: current, pageSize: pageSize, companyId: this.companyId })
         const paginationProps = {
             showSizeChanger: true,
             showQuickJumper: false,
