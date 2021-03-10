@@ -35,19 +35,6 @@ export const educationArr: Node[] = setArr(['不限', '高中', '大专', '本�
 
 export const expArr: Node[] = setArr(['不限', '实习生', '应届生', '1-3年', '3-5年', '5-10年', '10年以上'])
 
-export const typeData: any = [
-    {
-        value: '互联网',
-        label: '互联网',
-        children: [
-            {
-                value: '程序员',
-                label: '程序员',
-            },
-        ],
-    },
-];
-
 export const recordArr = [{ label: "正常", value: 1 }, { label: "没联系上", value: 2 }, { label: "空号", value: 3 }, { label: "错号", value: 4 }]
 
 export const jobTypeArr: any = [

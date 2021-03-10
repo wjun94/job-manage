@@ -1,11 +1,13 @@
 import React from 'react'
-import { Table, Button, Badge } from 'antd'
+import { Table, Button } from 'antd'
 import { TablePaginationConfig } from 'antd/lib/table/interface'
-import { CompanySelectNode } from '@/app/interface'
-import { recordArr } from '@/app/data'
+import { InstituteAllNode } from '@/app/interface'
+import { indArr, scaleArr } from '@/app/data'
+import moment from 'moment'
+import './index.scss'
 
 export interface P {
-    list: CompanySelectNode[] | any
+    list: InstituteAllNode[] | any
     pagination: TablePaginationConfig | any
     onNodeClick: Function
     onOptions: Function
@@ -25,32 +27,41 @@ export default function Index(props: P) {
         {
             key: 'name',
             title: '客户信息',
+            width: 200,
             dataIndex: 'name',
-            render: (txt: string, record: any) => <Button onClick={() => props.onNodeClick(record)} type="link">{txt}</Button>
+            render: (txt: string, record: InstituteAllNode) => <>
+                <Button onClick={() => props.onNodeClick(record)} type="link">{txt}</Button>
+                <p className='flex'><span className={record.ind ? 'after' : ''}>{record.prov}-{record.city}</span><span>{indArr.find(item => item.value === record.ind)?.label}</span></p>
+                <p>{scaleArr.find(item => item.value === record.scale)?.label}</p>
+            </>
         },
         {
-            key: 'record',
-            title: '通话状态',
-            dataIndex: 'record',
-            render: (record) => record && record.status ? <Badge color={record.status === 1 ? '#009688' : '#f5222d'} text={<span>{record ? recordArr.find(item => item.value === record.status)?.label : '-'}</span>} /> : '-'
+            key: 'l',
+            title: '认证',
+            dataIndex: 'l',
+            render: () => <span>待完善</span>,
         },
         {
-            key: 'status',
-            title: '服务状态',
-            dataIndex: 'status',
-            render: (txt: number) => <span>待完善</span>
+            key: 'z',
+            title: '时间',
+            dataIndex: 'z',
+            render: (_, record: InstituteAllNode) => <>
+                <p>注册时间：{moment(record.createAt).format('ll')}</p>
+                <p>登录时间：-</p>
+                <p>合作开始：-</p>
+                <p>合作结束：-</p>
+            </>,
+        },
+        {
+            key: 'entrant',
+            title: '来源',
+            dataIndex: 'entrant',
         },
         {
             key: 'manage',
             title: '业务员',
             dataIndex: 'manage',
-            render: (manage) => <span>{manage.name || '-'}</span>
-        },
-        {
-            key: 'service',
-            title: '售后',
-            dataIndex: 'service',
-            render: (service) => <span>{service.name || '-'}</span>
+            render: (manage) => <span>{manage?.name || '-'}</span>,
         },
         {
             key: 'a',
@@ -59,21 +70,23 @@ export default function Index(props: P) {
             render: () => <span>待完善</span>,
         },
         {
-            key: 'recordCount',
-            title: '联系次数',
-            dataIndex: 'recordCount',
-            render: (recordCount) => <span>{recordCount}</span>,
-        },
-        {
             key: '',
             title: '操作选项',
+            width: 320,
             dataIndex: '',
-            render: (_: any, record: CompanySelectNode) => <>
-                <Button onClick={() => onOptions(record)} type="link">{record.manageId ? '踢出' : '加入'}</Button>
+            render: (_, record: InstituteAllNode) => <>
+                <Button type='primary' onClick={() => onOptions(1, record)}>创建合同</Button>
+                <Button onClick={() => onOptions(2, record)}>进入后台</Button>
+                <Button onClick={() => onOptions(3, record)}>修改信息</Button>
+                <Button onClick={() => onOptions(4, record)}>账号</Button>
+                <Button onClick={() => onOptions(5, record)}>服务</Button>
+                <Button onClick={() => onOptions(6, record)}>广告</Button>
+                <Button onClick={() => onOptions(7, record)}>日志</Button>
             </>,
         },
     ]
-    return <div className='recruit-list-table'>
-        <Table bordered columns={columns} rowKey="companyId" pagination={pagination} dataSource={list} />
+    return <div className='institute-all-list-table'>
+
+        <Table columns={columns} rowKey="companyId" pagination={pagination} dataSource={list} />
     </div>
 }

@@ -18,3 +18,23 @@ export interface CompanySelectNode {
     }
     recordCount: number // 联系次数
 }
+
+export interface InstituteAllNode {
+    companyId: string,
+    name: string,
+    createAt: string,
+    addAt: string,
+    prov: string,
+    city: string,
+    type: number,
+    ind: number,
+    service: {
+        name: string
+    },
+    manage: {
+        name: string
+    },
+    recordCount: number,
+    scale: number,
+    entrant: string
+}

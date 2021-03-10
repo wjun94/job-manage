@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { setCurrent, setList, setPageSize, init, setPagination, setPaginationProps } from '@/store/institute/all/action'
 import Table from './table'
 import SearchBar from './search-bar'
-import { CompanySelectNode } from '@/app/interface'
+import { InstituteAllNode } from '@/app/interface'
 import './index.scss'
 
 export interface P extends RouteComponentProps {
@@ -17,7 +17,7 @@ export interface P extends RouteComponentProps {
     setPaginationProps: Function
     setCurrent: Function
     paginationProps: any,
-    list: CompanySelectNode[]
+    list: InstituteAllNode[]
 }
 
 @(connect((state: any) => {
@@ -53,7 +53,7 @@ export default class Home extends React.Component<P, any> {
      */
     getData = async () => {
         const { current, pageSize } = this.props
-        const { data, total } = await window.$api.customerList({ current: current, pageSize: pageSize })
+        const { data, total } = await window.$api.instituteAllList({ current: current, pageSize: pageSize })
         const paginationProps = {
             showSizeChanger: true,
             showQuickJumper: false,
@@ -84,26 +84,8 @@ export default class Home extends React.Component<P, any> {
      * @param node
      * @memberof table
      */
-    onOptions = (node: CompanySelectNode) => {
-        if (node.manageId) {
-            // 踢出
-            window.$api.outCompany({
-                companyId: node.companyId,
-                serviceId: node.serviceId
-            })
-        } else {
-            // 加入
-            window.$api.addCompany({
-                companyId: node.companyId,
-                serviceId: window.$user.id
-            })
-        }
-        const id = node.manageId ? '' : window.$user.id
-        node.manageId = id
-        node.serviceId = id
-        node.manage.name = node.manageId ? window.$user.name : ''
-        node.service.name = node.manageId ? window.$user.name : ''
-        this.props.setList(this.props.list)
+    onOptions = (type: number, node: InstituteAllNode) => {
+        
     }
 
     /**
@@ -111,7 +93,7 @@ export default class Home extends React.Component<P, any> {
      * @param node 节点属性
      * @memberof Table
      */
-    onCompany = async (node: CompanySelectNode) => {
+    onCompany = async (node: InstituteAllNode) => {
         const { companyId } = node
         this.props.history.push({ pathname: '/company/desc', search: companyId ? `companyId=${companyId}` : '' })
     }

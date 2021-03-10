@@ -39,7 +39,7 @@ window.$user = user ? JSON.parse(user) : {}
 
 ReactDOM.render(
   <React.StrictMode>
-    <ConfigProvider locale={zhCN}>
+    <ConfigProvider componentSize={'middle'} locale={zhCN}>
       <Provider store={store}>
         <App />
       </Provider>

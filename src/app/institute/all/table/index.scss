@@ -1,0 +1,65 @@
+.institute-all-list-table {
+
+    td.ant-table-cell:first-child {
+        // font-size: 12px;
+
+        .after::after {
+            margin: 0 6px;
+        }
+
+        .flex {
+            margin: 3px 0 2px 0;
+        }
+
+        button {
+            padding: 0;
+            height: 14px;
+        }
+    }
+
+    td.ant-table-cell:last-child {
+        button {
+            font-weight: 500;
+            color: white;
+            margin: 4px;
+        }
+
+        button:nth-of-type(1) {
+            background-color: #03A2F0;
+            border-color: #03A2F0;
+        }
+
+        button:nth-of-type(2) {
+            background-color: rgb(79, 212, 210);
+            border-color: rgb(79, 212, 210);
+        }
+
+        button:nth-of-type(3) {
+            background-color: #b6c29a;
+            border-color: #b6c29a;
+        }
+
+        button:nth-of-type(4) {
+            background-color: #e58308;
+            border-color: #e58308;
+        }
+
+        button:nth-of-type(5) {
+            background-color: #8abeb2;
+            border-color: #8abeb2;
+        }
+
+        button:nth-of-type(6) {
+            background-color: #14446a;
+            border-color: #14446a;
+        }
+
+        button:nth-of-type(7) {
+            color: rgba(0, 0, 0, 0.85);
+        }
+
+        button:hover {
+            opacity: .85;
+        }
+    }
+}
