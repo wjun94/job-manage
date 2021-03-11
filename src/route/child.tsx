@@ -4,60 +4,17 @@ import Home from '../app/home'
 import Loadable from 'react-loadable'
 import CompanyPng from '../assets/images/company.png'
 import PosPng from '../assets/images/pos.png'
-import ResumePng from '../assets/images/resume.png'
-import AdPng from '../assets/images/ad.png'
-import ContractPng from '../assets/images/contract.png'
 import MessagePng from '../assets/images/message.png'
 import LogPng from '../assets/images/log.png'
 import SetPng from '../assets/images/set.png'
-
-const ResumeList = Loadable({
-    loader: () => import('../app/resume/list'),
-    loading: () => <div>Loading...</div>,
-});
-
-const RecruitList = Loadable({
-    loader: () => import('../app/recruit/list'),
-    loading: () => <div>Loading...</div>,
-});
 
 const CustomerDoc = Loadable({
     loader: () => import('../app/customer/doc'),
     loading: () => <div>Loading...</div>,
 });
 
-const CustomerLogo = Loadable({
-    loader: () => import('../app/customer/logo'),
-    loading: () => <div>Loading...</div>,
-});
-
-const ContractList = Loadable({
-    loader: () => import('../app/contract/list'),
-    loading: () => <div>Loading...</div>,
-});
-
-const CustomerQRCode = Loadable({
-    loader: () => import('../app/customer/QRCode'),
-    loading: () => <div>Loading...</div>,
-});
-
 const UserSafety = Loadable({
     loader: () => import('../app/user/safety'),
-    loading: () => <div>Loading...</div>,
-});
-
-const AdvertiseList = Loadable({
-    loader: () => import('../app/advertise/list'),
-    loading: () => <div>Loading...</div>,
-});
-
-const ResumeHistory = Loadable({
-    loader: () => import('../app/resume/history'),
-    loading: () => <div>Loading...</div>,
-});
-
-const ResumeSearch = Loadable({
-    loader: () => import('../app/resume/search'),
     loading: () => <div>Loading...</div>,
 });
 
@@ -121,11 +78,6 @@ const MsgList = Loadable({
     loading: () => <div>Loading...</div>,
 });
 
-const RecruitEdit = Loadable({
-    loader: () => import('../app/recruit/edit'),
-    loading: () => <div>Loading...</div>,
-});
-
 const ContactList = Loadable({
     loader: () => import('../app/contact/list'),
     loading: () => <div>Loading...</div>,
@@ -141,14 +93,11 @@ const InstituteAll = Loadable({
     loading: () => <div>Loading...</div>,
 });
 
-CustomerLogo.preload()  // 预加载
 InstituteAll.preload()
 MsgList.preload()
-RecruitEdit.preload()
 LogLogin.preload()
 MsgEdit.preload()
 LogOperate.preload()
-ResumeHistory.preload()
 CompanyDesc.preload()
 CustomerEdit.preload()
 CustomerSelect.preload()
@@ -157,13 +106,7 @@ CustomerReserve.preload()
 CustomerToday.preload()
 CustomerNot.preload()
 UserModify.preload()
-ResumeSearch.preload()
-AdvertiseList.preload()
 CustomerDoc.preload()
-RecruitList.preload()
-ContractList.preload()
-CustomerQRCode.preload()
-ResumeList.preload()
 UserSafety.preload()
 ContactList.preload()
 ContactEdit.preload()
@@ -260,7 +203,7 @@ export const routes = [
             component: InstituteAll
         }, {
             path: '/not',
-            title: '未注册',
+            title: '未合作',
             component: InstituteAll
         }, {
             path: '/experience',
@@ -274,48 +217,6 @@ export const routes = [
             path: '/maturity',
             title: '已到期',
             component: InstituteAll
-        }, {
-            path: '/end',
-            title: '已终止',
-            component: InstituteAll
-        }]
-    },
-    {
-        path: '/resume',
-        title: '简历管理',
-        icon: <img alt="log" className='anticon img anticon-pic-center' src={ResumePng} />,
-        children: [{
-            path: '/list',
-            title: '应聘简历',
-            component: ResumeList
-        }, {
-            path: '/search',
-            title: '搜索简历',
-            component: ResumeSearch
-        }, {
-            path: '/history',
-            title: '浏览记录',
-            component: ResumeHistory
-        }]
-    },
-    {
-        path: '/advertise',
-        title: '广告管理',
-        icon: <img alt="log" className='anticon img anticon-pic-center' src={AdPng} />,
-        children: [{
-            path: '/list',
-            title: '广告列表',
-            component: AdvertiseList
-        }]
-    },
-    {
-        path: '/contract',
-        title: '合同管理',
-        icon: <img alt="log" className='anticon img anticon-pic-center' src={ContractPng} />,
-        children: [{
-            path: '/list',
-            title: '合同列表',
-            component: ContractList
         }]
     },
     {

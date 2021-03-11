@@ -38,3 +38,12 @@ export interface InstituteAllNode {
     scale: number,
     entrant: string
 }
+
+export interface combinationNode {
+    down: number,   // 简历下载数
+    post: number,   // 在线职位数
+    urgent: number, // 急聘数
+    type: number,   // 
+    name: number,   // '县级', '市级', '省级', '首页'
+    article: number,    // 公众号文章篇数
+}

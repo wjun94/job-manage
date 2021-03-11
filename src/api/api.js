@@ -126,6 +126,21 @@ class API extends Server {
   }
 
   /**
+   * @todo 合同管理单位信息
+   * @param params
+   * @method get
+   * @return {promise}
+   */
+  async contactCompanyDesc(params = {}) {
+    try {
+      let result = await this.axios('get', `/contactCompanyDesc`, params);
+      return result
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
    * @todo 获取企业信息
    * @param params
    * @method get

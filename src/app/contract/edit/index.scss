@@ -1,0 +1,61 @@
+.contract-edit {
+
+
+    .box {
+        background-color: white;
+        border-radius: 4px;
+        margin-bottom: 16px;
+
+        .coin {
+            position: absolute;
+            top: 6px;
+            right: 30px;
+        }
+
+        .ant-row.ant-form-item {
+            width: 28%;
+            margin-left: 20px;
+
+            .ant-input-number {
+                width: 100%;
+                padding-right: 58px;
+            }
+        }
+
+        .type {
+            width: 58% !important;
+            margin-left: 0 !important;
+        }
+
+        .ant-row.ant-form-item:nth-child(3n+1) {
+            margin-left: 0;
+        }
+
+        h2 {
+            font-size: 16px;
+            border-bottom: 1px solid $borderCol;
+            padding: 6px 16px;
+        }
+
+        .ant-picker.ant-picker-middle {
+            width: 100%;
+        }
+
+        >div {
+            padding: 16px;
+            padding-bottom: 0;
+        }
+
+        .combination {
+            padding: 0 16px;
+        }
+    }
+
+    .footer {
+        text-align: center;
+
+        button:last-child {
+            margin-left: 16px;
+        }
+    }
+}

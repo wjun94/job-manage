@@ -75,13 +75,11 @@ export default function Index(props: P) {
             width: 320,
             dataIndex: '',
             render: (_, record: InstituteAllNode) => <>
-                <Button type='primary' onClick={() => onOptions(1, record)}>创建合同</Button>
-                <Button onClick={() => onOptions(2, record)}>进入后台</Button>
-                <Button onClick={() => onOptions(3, record)}>修改信息</Button>
-                <Button onClick={() => onOptions(4, record)}>账号</Button>
-                <Button onClick={() => onOptions(5, record)}>服务</Button>
-                <Button onClick={() => onOptions(6, record)}>广告</Button>
-                <Button onClick={() => onOptions(7, record)}>日志</Button>
+                {
+                    ['创建合同', '进入后台', '修改信息', '账号', '服务', '广告', '日志'].map((item, i) => (
+                        <Button key={item} onClick={() => onOptions(i + 1, record)}>{item}</Button>
+                    ))
+                }
             </>,
         },
     ]

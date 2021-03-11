@@ -1,3 +1,5 @@
+import { combinationNode } from '@/app/interface'
+
 export interface Node {
     label: string
     value: number
@@ -17,7 +19,135 @@ export const sortArr = [
     { label: '到期时间', value: 'a_at' }
 ]
 
+export const combinationType = setArr(['PC', 'PC、小程序'])
+
+export const paymentTimeArr = setArr(['实时到账', '一周内', '两周内', '三周内', '一个月内'])
+
+export const combinationName = setArr(['县级', '市级', '省级', '首页'])
+
+const one: combinationNode = {
+    down: 50,
+    post: 10,
+    urgent: 0,
+    type: 1,
+    name: 1,
+    article: 0,
+}
+
+const two: combinationNode = {
+    down: 60,
+    post: 20,
+    urgent: 1,
+    type: 2,
+    name: 2,
+    article: 0,
+}
+
+const three: combinationNode = {
+    down: 70,
+    post: 30,
+    urgent: 2,
+    type: 2,
+    name: 4,
+    article: 1,
+}
+
+const price = 100
+
+const getPrice = (multiple) => {
+    return Number((price * multiple / (price * multiple > 1000 ? 100 : 10)).toFixed(0) + (price * multiple > 1000 ? '00' : '0'))
+}
+
+export const combinationArr = [
+    {
+        label: `月${price}元套餐`,
+        value: 'a1',
+        month: 1,
+        price: Number(price),
+        children: one,
+    },
+    {
+        label: `月${getPrice(1.2)}元套餐`,
+        value: 'a2',
+        month: 1,
+        price: getPrice(1.2),
+        children: two,
+    },
+    {
+        label: `月${getPrice(1.4)}元套餐`,
+        value: 'a3',
+        month: 1,
+        price: getPrice(1.4),
+        children: three,
+    },
+    {
+        label: `季${getPrice(3 * 0.9)}元套餐`,
+        value: 'b1',
+        month: 3,
+        price: getPrice(3 * 0.9),
+        children: one,
+    },
+    {
+        label: `季${getPrice(3 * 1.2 * 0.9)}元套餐`,
+        value: 'b2',
+        month: 3,
+        price: getPrice(3 * 1.2 * 0.9),
+        children: two,
+    },
+    {
+        label: `季${getPrice(3 * 1.4 * 0.9)}元套餐`,
+        value: 'b3',
+        month: 3,
+        price: getPrice(3 * 1.4 * 0.9),
+        children: three,
+    },
+    {
+        label: `半年${getPrice(6 * 0.8)}元套餐`,
+        value: 'c1',
+        month: 6,
+        price: getPrice(6 * 0.8),
+        children: one,
+    },
+    {
+        label: `半年${getPrice(6 * 1.2 * 0.8)}元套餐`,
+        value: 'c2',
+        month: 6,
+        price: getPrice(6 * 1.2 * 0.8),
+        children: two,
+    },
+    {
+        label: `半年${getPrice(6 * 1.4 * 0.8)}元套餐`,
+        value: 'c3',
+        month: 6,
+        price: getPrice(6 * 1.4 * 0.8),
+        children: three,
+    },
+    {
+        label: `一年${getPrice(12 * 0.7)}元套餐`,
+        value: 'd1',
+        month: 12,
+        price: getPrice(12 * 0.7),
+        children: one,
+    },
+    {
+        label: `一年${getPrice(12 * 1.2 * 0.7)}元套餐`,
+        value: 'd2',
+        month: 12,
+        price: getPrice(12 * 1.2 * 0.7),
+        children: two,
+    },
+    {
+        label: `一年${getPrice(12 * 1.4 * 0.7)}元套餐`,
+        value: 'd3',
+        month: 12,
+        price: getPrice(12 * 1.4 * 0.7),
+        children: three,
+    },
+]
+
 export const statusArr: Node[] = setArr(['已合作', '未合作', '体验中', '已到期', '已终止'])
+
+export const contractArr: Node[] = setArr(['标准合同', '非标准合同', '自定义合同'])
 
 
 export const scaleArr: Node[] = setArr(['小于20人', '20-50人', '50-100人', '100-500人', '500-1000人', '1000人以上', '5000人以上'])
