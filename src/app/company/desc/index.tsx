@@ -117,7 +117,7 @@ class App extends React.Component<P, { visible: boolean, total: number }> {
     const { data, list } = this.props
     const { visible, total } = this.state
     if (!data) return '';
-    const { type, companyId, name, prov, city, area, desc, scale, ind, amount, foundAt, entrant, createAt, updateAt, contact, service, manage } = data
+    const { type, companyId, name, prov, city, area, desc, scale, ind, amount, foundAt, entrant, createAt, updateAt, contact, sales, manage } = data
     const indObj = indArr.find(v => ind === v.value)
     const scaleObj = scaleArr.find(v => scale === v.value)
     const typeObj = typeArr.find(v => type === v.value)
@@ -130,7 +130,7 @@ class App extends React.Component<P, { visible: boolean, total: number }> {
       { label: '所属人：', value: manage.name || '-' },
       { label: '下次洽谈时间：', value: reserveAt && window.$utils.diffTime(reserveAt.reserveAt) > 0 ? moment(reserveAt.reserveAt).calendar() : '-' },
       { label: '更新时间：', value: updateAt ? moment(updateAt).calendar() : '-' },
-      { label: '售后：', value: service.name },
+      { label: '售后：', value: sales.name },
       { label: '共洽谈数：', value: total },
     ]
     return (

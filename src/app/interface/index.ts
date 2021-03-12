@@ -1,13 +1,13 @@
 export interface CompanySelectNode {
     companyId: string
     manageId: string
-    serviceId: string
+    salesId: string
     createAt: string
     entrant: string
     name: string
     prov: string
     status: number
-    service: {  // 售后
+    sales: {  // 售后
         name: string
     }
     manage: {   // 业务员
@@ -40,7 +40,7 @@ export interface InstituteAllNode {
     city: string,
     type: number,
     ind: number,
-    service: {
+    sales: {
         name: string
     },
     manage: {

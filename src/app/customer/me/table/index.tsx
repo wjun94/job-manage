@@ -48,10 +48,10 @@ export default function Index(props: P) {
             render: (manage) => <span>{manage.name || '-'}</span>
         },
         {
-            key: 'service',
+            key: 'sales',
             title: '售后',
-            dataIndex: 'service',
-            render: (service) => <span>{service.name || '-'}</span>
+            dataIndex: 'sales',
+            render: (sales) => <span>{sales.name || '-'}</span>
         },
         {
             key: 'a',

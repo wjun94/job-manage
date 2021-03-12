@@ -88,20 +88,20 @@ export default class Home extends React.Component<P, any> {
             // 踢出
             window.$api.outCompany({
                 companyId: node.companyId,
-                serviceId: node.serviceId
+                salesd: node.salesId
             })
         } else {
             // 加入
             window.$api.addCompany({
                 companyId: node.companyId,
-                serviceId: window.$user.id
+                salesId: window.$user.id
             })
         }
         const id = node.manageId ? '' : window.$user.id
         node.manageId = id
-        node.serviceId = id
+        node.salesId = id
         node.manage.name = node.manageId ? window.$user.name : ''
-        node.service.name = node.manageId ? window.$user.name : ''
+        node.sales.name = node.manageId ? window.$user.name : ''
         this.props.setList(this.props.list)
     }
 
