@@ -126,6 +126,36 @@ class API extends Server {
   }
 
   /**
+   * @todo 创建广告位
+   * @param params
+   * @method get
+   * @return {promise}
+   */
+  async createAdvtg(params = {}) {
+    try {
+      let result = await this.axios('post', `/createAdvtg`, params);
+      return result
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
+   * @todo 开通服务
+   * @param params
+   * @method get
+   * @return {promise}
+   */
+  async createService(params = {}) {
+    try {
+      let result = await this.axios('post', `/createService`, params);
+      return result
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
    * @todo 合同管理单位信息
    * @param params
    * @method get

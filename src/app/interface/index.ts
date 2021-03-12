@@ -19,9 +19,21 @@ export interface CompanySelectNode {
     recordCount: number // 联系次数
 }
 
+export interface AdvtgNode {
+    id: string
+    createAt: string
+    companyId: string
+    name: number
+    type: number
+    month: number
+    mark?: string
+}
+
 export interface InstituteAllNode {
     companyId: string,
     name: string,
+    addr?: string
+    status: boolean
     createAt: string,
     addAt: string,
     prov: string,
@@ -43,7 +55,7 @@ export interface combinationNode {
     down: number,   // 简历下载数
     post: number,   // 在线职位数
     urgent: number, // 急聘数
-    type: number,   // 
+    type: number,   // // 'PC‘，'小程序'
     name: number,   // '县级', '市级', '省级', '首页'
     article: number,    // 公众号文章篇数
 }

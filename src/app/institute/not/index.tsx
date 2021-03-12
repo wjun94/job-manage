@@ -85,9 +85,15 @@ export default class Home extends React.Component<P, any> {
      * @memberof table
      */
     onOptions = (type: number, node: InstituteAllNode) => {
+        console.log(type)
         switch (type) {
             case 0: {
+                // 开通服务
                 this.props.history.push({ pathname: '/contract/edit', search: `companyId=${node.companyId}` })
+                break
+            }
+            case 3: {
+                // 开通体验
                 break
             }
         }

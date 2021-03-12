@@ -19,37 +19,40 @@ export const sortArr = [
     { label: '到期时间', value: 'a_at' }
 ]
 
-export const combinationType = setArr(['PC', 'PC、小程序'])
-
 export const paymentTimeArr = setArr(['实时到账', '一周内', '两周内', '三周内', '一个月内'])
 
-export const combinationName = setArr(['县级', '市级', '省级', '首页'])
+export const combinationNameArr = setArr(['县级', '市级', '省级', '首页'])
+
+export const combinationType = setArr(['PC', 'PC、小程序'])
 
 const one: combinationNode = {
     down: 50,
     post: 10,
     urgent: 0,
-    type: 1,
-    name: 1,
     article: 0,
+    // 广告
+    name: 1,
+    type: 1,
 }
 
 const two: combinationNode = {
     down: 60,
     post: 20,
     urgent: 1,
-    type: 2,
-    name: 2,
     article: 0,
+    // 广告
+    name: 2,
+    type: 2,
 }
 
 const three: combinationNode = {
     down: 70,
     post: 30,
     urgent: 2,
-    type: 2,
-    name: 4,
     article: 1,
+    // 广告
+    name: 4,
+    type: 2,
 }
 
 const price = 100

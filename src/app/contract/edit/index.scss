@@ -51,6 +51,13 @@
         }
     }
 
+    .last {
+        >div {
+            padding: 0;
+            // margin-top: 14px;
+        }
+    }
+
     .footer {
         text-align: center;
 
