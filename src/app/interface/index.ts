@@ -31,6 +31,7 @@ export interface AdvtgNode {
 
 export interface InstituteAllNode {
     companyId: string,
+    combination?: string
     name: string,
     addr?: string
     status: boolean
@@ -60,7 +61,7 @@ export interface ServiceNode {
     month: number
     status: boolean
     type: number
-    name: number
+    name: string
     down: number
     post: number
     urgent: number

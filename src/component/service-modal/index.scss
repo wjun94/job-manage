@@ -2,4 +2,19 @@
     .ant-modal-footer {
         display: none;
     }
+
+    form {
+        >div {
+            margin-top: 14px;
+
+            .ant-col.ant-form-item-label {
+                width: 80px;
+            }
+
+            span.ant-input-group-wrapper,
+            .ant-col.ant-form-item-control {
+                width: 200px;
+            }
+        }
+    }
 }

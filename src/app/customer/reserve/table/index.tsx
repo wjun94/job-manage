@@ -84,7 +84,6 @@ export default function Index(props: P) {
             </>,
         },
     ]
-    console.log(list)
     return <div className='recruit-list-table'>
         <Table bordered columns={columns} rowKey="id" pagination={pagination} dataSource={list} />
     </div>

@@ -1,17 +1,39 @@
 import React from 'react'
-import { Modal, Input } from 'antd';
+import { Modal, Input, Form } from 'antd';
+import { combinationArr } from '@/app/data'
 import './index.scss'
 
 export default function Index(props) {
     const { list } = props
-    console.log(list)
     return (
-        <Modal title="服务" className="service-modal" onCancel={props.handleCancel} visible={props.isModalVisible}>
+        <Modal title="包含服务" width={640} className="service-modal" onCancel={props.handleCancel} visible={props.isModalVisible}>
             {
-                list.map(item => <>
-                    <Input addonBefore='职位发布地' value={item.addr} disabled />
-                    <Input addonBefore='职位数' addonAfter='个' value={item.post} disabled />
-                </>)
+                list.map(item => {
+                    const result = combinationArr.find(v => v.value === item.name)?.label
+                    item.combination = result
+                    return (
+                        <Form key={item.id} initialValues={item} layout="inline">
+                            <Form.Item label="发布地" name="addr">
+                                <Input disabled />
+                            </Form.Item>
+                            <Form.Item label="广告名称" name="combination">
+                                <Input disabled />
+                            </Form.Item>
+                            <Form.Item label="急聘数" name="urgent">
+                                <Input disabled addonAfter="个" />
+                            </Form.Item>
+                            <Form.Item label="简历下载数" name="down">
+                                <Input disabled addonAfter="份" />
+                            </Form.Item>
+                            <Form.Item label="在线职位数" name="post">
+                                <Input disabled addonAfter="个" />
+                            </Form.Item>
+                            <Form.Item label="公众号篇数" name="article">
+                                <Input disabled addonAfter="个" />
+                            </Form.Item>
+                        </Form>
+                    )
+                })
             }
         </Modal>
     )
