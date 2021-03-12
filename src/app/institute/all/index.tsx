@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 import { setCurrent, setList, setPageSize, init, setPagination, setPaginationProps } from '@/store/institute/all/action'
 import Table from './table'
 import SearchBar from './search-bar'
-import { InstituteAllNode } from '@/app/interface'
+import { InstituteAllNode, ServiceNode } from '@/app/interface'
+import Modal from '@/component/service-modal'
 import './index.scss'
 
 export interface P extends RouteComponentProps {
@@ -43,6 +44,11 @@ export interface P extends RouteComponentProps {
     }
 })) as any)
 export default class Home extends React.Component<P, any> {
+
+    state = {
+        isModalVisible: false,
+        serviceList: []
+    }
 
     async componentDidMount() {
         this.getData()
@@ -87,7 +93,17 @@ export default class Home extends React.Component<P, any> {
     onOptions = (type: number, node: InstituteAllNode) => {
         switch (type) {
             case 0: {
+                // 开通服务
                 this.props.history.push({ pathname: '/contract/edit', search: `companyId=${node.companyId}` })
+                break
+            }
+            case 5: {
+                // 服务
+                const service: ServiceNode[] = node.service
+                this.setState({
+                    serviceList: service,
+                    isModalVisible: true
+                })
                 break
             }
         }
@@ -105,11 +121,13 @@ export default class Home extends React.Component<P, any> {
 
     render() {
         const { paginationProps, list } = this.props
+        const { isModalVisible, serviceList } = this.state
         return <>
             <SearchBar />
             <div className='customer-select app-container'>
                 <Table onOptions={this.onOptions} onNodeClick={this.onCompany} pagination={paginationProps} list={list} />
             </div>
+            <Modal list={serviceList} handleCancel={() => this.setState({ isModalVisible: false })} isModalVisible={isModalVisible} />
         </>
     }
 }

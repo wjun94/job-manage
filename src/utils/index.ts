@@ -40,7 +40,7 @@ export function setStorage(name, value) {
 /**
  * @todo 计算相差多少天
  * @param date 日期
- * @param unitOfTime 'day' | 'hour' | 'minute' | 'second' | 'millisecond'
+ * @param unitOfTime 'day' | 'hour' | 'minute' | 'second' | 'millisecond' | 'month'
  */
 export function diffTime(date, unitOfTime: unitOfTime.Diff = 'millisecond') {
     return moment(date).diff(moment(), unitOfTime)
@@ -50,9 +50,10 @@ export function diffTime(date, unitOfTime: unitOfTime.Diff = 'millisecond') {
  * @todo 添加天数
  * @param date 日期
  * @param days 添加天数
+ * @param unitOfTime 'day' | 'hour' | 'minute' | 'second' | 'millisecond' | 'month'
  */
-export function addTime(date, days = 365) {
-    return moment(date).add(days, "days").calendar()
+export function addTime(date, days = 365, unitOfTime: unitOfTime.Diff = 'days') {
+    return moment(date).add(days, unitOfTime).calendar()
 }
 
 /**

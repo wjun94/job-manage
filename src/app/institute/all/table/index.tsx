@@ -45,12 +45,17 @@ export default function Index(props: P) {
             key: 'z',
             title: '时间',
             dataIndex: 'z',
-            render: (_, record: InstituteAllNode) => <>
-                <p>注册时间：{moment(record.createAt).format('ll')}</p>
-                <p>登录时间：-</p>
-                <p>合作开始：-</p>
-                <p>合作结束：-</p>
-            </>,
+            render: (_, record: InstituteAllNode) => {
+                const service = record.service[0] || null
+                return (
+                    <>
+                        <p>注册时间：{moment(record.createAt).format('ll')}</p>
+                        <p>登录时间：-</p>
+                        <p>合作开始：{service ? moment(service.createAt).format('ll') : '-'}</p>
+                        <p>合作结束：{service ? moment(window.$utils.addTime(service.createAt, service.month, 'M')).format('ll') : '-'}</p>
+                    </>
+                )
+            },
         },
         {
             key: 'entrant',
@@ -64,10 +69,10 @@ export default function Index(props: P) {
             render: (manage) => <span>{manage?.name || '-'}</span>,
         },
         {
-            key: 'a',
+            key: 'service',
             title: '合作次数',
-            dataIndex: 'a',
-            render: () => <span>待完善</span>,
+            dataIndex: 'service',
+            render: (service) => <span>{service.length}</span>,
         },
         {
             key: '',

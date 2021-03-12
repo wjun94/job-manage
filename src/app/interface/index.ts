@@ -46,9 +46,25 @@ export interface InstituteAllNode {
     manage: {
         name: string
     },
+    service: ServiceNode[]
     recordCount: number,
     scale: number,
     entrant: string
+}
+
+export interface ServiceNode {
+    id?: string
+    companyId: string
+    createAt: string
+    addr: string
+    month: number
+    status: boolean
+    type: number
+    name: number
+    down: number
+    post: number
+    urgent: number
+    article: number
 }
 
 export interface combinationNode {
