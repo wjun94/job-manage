@@ -4920,6 +4920,11 @@ const options = [
                         "label": "平阳县"
                     },
                     {
+                        "code": "325802",
+                        "value": "龙港市",
+                        "label": "龙港市"
+                    },
+                    {
                         "code": "330327",
                         "value": "苍南县",
                         "label": "苍南县"

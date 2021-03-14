@@ -7,18 +7,13 @@
 import { RouteProps } from "react-router-dom"
 import Login from '../app/login'
 import App from '../app/index'
-import Regist from '../app/regist'
 
 const routes: RouteProps[] = [
-    {
-        path: '/regist',
-        component: Regist
-    },
     {
         path: '/login',
         component: Login
     },
-    
+
     {
         path: '/',
         component: App
@@ -29,4 +24,4 @@ const routes: RouteProps[] = [
     },
 ]
 
-export default routes 
+export default routes
