@@ -211,7 +211,7 @@ export default class Home extends React.Component<P, any> {
                 <header>
                     <Tabs defaultActiveKey="1" onChange={this.handleModeChange}>
                         {
-                            ['全部岗位', '未发布', '已发布', '暂停', '到期'].map((v, i) => {
+                            ['全部岗位', '已发布', '暂停', '到期'].map((v, i) => {
                                 return <TabPane tab={v} key={'tab-' + i} />
                             })
                         }

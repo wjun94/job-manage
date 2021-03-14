@@ -36,7 +36,7 @@ export default function Index(props: any) {
             key: 'status',
             title: '岗位状态',
             dataIndex: 'status',
-            render: (txt: number) => <span>{txt === 1 ? '未发布' : (txt === 2 ? '已发布' : (txt === 3 ? '暂停' : '到期'))}</span>
+            render: (txt: number) => <span>{txt === 1 ? '已发布' : (txt === 2 ? '暂停' : '到期')}</span>
         },
         {
             key: 'ugt',

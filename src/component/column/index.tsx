@@ -22,7 +22,6 @@ export default function Column(props: P) {
                             <p>{item.label}</p>
                             <p className='value'>{item.value}</p>
                         </div>
-
                     </div>
                 </Col>))
             }
