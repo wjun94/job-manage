@@ -33,11 +33,11 @@ class App extends React.Component<RouteComponentProps> {
     values.addr = values.city
     values.status = true
     values.companyId = this.companyId
-    await window.$api.createService({ ...values, name: values.combination })
+    await window.$api.createService({ ...values, name: values.combination, effectAt: values.createAt })
     // 创建广告
     const { list } = this.state
     list.length && list.forEach(async (item: AdvtgNode) => {
-      await window.$api.createAdvtg({ ...values, ...item })
+      await window.$api.createAdvtg({ ...values, ...item, effectAt: values.createAt })
     })
     message.success("开通成功")
     this.props.history.goBack()
