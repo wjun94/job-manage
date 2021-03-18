@@ -69,7 +69,7 @@ class App extends React.Component<RouteComponentProps> {
         {
           month: result?.month,
           name: children?.name,
-          type: children?.type,
+          pos: children?.pos,
         }
       ]
     })

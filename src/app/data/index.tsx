@@ -32,7 +32,7 @@ const one: combinationNode = {
     article: 0,
     // 广告
     name: 1,
-    type: 1,
+    pos: 1,
 }
 
 const two: combinationNode = {
@@ -42,7 +42,7 @@ const two: combinationNode = {
     article: 0,
     // 广告
     name: 2,
-    type: 2,
+    pos: 2,
 }
 
 const three: combinationNode = {
@@ -52,7 +52,7 @@ const three: combinationNode = {
     article: 1,
     // 广告
     name: 4,
-    type: 2,
+    pos: 2,
 }
 
 const price = 100

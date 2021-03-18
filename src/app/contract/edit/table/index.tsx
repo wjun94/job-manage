@@ -4,12 +4,13 @@ import { combinationNameArr, combinationType } from '@/app/data'
 import './index.scss'
 
 export default function Index(props) {
+    console.log(props)
     const columns = [
         {
             title: '投放位置',
-            dataIndex: 'type',
+            dataIndex: 'pos',
             width: 80,
-            key: 'type',
+            key: 'pos',
             render: (txt) => <span>{combinationType.find(item => item.value === txt)?.label}</span>
         },
         {
