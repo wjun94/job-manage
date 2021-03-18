@@ -156,6 +156,36 @@ class API extends Server {
   }
 
   /**
+   * @todo 获取登录日志
+   * @param params
+   * @method get
+   * @return {promise}
+   */
+  async msgList(params = initPage) {
+    try {
+      let result = await this.axios('get', `/msgList`, params);
+      return result
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
+   * @todo 获取登录日志
+   * @param params
+   * @method get
+   * @return {promise}
+   */
+  async loginLogList(params = initPage) {
+    try {
+      let result = await this.axios('get', `/loginLogList`, params);
+      return result
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
    * @todo 合同管理单位信息
    * @param params
    * @method get

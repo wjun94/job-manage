@@ -69,7 +69,7 @@ class App extends React.Component<{}, S> {
    * @param {number} pageSize 显示多少个
    */
   changePageSize = async (current: number = 1, pageSize: number = 10) => {
-    const res = await window.$api.getLoginLogList({ current, pageSize })
+    const res = await window.$api.loginLogList({ current, pageSize })
     this.pagination.total = res.total
     this.pagination.pageSize = pageSize
     this.setState({
