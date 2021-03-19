@@ -10,13 +10,6 @@ export interface Node {
   name: number;
 }
 
-export interface Columns {
-  title: string
-  dataIndex: string
-  key: string
-  render?: any
-}
-
 export interface SelNode {
   label: string;
   value: number;

@@ -1,4 +1,4 @@
-import { combinationNode } from '@/app/interface'
+import { CombinationNode } from '@/app/interface'
 
 export interface Node {
     label: string
@@ -25,7 +25,7 @@ export const combinationNameArr = setArr(['县级', '市级', '省级', '首页'
 
 export const combinationType = setArr(['PC', 'PC、小程序'])
 
-const one: combinationNode = {
+const one: CombinationNode = {
     down: 50,
     post: 10,
     urgent: 0,
@@ -35,7 +35,7 @@ const one: combinationNode = {
     pos: 1,
 }
 
-const two: combinationNode = {
+const two: CombinationNode = {
     down: 60,
     post: 20,
     urgent: 1,
@@ -45,7 +45,7 @@ const two: combinationNode = {
     pos: 2,
 }
 
-const three: combinationNode = {
+const three: CombinationNode = {
     down: 70,
     post: 30,
     urgent: 2,

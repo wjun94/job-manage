@@ -5,7 +5,6 @@
 import * as React from 'react';
 import './index.scss';
 import { Table } from 'antd';
-import { RouterProps, Columns } from '../../types'
 
 
 export interface Node {
@@ -16,7 +15,7 @@ export interface Node {
   type: number // 问题类型
 }
 
-class App extends React.Component<RouterProps, any | Node[]> {
+class App extends React.Component<{}, any> {
   // 页码显示
   private pagination: any = {
     total: 10,
@@ -25,9 +24,8 @@ class App extends React.Component<RouterProps, any | Node[]> {
     onShowSizeChange: (current: number, pageSize: number) => this.changePageSize(current, pageSize),
     onChange: (current: number, pageSize: number) => this.changePageSize(current, pageSize),
   }
-  private selectedRows: string[] = []
 
-  private columns: Columns[] = [
+  private columns = [
     {
       title: '姓名',
       dataIndex: 'name',
@@ -67,17 +65,12 @@ class App extends React.Component<RouterProps, any | Node[]> {
     this.state = {
       data: []
     }
-    console.log(this.selectedRows)
   }
 
   componentDidMount() {
     this.changePageSize()
   }
 
-  /** 单击添加留言 */
-  onMsgCreate = (query: string = '') => {
-    this.props.history.push({ pathname: '/messageCreate', query })
-  }
 
   /** 单击tab */
   handleModeChange = (key: string) => {

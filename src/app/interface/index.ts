@@ -68,7 +68,7 @@ export interface ServiceNode {
     article: number
 }
 
-export interface combinationNode {
+export interface CombinationNode {
     down: number,   // 简历下载数
     post: number,   // 在线职位数
     urgent: number, // 急聘数
