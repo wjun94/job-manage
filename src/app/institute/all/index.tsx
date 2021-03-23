@@ -90,7 +90,7 @@ export default class Home extends React.Component<P, any> {
      * @param node
      * @memberof table
      */
-    onOptions = (type: number, node: InstituteAllNode) => {
+    onOptions = async (type: number, node: InstituteAllNode) => {
         switch (type) {
             case 0: {
                 // 开通服务
@@ -99,9 +99,9 @@ export default class Home extends React.Component<P, any> {
             }
             case 5: {
                 // 服务
-                const { service } = node
+                const result = await window.$api.serviceList({ companyId: node.companyId })
                 this.setState({
-                    serviceList: service,
+                    serviceList: result,
                     isModalVisible: true
                 })
                 break

@@ -64,12 +64,6 @@ export default function Index(props: P) {
             render: (manage) => <span>{manage?.name || '-'}</span>,
         },
         {
-            key: 'a',
-            title: '合作次数',
-            dataIndex: 'a',
-            render: () => <span>待完善</span>,
-        },
-        {
             key: '',
             title: '操作选项',
             width: 320,
@@ -85,6 +79,6 @@ export default function Index(props: P) {
     ]
     return <div className='institute-all-list-table'>
 
-        <Table columns={columns} rowKey="companyId" pagination={pagination} dataSource={list} />
+        <Table bordered columns={columns} rowKey="companyId" pagination={pagination} dataSource={list} />
     </div>
 }

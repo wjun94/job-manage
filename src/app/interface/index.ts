@@ -36,6 +36,8 @@ export interface InstituteAllNode {
     addr?: string
     status: boolean
     createAt: string,
+    effect_at: string,
+    month: number,
     addAt: string,
     prov: string,
     city: string,

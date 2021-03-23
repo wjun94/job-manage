@@ -45,14 +45,13 @@ export default function Index(props: P) {
             key: 'z',
             title: '时间',
             dataIndex: 'z',
-            render: (_, record: InstituteAllNode) => {
-                const { service } = record
+            render: (_, record) => {
                 return (
                     <>
                         <p>注册时间：{moment(record.createAt).format('ll')}</p>
                         <p>登录时间：-</p>
-                        <p>合作开始：{service ? moment(service.createAt).format('ll') : '-'}</p>
-                        <p>合作结束：{service ? moment(window.$utils.addTime(service.createAt, service.month, 'M')).format('ll') : '-'}</p>
+                        <p>合作开始：{record.effect_at ? moment(record.effect_at).format('ll') : '-'}</p>
+                        <p>合作结束：{record.effect_at ? moment(window.$utils.addTime(record.effect_at, record.month, 'M')).format('ll') : '-'}</p>
                     </>
                 )
             },
@@ -69,10 +68,10 @@ export default function Index(props: P) {
             render: (manage) => <span>{manage?.name || '-'}</span>,
         },
         {
-            key: 'service',
+            key: 'serviceCount',
             title: '合作次数',
-            dataIndex: 'service',
-            render: (service) => <span>{service ? service.length : 0}</span>,
+            dataIndex: 'serviceCount',
+            render: (num) => <span>{num}</span>,
         },
         {
             key: '',
@@ -89,7 +88,6 @@ export default function Index(props: P) {
         },
     ]
     return <div className='institute-all-list-table'>
-
-        <Table columns={columns} rowKey="companyId" pagination={pagination} dataSource={list} />
+        <Table bordered columns={columns} rowKey="companyId" pagination={pagination} dataSource={list} />
     </div>
 }

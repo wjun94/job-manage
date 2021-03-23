@@ -8,7 +8,7 @@ export default function Index(props) {
     return (
         <Modal title="包含服务" width={640} className="service-modal" onCancel={props.handleCancel} visible={props.isModalVisible}>
             {
-                list.map(item => {
+                list && list.length ? list.map(item => {
                     const result = combinationArr.find(v => v.value === item.name)?.label
                     item.combination = result
                     return (
@@ -33,7 +33,7 @@ export default function Index(props) {
                             </Form.Item>
                         </Form>
                     )
-                })
+                }) : '暂无服务'
             }
         </Modal>
     )
