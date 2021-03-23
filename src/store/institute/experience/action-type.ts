@@ -1,0 +1,5 @@
+export const SETCURRENT = 'appendInstituteExperienceSetCurrent'
+export const PAGESIZE = 'appendInstituteExperiencePageSize'
+export const SETLIST = 'setInstituteExperienceList'
+export const PAGINATION = 'InstituteExperiencePaginationProps'
+export const INIT = 'appendInstituteExperienceInit'

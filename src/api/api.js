@@ -97,6 +97,42 @@ class API extends Server {
    * @method get
    * @return {promise}
    */
+  async instituteCooperationList(params = {}) {
+    try {
+      let result = await this.axios('get', `/instituteCooperationList`, {
+        ...initPage,
+        ...params
+      });
+      return result
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
+   * @todo 未合作客户列表
+   * @param params
+   * @method get
+   * @return {promise}
+   */
+  async instituteExperienceList(params = {}) {
+    try {
+      let result = await this.axios('get', `/instituteExperienceList`, {
+        ...initPage,
+        ...params
+      });
+      return result
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
+   * @todo 未合作客户列表
+   * @param params
+   * @method get
+   * @return {promise}
+   */
   async instituteNotList(params = {}) {
     try {
       let result = await this.axios('get', `/instituteNotList`, {

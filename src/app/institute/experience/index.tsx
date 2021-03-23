@@ -1,7 +1,7 @@
 import React from 'react'
 import { RouteComponentProps } from 'react-router'
 import { connect } from 'react-redux'
-import { setCurrent, setList, setPageSize, init, setPagination, setPaginationProps } from '@/store/institute/not/action'
+import { setCurrent, setList, setPageSize, init, setPagination, setPaginationProps } from '@/store/institute/experience/action'
 import Table from './table'
 import SearchBar from './search-bar'
 import { InstituteAllNode } from '@/app/interface'
@@ -21,7 +21,7 @@ export interface P extends RouteComponentProps {
 }
 
 @(connect((state: any) => {
-    return ({ ...state.instituteNotReducer })
+    return ({ ...state.instituteExperienceReducer })
 }, (dispatch) => ({
     setList(list: []) {
         dispatch(setList(list))
@@ -53,7 +53,7 @@ export default class Home extends React.Component<P, any> {
      */
     getData = async () => {
         const { current, pageSize } = this.props
-        const { data, total } = await window.$api.instituteNotList({ current: current, pageSize: pageSize })
+        const { data, total } = await window.$api.instituteExperienceList({ current: current, pageSize: pageSize })
         const paginationProps = {
             showSizeChanger: true,
             showQuickJumper: false,

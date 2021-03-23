@@ -98,6 +98,16 @@ const InstituteNot = Loadable({
     loading: () => <div>Loading...</div>,
 });
 
+const InstituteExperience = Loadable({
+    loader: () => import('../app/institute/experience'),
+    loading: () => <div>Loading...</div>,
+});
+
+const InstituteCooperation = Loadable({
+    loader: () => import('../app/institute/cooperation'),
+    loading: () => <div>Loading...</div>,
+});
+
 const ContractEdit = Loadable({
     loader: () => import('../app/contract/edit'),
     loading: () => <div>Loading...</div>,
@@ -106,6 +116,8 @@ const ContractEdit = Loadable({
 ContractEdit.preload()
 InstituteAll.preload()
 InstituteNot.preload()
+InstituteExperience.preload()
+InstituteCooperation.preload()
 MsgList.preload()
 LogLogin.preload()
 MsgEdit.preload()
@@ -220,11 +232,11 @@ export const routes = [
         }, {
             path: '/experience',
             title: '体验中',
-            component: InstituteAll
+            component: InstituteExperience
         }, {
             path: '/cooperation',
             title: '合作中',
-            component: InstituteAll
+            component: InstituteCooperation
         }, {
             path: '/maturity',
             title: '已到期',

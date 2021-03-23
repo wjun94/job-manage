@@ -48,6 +48,8 @@ export default function Index(props: P) {
             render: (_, record: InstituteAllNode) => <>
                 <p>注册时间：{moment(record.createAt).format('ll')}</p>
                 <p>登录时间：-</p>
+                <p>合作开始：{record.effect_at ? moment(record.effect_at).format('ll') : '-'}</p>
+                <p>合作结束：{record.effect_at ? moment(window.$utils.addTime(record.effect_at, record.month, 'M')).format('ll') : '-'}</p>
             </>,
         },
         {

@@ -1,5 +1,5 @@
 export const SETCURRENT = 'appendInstituteAllSetCurrent'
 export const PAGESIZE = 'appendInstituteAllPageSize'
-export const SETLIST = 'setInstituteAllRankList'
-export const PAGINATION = 'InstituteAllRankPaginationProps'
+export const SETLIST = 'setInstituteAllList'
+export const PAGINATION = 'InstituteAllPaginationProps'
 export const INIT = 'appendInstituteAllInit'

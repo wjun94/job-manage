@@ -1,0 +1,5 @@
+export const SETCURRENT = 'appendInstituteCooperationSetCurrent'
+export const PAGESIZE = 'appendInstituteCooperationPageSize'
+export const SETLIST = 'setInstituteCooperationList'
+export const PAGINATION = 'InstituteCooperationPaginationProps'
+export const INIT = 'appendInstituteCooperationInit'
