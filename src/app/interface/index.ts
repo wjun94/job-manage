@@ -47,7 +47,7 @@ export interface InstituteAllNode {
     manage: {
         name: string
     },
-    service: ServiceNode[]
+    service: ServiceNode
     recordCount: number,
     scale: number,
     entrant: string

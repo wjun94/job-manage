@@ -44,7 +44,7 @@ export default function Index(props: P) {
             key: 'sales',
             title: '售后',
             dataIndex: 'sales',
-            render: (sales) => <span>{sales.name || '-'}</span>
+            render: (sales) => <span>{sales?.name || '-'}</span>
         },
         {
             key: 'a',

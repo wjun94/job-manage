@@ -75,6 +75,24 @@ class API extends Server {
   }
 
   /**
+   * @todo 未合作客户列表
+   * @param params
+   * @method get
+   * @return {promise}
+   */
+  async instituteNotList(params = {}) {
+    try {
+      let result = await this.axios('get', `/instituteNotList`, {
+        ...initPage,
+        ...params
+      });
+      return result
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
    * @todo 私库未联系
    * @param params
    * @method get

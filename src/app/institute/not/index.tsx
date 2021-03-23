@@ -53,7 +53,7 @@ export default class Home extends React.Component<P, any> {
      */
     getData = async () => {
         const { current, pageSize } = this.props
-        const { data, total } = await window.$api.instituteAllList({ current: current, pageSize: pageSize })
+        const { data, total } = await window.$api.instituteNotList({ current: current, pageSize: pageSize })
         const paginationProps = {
             showSizeChanger: true,
             showQuickJumper: false,

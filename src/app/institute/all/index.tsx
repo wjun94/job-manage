@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { setCurrent, setList, setPageSize, init, setPagination, setPaginationProps } from '@/store/institute/all/action'
 import Table from './table'
 import SearchBar from './search-bar'
-import { InstituteAllNode, ServiceNode } from '@/app/interface'
+import { InstituteAllNode } from '@/app/interface'
 import Modal from '@/component/service-modal'
 import './index.scss'
 
@@ -99,7 +99,7 @@ export default class Home extends React.Component<P, any> {
             }
             case 5: {
                 // 服务
-                const service: ServiceNode[] = node.service
+                const { service } = node
                 this.setState({
                     serviceList: service,
                     isModalVisible: true

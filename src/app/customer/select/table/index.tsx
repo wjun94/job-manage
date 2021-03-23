@@ -44,13 +44,13 @@ export default function Index(props: P) {
             key: 'manage',
             title: '业务员',
             dataIndex: 'manage',
-            render: (manage) => <span>{manage.name || '-'}</span>
+            render: (manage) => <span>{manage?.name || '-'}</span>
         },
         {
             key: 'sales',
             title: '售后',
             dataIndex: 'sales',
-            render: (sales) => <span>{sales.name || '-'}</span>
+            render: (sales) => <span>{sales?.name || '-'}</span>
         },
         {
             key: 'a',
@@ -69,7 +69,7 @@ export default function Index(props: P) {
             title: '操作选项',
             dataIndex: '',
             render: (_: any, record: CompanySelectNode) => <>
-                <Button onClick={() => onOptions(record)} type="link">{record.manage && record.manage.name ? '踢出' : '加入'}</Button>
+                <Button onClick={() => onOptions(record)} type="link">{record.manage && record.manage?.name ? '踢出' : '加入'}</Button>
             </>,
         },
     ]

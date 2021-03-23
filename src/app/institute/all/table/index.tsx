@@ -46,7 +46,7 @@ export default function Index(props: P) {
             title: '时间',
             dataIndex: 'z',
             render: (_, record: InstituteAllNode) => {
-                const service = record.service[0] || null
+                const { service } = record
                 return (
                     <>
                         <p>注册时间：{moment(record.createAt).format('ll')}</p>
@@ -72,7 +72,7 @@ export default function Index(props: P) {
             key: 'service',
             title: '合作次数',
             dataIndex: 'service',
-            render: (service) => <span>{service.length}</span>,
+            render: (service) => <span>{service ? service.length : 0}</span>,
         },
         {
             key: '',

@@ -127,10 +127,10 @@ class App extends React.Component<P, { visible: boolean, total: number }> {
       { label: '录入人：', value: entrant },
       { label: '上次联系时间：', value: recordAt ? moment(recordAt).calendar() : '-' },
       { label: '录入时间：', value: moment(createAt).calendar() },
-      { label: '所属人：', value: manage.name || '-' },
+      { label: '所属人：', value: manage?.name || '-' },
       { label: '下次洽谈时间：', value: reserveAt && window.$utils.diffTime(reserveAt.reserveAt) > 0 ? moment(reserveAt.reserveAt).calendar() : '-' },
       { label: '更新时间：', value: updateAt ? moment(updateAt).calendar() : '-' },
-      { label: '售后：', value: sales.name },
+      { label: '售后：', value: sales?.name },
       { label: '共洽谈数：', value: total },
     ]
     return (
