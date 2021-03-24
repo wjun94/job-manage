@@ -213,7 +213,7 @@ class API extends Server {
       throw err;
     }
   }
-
+  
   /**
    * @todo 创建广告位
    * @param params
@@ -230,6 +230,22 @@ class API extends Server {
   }
 
   /**
+   * @todo 开通体验
+   * @param params
+   * @method get
+   * @return {promise}
+   */
+  async createExperience(params = {}) {
+    try {
+      let result = await this.axios('post', `/createExperience`, params);
+      message.success("操作成功")
+      return result
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
    * @todo 开通服务
    * @param params
    * @method get
@@ -238,6 +254,7 @@ class API extends Server {
   async createService(params = {}) {
     try {
       let result = await this.axios('post', `/createService`, params);
+      message.success("操作成功")
       return result
     } catch (err) {
       throw err;

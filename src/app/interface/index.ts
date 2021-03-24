@@ -29,6 +29,23 @@ export interface AdvtgNode {
     mark?: string
 }
 
+export interface InstituteNotNode {
+    addAt: string
+    city: string
+    companyId: string
+    createAt: string
+    day: number
+    entrant: string
+    ind: number
+    scale: number
+    experience_at: string
+    manage: {
+        name: string
+    }
+    name: string
+    prov: string
+}
+
 export interface InstituteAllNode {
     companyId: string,
     combination?: string

@@ -2,6 +2,7 @@ import React from 'react'
 import { RouteComponentProps } from 'react-router'
 import { connect } from 'react-redux'
 import { setCurrent, setList, setPageSize, init, setPagination, setPaginationProps } from '@/store/institute/not/action'
+import ExperienceDrawer from '@/component/experience-drawer'
 import Table from './table'
 import SearchBar from './search-bar'
 import { InstituteAllNode } from '@/app/interface'
@@ -43,6 +44,11 @@ export interface P extends RouteComponentProps {
     }
 })) as any)
 export default class Home extends React.Component<P, any> {
+
+    state = {
+        isVisible: false,
+        drawerData: {}
+    }
 
     async componentDidMount() {
         this.getData()
@@ -94,6 +100,10 @@ export default class Home extends React.Component<P, any> {
             }
             case 3: {
                 // 开通体验
+                this.setState({
+                    isVisible: true,
+                    drawerData: node
+                })
                 break
             }
         }
@@ -109,13 +119,25 @@ export default class Home extends React.Component<P, any> {
         this.props.history.push({ pathname: '/company/desc', search: companyId ? `companyId=${companyId}` : '' })
     }
 
+    onDrawerClose = () => {
+        this.setState({
+            isVisible: false
+        })
+    }
+
+    onDrawerFinish = async (values) => {
+        await window.$api.createExperience(values)
+    }
+
     render() {
         const { paginationProps, list } = this.props
+        const { isVisible, drawerData } = this.state
         return <>
             <SearchBar />
             <div className='customer-select app-container'>
                 <Table onOptions={this.onOptions} onNodeClick={this.onCompany} pagination={paginationProps} list={list} />
             </div>
+            <ExperienceDrawer onFinish={this.onDrawerFinish} visible={isVisible} data={drawerData} onClose={this.onDrawerClose} />
         </>
     }
 }
