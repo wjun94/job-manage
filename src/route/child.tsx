@@ -93,6 +93,11 @@ const InstituteAll = Loadable({
     loading: () => <div>Loading...</div>,
 });
 
+const InstituteMaturity = Loadable({
+    loader: () => import('../app/institute/maturity'),
+    loading: () => <div>Loading...</div>,
+});
+
 const InstituteNot = Loadable({
     loader: () => import('../app/institute/not'),
     loading: () => <div>Loading...</div>,
@@ -115,6 +120,7 @@ const ContractEdit = Loadable({
 
 ContractEdit.preload()
 InstituteAll.preload()
+InstituteMaturity.preload()
 InstituteNot.preload()
 InstituteExperience.preload()
 InstituteCooperation.preload()
@@ -240,7 +246,7 @@ export const routes = [
         }, {
             path: '/maturity',
             title: '已到期',
-            component: InstituteAll
+            component: InstituteMaturity
         }]
     },
     {

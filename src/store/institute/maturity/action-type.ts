@@ -1,0 +1,5 @@
+export const SETCURRENT = 'appendInstituteMaturitySetCurrent'
+export const PAGESIZE = 'appendInstituteMaturityPageSize'
+export const SETLIST = 'setInstituteMaturityList'
+export const PAGINATION = 'InstituteMaturityPaginationProps'
+export const INIT = 'appendInstituteMaturityInit'

@@ -92,6 +92,24 @@ class API extends Server {
   }
 
   /**
+   * @todo 已到期客户列表
+   * @param params
+   * @method get
+   * @return {promise}
+   */
+  async instituteMaturityList(params = {}) {
+    try {
+      let result = await this.axios('get', `/instituteMaturityList`, {
+        ...initPage,
+        ...params
+      });
+      return result
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
    * @todo 未合作客户列表
    * @param params
    * @method get

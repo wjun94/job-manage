@@ -11,6 +11,7 @@ import instituteAllReducer from './institute/all/reducer'
 import instituteNotReducer from './institute/not/reducer'
 import instituteExperienceReducer from './institute/experience/reducer'
 import instituteCooperationReducer from './institute/cooperation/reducer'
+import instituteMaturityReducer from './institute/maturity/reducer'
 import companyDescReducer from './company/desc/reducer'
 
 export default createStore(
@@ -25,5 +26,6 @@ export default createStore(
         ...instituteNotReducer,
         ...instituteExperienceReducer,
         ...instituteCooperationReducer,
+        ...instituteMaturityReducer,
     }),
 )
