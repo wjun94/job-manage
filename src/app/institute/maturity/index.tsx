@@ -1,11 +1,11 @@
 import React from 'react'
 import { RouteComponentProps } from 'react-router'
 import { connect } from 'react-redux'
-import { setCurrent, setList, setPageSize, init, setPagination, setPaginationProps } from '@/store/institute/maturity/action'
+import { setCurrent, setList, setPageSize, init, setPagination, setPaginationProps } from '@/store/institute/not/action'
+import ExperienceDrawer from '@/component/experience-drawer'
 import Table from './table'
 import SearchBar from './search-bar'
 import { InstituteAllNode } from '@/app/interface'
-import Modal from '@/component/service-modal'
 import './index.scss'
 
 export interface P extends RouteComponentProps {
@@ -22,7 +22,7 @@ export interface P extends RouteComponentProps {
 }
 
 @(connect((state: any) => {
-    return ({ ...state.instituteMaturityReducer })
+    return ({ ...state.instituteNotReducer })
 }, (dispatch) => ({
     setList(list: []) {
         dispatch(setList(list))
@@ -46,8 +46,8 @@ export interface P extends RouteComponentProps {
 export default class Home extends React.Component<P, any> {
 
     state = {
-        isModalVisible: false,
-        serviceList: []
+        isVisible: false,
+        drawerData: {}
     }
 
     async componentDidMount() {
@@ -90,19 +90,19 @@ export default class Home extends React.Component<P, any> {
      * @param node
      * @memberof table
      */
-    onOptions = async (type: number, node: InstituteAllNode) => {
+    onOptions = (type: number, node: InstituteAllNode) => {
+        console.log(type)
         switch (type) {
             case 0: {
                 // 开通服务
                 this.props.history.push({ pathname: '/contract/edit', search: `companyId=${node.companyId}` })
                 break
             }
-            case 5: {
-                // 服务
-                const result = await window.$api.serviceList({ companyId: node.companyId })
+            case 3: {
+                // 开通体验
                 this.setState({
-                    serviceList: result,
-                    isModalVisible: true
+                    isVisible: true,
+                    drawerData: node
                 })
                 break
             }
@@ -119,15 +119,25 @@ export default class Home extends React.Component<P, any> {
         this.props.history.push({ pathname: '/company/desc', search: companyId ? `companyId=${companyId}` : '' })
     }
 
+    onDrawerClose = () => {
+        this.setState({
+            isVisible: false
+        })
+    }
+
+    onDrawerFinish = async (values) => {
+        await window.$api.createExperience(values)
+    }
+
     render() {
         const { paginationProps, list } = this.props
-        const { isModalVisible, serviceList } = this.state
+        const { isVisible, drawerData } = this.state
         return <>
             <SearchBar />
             <div className='customer-select app-container'>
                 <Table onOptions={this.onOptions} onNodeClick={this.onCompany} pagination={paginationProps} list={list} />
             </div>
-            <Modal list={serviceList} handleCancel={() => this.setState({ isModalVisible: false })} isModalVisible={isModalVisible} />
+            <ExperienceDrawer onFinish={this.onDrawerFinish} visible={isVisible} data={drawerData} onClose={this.onDrawerClose} />
         </>
     }
 }

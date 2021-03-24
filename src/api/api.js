@@ -254,7 +254,6 @@ class API extends Server {
   async createService(params = {}) {
     try {
       let result = await this.axios('post', `/createService`, params);
-      message.success("操作成功")
       return result
     } catch (err) {
       throw err;
