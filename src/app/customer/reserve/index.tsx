@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { setCurrent, setList, setPageSize, init, setPagination, setPaginationProps } from '@/store/customer/reserve/action'
 import Table from './table'
 import { CompanySelectNode } from '@/app/interface'
+import ContactTableModal from '@/component/contact-table-modal'
 import './index.scss'
 
 export interface P extends RouteComponentProps {
@@ -42,6 +43,11 @@ export interface P extends RouteComponentProps {
     }
 })) as any)
 export default class Home extends React.Component<P, any> {
+
+    state = {
+        contactList: [],
+        isModalVisible: false
+    }
 
     async componentDidMount() {
         this.getData()
@@ -115,12 +121,31 @@ export default class Home extends React.Component<P, any> {
         this.props.history.push({ pathname: '/company/desc', search: companyId ? `companyId=${companyId}` : '' })
     }
 
+    /**
+     * @todo 点击联系人
+     * @param node 节点属性
+     * @memberof Table
+     */
+    onContact = async (node) => {
+        const result = await window.$api.contactList({ companyId: node.companyId })
+        this.setState({
+            contactList: result.data,
+            isModalVisible: true
+        })
+    }
+
     render() {
         const { paginationProps, list } = this.props
+        const { contactList, isModalVisible } = this.state
         return <>
             <div className='customer-reserve app-container'>
-                <Table onOptions={this.onOptions} onNodeClick={this.onCompany} pagination={paginationProps} list={list} />
+                <Table
+                    onOptions={this.onOptions}
+                    onContact={this.onContact}
+                    onNodeClick={this.onCompany} pagination={paginationProps} list={list}
+                />
             </div>
+            <ContactTableModal onCancel={() => this.setState({ isModalVisible: false })} isModalVisible={isModalVisible} list={contactList} />
         </>
     }
 }

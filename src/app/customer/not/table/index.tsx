@@ -8,6 +8,7 @@ export interface P {
     pagination: TablePaginationConfig | any
     onNodeClick: Function
     onOptions: Function
+    onContact: Function
 }
 
 export interface Node {
@@ -19,7 +20,7 @@ export interface Node {
 }
 
 export default function Index(props: P) {
-    const { pagination, list, onOptions } = props
+    const { pagination, list, onOptions, onContact } = props
     const columns = [
         {
             key: 'name',
@@ -48,9 +49,11 @@ export default function Index(props: P) {
         {
             key: '',
             title: '操作选项',
+            width: 180,
             dataIndex: '',
             render: (_: any, record: CompanySelectNode) => <>
                 <Button onClick={() => onOptions(record)} type="link">{record.manage && record.manage?.name ? '踢出' : '加入'}</Button>
+                <Button onClick={() => onContact(record)} type="link">联系人</Button>
             </>,
         },
     ]

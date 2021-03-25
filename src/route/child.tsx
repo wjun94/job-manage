@@ -194,7 +194,7 @@ export const routes = [
             title: '预约客户',
             component: CustomerReserve
         }, {
-            path: '/contact',
+            path: '/today',
             title: '今日联系',
             component: CustomerToday
         }, {

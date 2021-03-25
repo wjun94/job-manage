@@ -121,7 +121,12 @@ export default class Home extends React.Component<P, any> {
         const { companyId } = node
         this.props.history.push({ pathname: '/company/desc', search: companyId ? `companyId=${companyId}` : '' })
     }
-
+    
+    /**
+     * @todo 点击联系人
+     * @param node 节点属性
+     * @memberof Table
+     */
     onContact = async (node) => {
         const result = await window.$api.contactList({ companyId: node.companyId })
         this.setState({

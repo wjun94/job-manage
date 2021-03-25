@@ -53,7 +53,9 @@ export default function Index(props) {
             render: (txt: string) => <span>{txt || '-'}</span>
         },
     ]
-    return <Modal width={680} className='contact-table' footer={null} visible={isModalVisible} onCancel={onCancel}>
+    return <Modal width={680} 
+    title='单位联系人'
+    className='contact-table' footer={null} visible={isModalVisible} onCancel={onCancel}>
         <Table bordered columns={columns} rowKey="id" dataSource={list} />
     </Modal>
 }
