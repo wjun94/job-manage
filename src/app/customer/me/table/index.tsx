@@ -78,10 +78,10 @@ export default function Index(props: P) {
             render: (recordCount) => <span>{recordCount}</span>,
         },
         {
-            key: 'out',
+            key: 'addAt',
             title: '剩余脱库',
-            dataIndex: 'out',
-            render: (_, data) => <span>{data.addAt ? window.$utils.distanceTime(data.addAt) + '天' : '-'}</span>,
+            dataIndex: 'addAt',
+            render: (txt) => <span>{txt ? window.$utils.distanceTime(txt) + '天' : '-'}</span>,
         },
         {
             key: '',

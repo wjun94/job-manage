@@ -35,12 +35,6 @@ export default function Index(props: P) {
             render: (record) => record && record.status ? <Badge color={record.status === 1 ? '#009688' : '#f5222d'} text={<span>{record ? recordArr.find(item => item.value === record.status)?.label : '-'}</span>} /> : '-'
         },
         {
-            key: 'status',
-            title: '服务状态',
-            dataIndex: 'status',
-            render: (txt: number) => <span>待完善</span>
-        },
-        {
             key: 'manage',
             title: '业务员',
             dataIndex: 'manage',
@@ -53,16 +47,39 @@ export default function Index(props: P) {
             render: (sales) => <span>{sales?.name || '-'}</span>
         },
         {
-            key: 'a',
-            title: '合作次数',
-            dataIndex: 'a',
-            render: () => <span>待完善</span>,
-        },
-        {
             key: 'recordCount',
             title: '联系次数',
             dataIndex: 'recordCount',
-            render: (recordCount) => <span>{recordCount}</span>,
+        },
+        {
+            key: 'serviceCount',
+            title: '合作次数',
+            dataIndex: 'serviceCount',
+        },
+        {
+            key: 'status',
+            title: '服务状态',
+            dataIndex: 'status',
+            render: (txt: number, record) => {
+                let status = 0
+                let title = '未合作'
+                if (txt === 3) {
+                    status = 4
+                    title = '体验到期'
+                    if (window.$utils.distanceTime(record.experienceAt, record.day) > 0) {
+                        title = '体验中'
+                        status = 3
+                    }
+                } else if (txt === 1) {
+                    title = '合作到期'
+                    status = 2
+                    if (window.$utils.distanceTime(record.effectAt, record.month, 'month') > 0) {
+                        title = '合作中'
+                        status = 1
+                    }
+                }
+                return <Badge color={status === 0 ? '#108ee9' : (status === 1 ? '#009688' : (status === 2 ? '#f5222d' : status === 3 ? 'gold' : 'volcano'))} text={title}></Badge>
+            }
         },
         {
             key: '',

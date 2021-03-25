@@ -15,6 +15,7 @@ const initState = {
 }
 
 const customerReserveReducer = (state = initState, action: any) => {
+    console.log(action.list)
     switch (action.type) {
         case SETLIST:
             return {
