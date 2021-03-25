@@ -15,7 +15,7 @@ const { Header, Sider, Content } = Layout;
 
 export interface S {
     collapsed: boolean
-    defaultOpenKeys: string
+    defaultOpenKeys: string[]
     defaultSelectedKeys: string
     title: string[]
 }
@@ -24,7 +24,7 @@ export default class SiderDemo extends React.Component<RouteComponentProps, S> {
 
     state = {
         collapsed: false,
-        defaultOpenKeys: '/company',
+        defaultOpenKeys: ['/company'],
         defaultSelectedKeys: '/company/info',
         title: [],
     };
@@ -41,7 +41,7 @@ export default class SiderDemo extends React.Component<RouteComponentProps, S> {
         this.getTitle(selectedKeys)
         this.setState({
             defaultSelectedKeys: selectedKeys,
-            defaultOpenKeys: openKeys,
+            defaultOpenKeys: [openKeys],
         })
     }
 
@@ -80,6 +80,20 @@ export default class SiderDemo extends React.Component<RouteComponentProps, S> {
         this.props.history.push(String(node.key))
     }
 
+    onOpenChange = (keys) => {
+        if (keys.length) {
+            const { defaultOpenKeys } = this.state
+            const latestOpenKey = keys.find(key => defaultOpenKeys.indexOf(key) === -1);
+            this.setState({
+                defaultOpenKeys: [latestOpenKey]
+            })
+        } else {
+            this.setState({
+                defaultOpenKeys: keys
+            })
+        }
+    }
+
     render() {
         const { defaultOpenKeys, defaultSelectedKeys, title } = this.state
         return (
@@ -88,7 +102,7 @@ export default class SiderDemo extends React.Component<RouteComponentProps, S> {
                     <div className="info flex-top-center">
                         <p>&nbsp;中午好</p>
                     </div>
-                    <Menu theme="dark" onClick={this.onMenu} mode="inline" defaultOpenKeys={[defaultOpenKeys]} defaultSelectedKeys={[defaultSelectedKeys]}>
+                    <Menu theme="dark" onOpenChange={this.onOpenChange} onClick={this.onMenu} mode="inline" openKeys={defaultOpenKeys} defaultSelectedKeys={[defaultSelectedKeys]}>
                         {
                             tabs.map((v: any) => (
                                 v.icon && <SubMenu key={v.path} icon={v.icon} title={v.title}>
