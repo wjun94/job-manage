@@ -6,7 +6,7 @@ import * as React from 'react';
 import './index.scss';
 import { Form, Input, Button, Col, Radio } from 'antd'
 import { RouteComponentProps } from 'react-router'
-import { Node } from '../type'
+import { ContactNode as Node } from '@/app/interface'
 
 const { TextArea } = Input
 

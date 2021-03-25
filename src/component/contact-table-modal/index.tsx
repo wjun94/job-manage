@@ -1,17 +1,9 @@
 import React from 'react'
-import { Table, Button } from 'antd'
-import { TablePaginationConfig } from 'antd/lib/table/interface'
-import { ContactNode as Node } from '@/app/interface'
+import { Table, Modal } from 'antd'
+import './index.scss'
 
-export interface P {
-    list: Node[]
-    pagination: TablePaginationConfig
-    onOptions: Function
-    onNodeClick: Function
-}
-
-export default function Index(props: P) {
-    const { pagination, list } = props
+export default function Index(props) {
+    const { list, isModalVisible, onCancel } = props
     const columns = [
         {
             key: 'name',
@@ -60,17 +52,8 @@ export default function Index(props: P) {
             dataIndex: 'mark',
             render: (txt: string) => <span>{txt || '-'}</span>
         },
-        {
-            key: '',
-            title: '操作选项',
-            dataIndex: '',
-            render: (_: any, record: Node) => <>
-                <Button onClick={() => props.onNodeClick(record)} type="link">编辑</Button>
-                {/* {list.length <= 1 && <Button onClick={() => props.onOptions(record)} danger type="link">删除</Button>} */}
-            </>,
-        },
     ]
-    return <div className='recruit-list-table'>
-        <Table bordered columns={columns} rowKey="id" pagination={pagination} dataSource={list} />
-    </div>
+    return <Modal width={680} className='contact-table' footer={null} visible={isModalVisible} onCancel={onCancel}>
+        <Table bordered columns={columns} rowKey="id" dataSource={list} />
+    </Modal>
 }

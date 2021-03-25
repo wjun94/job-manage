@@ -213,7 +213,7 @@ class API extends Server {
       throw err;
     }
   }
-  
+
   /**
    * @todo 创建广告位
    * @param params
@@ -392,9 +392,12 @@ class API extends Server {
    * @method get
    * @return {promise}
    */
-  async contactList(params = initPage) {
+  async contactList(params = {}) {
     try {
-      let result = await this.axios('get', `/contactList`, params);
+      let result = await this.axios('get', `/contactList`, {
+        ...initPage,
+        ...params,
+      });
       return result
     } catch (err) {
       throw err;

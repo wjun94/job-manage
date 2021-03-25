@@ -95,3 +95,18 @@ export interface CombinationNode {
     name: number,   // '县级', '市级', '省级', '首页'
     article: number,    // 公众号文章篇数
 }
+
+export interface ContactNode {
+    id: string
+    companyId: string
+    name: string
+    createAt: string
+    mark: number    // 备注
+    pos: string // 职位
+    sex: boolean // 性别
+    qq: string
+    wechart: string
+    email: string
+    phone: string   // 手机号码
+    fixedNum: string    // 固定电话
+}

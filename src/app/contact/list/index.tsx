@@ -1,7 +1,7 @@
 import React from 'react'
 import { RouteComponentProps } from 'react-router'
 import Table from './table'
-import { Node } from '../type'
+import { ContactNode as Node } from '@/app/interface'
 import { Button } from 'antd';
 import './index.scss'
 

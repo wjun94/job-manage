@@ -5,6 +5,7 @@ import { setCurrent, setList, setPageSize, init, setPagination, setPaginationPro
 import Table from './table'
 import SearchBar from './search-bar'
 import { CompanySelectNode } from '@/app/interface'
+import ContactTableModal from '@/component/contact-table-modal'
 import './index.scss'
 
 export interface P extends RouteComponentProps {
@@ -43,6 +44,11 @@ export interface P extends RouteComponentProps {
     }
 })) as any)
 export default class Home extends React.Component<P, any> {
+
+    state = {
+        contactList: [],
+        isModalVisible: false
+    }
 
     async componentDidMount() {
         this.getData()
@@ -116,13 +122,23 @@ export default class Home extends React.Component<P, any> {
         this.props.history.push({ pathname: '/company/desc', search: companyId ? `companyId=${companyId}` : '' })
     }
 
+    onContact = async (node) => {
+        const result = await window.$api.contactList({ companyId: node.companyId })
+        this.setState({
+            contactList: result.data,
+            isModalVisible: true
+        })
+    }
+
     render() {
         const { paginationProps, list } = this.props
+        const { contactList, isModalVisible } = this.state
         return <>
             <SearchBar />
             <div className='customer-select app-container'>
-                <Table onOptions={this.onOptions} onNodeClick={this.onCompany} pagination={paginationProps} list={list} />
+                <Table onContact={this.onContact} onOptions={this.onOptions} onNodeClick={this.onCompany} pagination={paginationProps} list={list} />
             </div>
+            <ContactTableModal onCancel={() => this.setState({ isModalVisible: false })} isModalVisible={isModalVisible} list={contactList} />
         </>
     }
 }
