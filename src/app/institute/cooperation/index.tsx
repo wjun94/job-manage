@@ -5,6 +5,7 @@ import { setCurrent, setList, setPageSize, init, setPagination, setPaginationPro
 import Table from './table'
 import SearchBar from './search-bar'
 import { InstituteAllNode } from '@/app/interface'
+import Modal from '@/component/service-modal'
 import './index.scss'
 
 export interface P extends RouteComponentProps {
@@ -42,7 +43,12 @@ export interface P extends RouteComponentProps {
         dispatch(init())
     }
 })) as any)
-export default class Home extends React.Component<P, any> {
+export default class Home extends React.Component<P> {
+
+    state = {
+        isModalVisible: false,
+        serviceList: []
+    }
 
     async componentDidMount() {
         this.getData()
@@ -84,7 +90,7 @@ export default class Home extends React.Component<P, any> {
      * @param node
      * @memberof table
      */
-    onOptions = (type: number, node: InstituteAllNode) => {
+    onOptions = async (type: number, node: InstituteAllNode) => {
         console.log(type)
         switch (type) {
             case 0: {
@@ -92,8 +98,13 @@ export default class Home extends React.Component<P, any> {
                 this.props.history.push({ pathname: '/contract/edit', search: `companyId=${node.companyId}` })
                 break
             }
-            case 3: {
-                // 开通体验
+            case 5: {
+                // 服务
+                const result = await window.$api.serviceList({ companyId: node.companyId })
+                this.setState({
+                    serviceList: result,
+                    isModalVisible: true
+                })
                 break
             }
         }
@@ -111,11 +122,13 @@ export default class Home extends React.Component<P, any> {
 
     render() {
         const { paginationProps, list } = this.props
+        const { isModalVisible, serviceList } = this.state
         return <>
             <SearchBar />
             <div className='customer-select app-container'>
                 <Table onOptions={this.onOptions} onNodeClick={this.onCompany} pagination={paginationProps} list={list} />
             </div>
+            <Modal list={serviceList} handleCancel={() => this.setState({ isModalVisible: false })} isModalVisible={isModalVisible} />
         </>
     }
 }

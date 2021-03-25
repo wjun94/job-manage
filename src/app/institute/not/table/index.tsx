@@ -49,7 +49,7 @@ export default function Index(props: P) {
                 <p>注册时间：{moment(record.createAt).format('ll')}</p>
                 <p>登录时间：-</p>
                 <p>体验开始：{record.experience_at ? moment(record.experience_at).format('ll') : '-'}</p>
-                <p>体验结束：{record.experience_at ? moment(window.$utils.addTime(record.experience_at, record.day)).format('ll') : '-'}</p>
+                <p>体验结束：{record.experience_at ? window.$utils.addTime(record.experience_at, record.day) : '-'}</p>
             </>,
         },
         {

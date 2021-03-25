@@ -49,7 +49,7 @@ export default function Index(props: P) {
                 <p>注册时间：{moment(record.createAt).format('ll')}</p>
                 <p>登录时间：-</p>
                 <p>体验开始：{record.experience_at ? moment(record.experience_at).format('ll') : '-'}</p>
-                <p>体验结束：{record.experience_at ? moment(window.$utils.addTime(record.experience_at, record.day)).format('ll') : '-'}</p>
+                <p>体验结束：{record.experience_at ? window.$utils.addTime(record.experience_at, record.day) : '-'}</p>
             </>,
         },
         {
@@ -70,7 +70,7 @@ export default function Index(props: P) {
             dataIndex: '',
             render: (_, record: InstituteNotNode) => <>
                 {
-                    [{ label: '开通服务', value: 0 }, { label: '进入后台', value: 2 }, { label: '账号', value: 4 }, { label: '日志', value: 6 }].map((item, i) => (
+                    [{ label: '开通服务', value: 0 }, { label: '进入后台', value: 2 }, { label: '账号', value: 4 }, { label: '日志', value: 6 }].map((item) => (
                         <Button className={`btn-${item.value}`} key={'l-' + item.value} onClick={() => onOptions(item.value, record)}>{item.label}</Button>
                     ))
                 }
