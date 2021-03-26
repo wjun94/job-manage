@@ -9,7 +9,6 @@ export default function Index(props) {
         <Modal title="包含服务" width={640} className="service-modal" onCancel={props.handleCancel} visible={props.isModalVisible}>
             {
                 list && list.length ? list.map(item => {
-                    console.log(item)
                     const result = item.name ? (combinationArr.find(v => v.value === item.name)?.label || item.name) : '体验中'
                     item.combination = result
                     return (

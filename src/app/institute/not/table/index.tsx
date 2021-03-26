@@ -64,6 +64,11 @@ export default function Index(props: P) {
             render: (manage) => <span>{manage?.name || '-'}</span>,
         },
         {
+            key: 'experienceCount',
+            title: '体验次数',
+            dataIndex: 'experienceCount',
+        },
+        {
             key: '',
             title: '操作选项',
             width: 320,

@@ -70,7 +70,7 @@ export default function Index(props: P) {
             dataIndex: '',
             render: (_, record: InstituteNotNode) => <>
                 {
-                    [{ label: '开通服务', value: 0 }, { label: '进入后台', value: 2 }, { label: '账号', value: 4 }, { label: '日志', value: 6 }].map((item) => (
+                    [{ label: '开通服务', value: 0 }, { label: '进入后台', value: 2 }, { label: '开通体验', value: 3 }, { label: '账号', value: 4 }, { label: '日志', value: 6 }].map((item) => (
                         <Button className={`btn-${item.value}`} key={'l-' + item.value} onClick={() => onOptions(item.value, record)}>{item.label}</Button>
                     ))
                 }

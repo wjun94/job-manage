@@ -446,9 +446,9 @@ class API extends Server {
    * @method get
    * @return {promise}
    */
-  async customerList(params = {}) {
+  async customerSelectList(params = {}) {
     try {
-      let result = await this.axios('get', `/customerList`, {
+      let result = await this.axios('get', `/customerSelectList`, {
         ...initPage,
         ...params
       });
