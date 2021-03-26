@@ -37,27 +37,10 @@ export default function Index(props: P) {
             render: (record) => record && record.status ? <Badge color={record.status === 1 ? '#009688' : '#f5222d'} text={<span>{record ? recordArr.find(item => item.value === record.status)?.label : '-'}</span>} /> : '-'
         },
         {
-            key: 'manage',
-            title: '业务员',
-            dataIndex: 'manage',
-            render: (manage) => <span>{manage ? manage?.name : '-'}</span>
-        },
-        {
-            key: 'sales',
-            title: '售后',
-            dataIndex: 'sales',
-            render: (sales) => <span>{sales?.name || '-'}</span>
-        },
-        {
-            key: 'serviceCount',
-            title: '合作次数',
-            dataIndex: 'serviceCount',
-        },
-        {
-            key: 'addAt',
-            title: '入库时间',
-            dataIndex: 'addAt',
-            render: (addAt) => <span>{moment(addAt).calendar()}</span>,
+            key: 'recordCount',
+            title: '联系次数',
+            dataIndex: 'recordCount',
+            render: (recordCount) => <span>{recordCount}</span>,
         },
         {
             key: 'time',
@@ -66,10 +49,16 @@ export default function Index(props: P) {
             render: (_, data) => <span>{data.record && data.record.createAt ? moment(data.record.createAt).calendar() : '-'}</span>,
         },
         {
-            key: 'recordCount',
-            title: '联系次数',
-            dataIndex: 'recordCount',
-            render: (recordCount) => <span>{recordCount}</span>,
+            key: 'addAt',
+            title: '入库时间',
+            dataIndex: 'addAt',
+            render: (addAt) => <span>{moment(addAt).calendar()}</span>,
+        },
+        {
+            key: 'manage',
+            title: '业务员',
+            dataIndex: 'manage',
+            render: (manage) => <span>{manage ? manage?.name : '-'}</span>
         },
         {
             key: 'addAt',
@@ -105,6 +94,7 @@ export default function Index(props: P) {
         {
             key: '',
             title: '操作选项',
+            width: 180,
             dataIndex: '',
             render: (_: any, record: CompanySelectNode) => <>
                 <Button onClick={() => onOptions(record)} type="link">{record.manage && record.manage?.name ? '踢出' : '加入'}</Button>

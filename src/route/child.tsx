@@ -13,6 +13,11 @@ const CustomerDoc = Loadable({
     loading: () => <div>Loading...</div>,
 });
 
+const CustomerAway = Loadable({
+    loader: () => import('../app/customer/away'),
+    loading: () => <div>Loading...</div>,
+});
+
 const UserSafety = Loadable({
     loader: () => import('../app/user/safety'),
     loading: () => <div>Loading...</div>,
@@ -119,6 +124,7 @@ const ContractEdit = Loadable({
 });
 
 ContractEdit.preload()
+CustomerAway.preload()
 InstituteAll.preload()
 InstituteMaturity.preload()
 InstituteNot.preload()
@@ -204,7 +210,7 @@ export const routes = [
         }, {
             path: '/away',
             title: '30天脱离',
-            component: CustomerDoc
+            component: CustomerAway
         }, {
             path: '/expected',
             title: '未合作',

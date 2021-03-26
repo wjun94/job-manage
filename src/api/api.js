@@ -464,6 +464,24 @@ class API extends Server {
    * @method get
    * @return {promise}
    */
+  async customerAwayList(params = {}) {
+    try {
+      let result = await this.axios('get', `/customerAwayList`, {
+        ...initPage,
+        ...params
+      });
+      return result
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
+   * @todo 企业管理/我的客户 列表
+   * @param params
+   * @method get
+   * @return {promise}
+   */
   async customerMeList(params = {}) {
     try {
       let result = await this.axios('get', `/customerMeList`, {
