@@ -11,6 +11,7 @@ export interface P {
     onNodeClick: Function
     onOptions: Function
     onContact: Function
+    loading: boolean
 }
 
 export interface Node {
@@ -22,7 +23,7 @@ export interface Node {
 }
 
 export default function Index(props: P) {
-    const { pagination, list, onOptions, onContact } = props
+    const { pagination, list, onOptions, onContact, loading } = props
     const columns = [
         {
             key: 'name',
@@ -43,12 +44,6 @@ export default function Index(props: P) {
             render: (manage) => <span>{manage ? manage?.name : '-'}</span>
         },
         {
-            key: 'sales',
-            title: '售后',
-            dataIndex: 'sales',
-            render: (sales) => <span>{sales?.name || '-'}</span>
-        },
-        {
             key: 'serviceCount',
             title: '合作次数',
             dataIndex: 'serviceCount',
@@ -57,7 +52,7 @@ export default function Index(props: P) {
             key: 'addAt',
             title: '入库时间',
             dataIndex: 'addAt',
-            render: (addAt) => <span>{moment(addAt).calendar()}</span>,
+            render: (addAt) => <span>{addAt ? moment(addAt).calendar() : '-'}</span>,
         },
         {
             key: 'time',
@@ -72,10 +67,10 @@ export default function Index(props: P) {
             render: (recordCount) => <span>{recordCount}</span>,
         },
         {
-            key: 'addAt',
+            key: 'addAt1',
             title: '剩余脱库',
-            dataIndex: 'addAt',
-            render: (txt) => <span>{txt ? window.$utils.distanceTime(txt) + '天' : '-'}</span>,
+            dataIndex: 'addAt1',
+            render: (_, record) => <span>{record.addAt ? window.$utils.distanceTime(record.addAt, 1, 'year') + '天' : '-'}</span>,
         },
         {
             key: 'status',
@@ -113,6 +108,6 @@ export default function Index(props: P) {
         },
     ]
     return <div className='recruit-list-table'>
-        <Table bordered columns={columns} rowKey="companyId" pagination={pagination} dataSource={list} />
+        <Table loading={loading} bordered columns={columns} rowKey="companyId" pagination={pagination} dataSource={list} />
     </div>
 }

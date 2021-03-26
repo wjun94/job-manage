@@ -59,7 +59,7 @@ export function addTime(date, days = 365, unitOfTime: unitOfTime.Diff = 'days') 
 /**
  * @todo 距今还有几天
  */
-export function distanceTime(date, days = 365, unitOfTime: unitOfTime.Diff = 'days') {
+export function distanceTime(date, days = 30, unitOfTime: unitOfTime.Diff = 'days') {
     return diffTime(addTime(date, days, unitOfTime), 'days')
 }
 

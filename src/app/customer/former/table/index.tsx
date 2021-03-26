@@ -52,7 +52,7 @@ export default function Index(props: P) {
             key: 'addAt',
             title: '入库时间',
             dataIndex: 'addAt',
-            render: (addAt) => <span>{moment(addAt).calendar()}</span>,
+            render: (addAt) => <span>{addAt ? moment(addAt).calendar() : '-'}</span>,
         },
         {
             key: 'manage',
@@ -61,10 +61,10 @@ export default function Index(props: P) {
             render: (manage) => <span>{manage ? manage?.name : '-'}</span>
         },
         {
-            key: 'addAt',
+            key: 'addAt1',
             title: '剩余脱库',
-            dataIndex: 'addAt',
-            render: (txt) => <span>{txt ? window.$utils.distanceTime(txt) + '天' : '-'}</span>,
+            dataIndex: 'addAt1',
+            render: (_, record) => <span>{record.addAt ? window.$utils.distanceTime(record.addAt, 1, 'year') + '天' : '-'}</span>,
         },
         {
             key: 'status',

@@ -47,7 +47,8 @@ export default class Home extends React.Component<P, any> {
 
     state = {
         contactList: [],
-        isModalVisible: false
+        isModalVisible: false,
+        loading: true
     }
 
     async componentDidMount() {
@@ -72,6 +73,9 @@ export default class Home extends React.Component<P, any> {
         }
         this.props.setPaginationProps(paginationProps)
         this.props.setList(data)
+        this.setState({
+            loading: false
+        })
     }
 
     changePageSize = async (pageSize: number, current: number) => {
@@ -134,11 +138,11 @@ export default class Home extends React.Component<P, any> {
 
     render() {
         const { paginationProps, list } = this.props
-        const { contactList, isModalVisible } = this.state
+        const { contactList, isModalVisible, loading } = this.state
         return <>
             <SearchBar />
             <div className='customer-me app-container'>
-                <Table onOptions={this.onOptions}
+                <Table loading={loading} onOptions={this.onOptions}
                     onContact={this.onContact}
                     onNodeClick={this.onCompany} pagination={paginationProps} list={list} />
             </div>

@@ -10,6 +10,7 @@ export interface P {
     onNodeClick: Function
     onOptions: Function
     onContact: Function
+    loading: boolean
 }
 
 export interface Node {
@@ -21,7 +22,7 @@ export interface Node {
 }
 
 export default function Index(props: P) {
-    const { pagination, list, onOptions, onContact } = props
+    const { pagination, list, onOptions, onContact, loading } = props
     const columns = [
         {
             key: 'name',
@@ -40,12 +41,6 @@ export default function Index(props: P) {
             title: '业务员',
             dataIndex: 'manage',
             render: (manage) => <span>{manage?.name || '-'}</span>
-        },
-        {
-            key: 'sales',
-            title: '售后',
-            dataIndex: 'sales',
-            render: (sales) => <span>{sales?.name || '-'}</span>
         },
         {
             key: 'recordCount',
@@ -94,6 +89,6 @@ export default function Index(props: P) {
         },
     ]
     return <div className='recruit-list-table'>
-        <Table bordered columns={columns} rowKey="companyId" pagination={pagination} dataSource={list} />
+        <Table loading={loading} bordered columns={columns} rowKey="companyId" pagination={pagination} dataSource={list} />
     </div>
 }

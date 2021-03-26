@@ -54,7 +54,8 @@ export default class Home extends React.Component<P, any> {
 
     state = {
         contactList: [],
-        isModalVisible: false
+        isModalVisible: false,
+        loading: true
     }
 
     async componentDidMount() {
@@ -79,6 +80,9 @@ export default class Home extends React.Component<P, any> {
         }
         this.props.setPaginationProps(paginationProps)
         this.props.setList(data)
+        this.setState({
+            loading: false
+        })
     }
 
     changePageSize = async (pageSize: number, current: number) => {
@@ -146,12 +150,12 @@ export default class Home extends React.Component<P, any> {
 
     render() {
         const { paginationProps, list } = this.props
-        const { contactList, isModalVisible } = this.state
+        const { contactList, isModalVisible, loading } = this.state
         return <>
             <SearchBar />
             <div className='customer-select app-container'>
                 <Button type='primary' onClick={this.onAdd} className='add'>新增单位</Button>
-                <Table onContact={this.onContact} onOptions={this.onOptions} onNodeClick={this.onCompany} pagination={paginationProps} list={list} />
+                <Table loading={loading} onContact={this.onContact} onOptions={this.onOptions} onNodeClick={this.onCompany} pagination={paginationProps} list={list} />
             </div>
             <ContactTableModal onCancel={() => this.setState({ isModalVisible: false })} isModalVisible={isModalVisible} list={contactList} />
         </>
