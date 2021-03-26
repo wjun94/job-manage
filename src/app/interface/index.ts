@@ -1,6 +1,5 @@
 export interface CompanySelectNode {
     companyId: string
-    manageId: string
     salesId: string
     createAt: string
     entrant: string
