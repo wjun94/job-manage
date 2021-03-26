@@ -67,31 +67,6 @@ export default function Index(props: P) {
             render: (txt) => <span>{txt ? window.$utils.distanceTime(txt) + '天' : '-'}</span>,
         },
         {
-            key: 'status',
-            title: '服务状态',
-            dataIndex: 'status',
-            render: (txt: number, record) => {
-                let status = 0
-                let title = '未合作'
-                if (txt === 3) {
-                    status = 4
-                    title = '体验到期'
-                    if (window.$utils.distanceTime(record.experienceAt, record.day) > 0) {
-                        title = '体验中'
-                        status = 3
-                    }
-                } else if (txt === 1) {
-                    title = '合作到期'
-                    status = 2
-                    if (window.$utils.distanceTime(record.effectAt, record.month, 'month') > 0) {
-                        title = '合作中'
-                        status = 1
-                    }
-                }
-                return <Badge color={status === 0 ? '#108ee9' : (status === 1 ? '#009688' : (status === 2 ? '#f5222d' : status === 3 ? 'gold' : 'volcano'))} text={title}></Badge>
-            }
-        },
-        {
             key: '',
             title: '操作选项',
             width: 180,

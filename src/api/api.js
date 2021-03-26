@@ -182,7 +182,7 @@ class API extends Server {
   }
 
   /**
-   * @todo 私库未联系
+   * @todo 客户管理/私库未联系
    * @param params
    * @method get
    * @return {promise}
@@ -441,7 +441,7 @@ class API extends Server {
   }
 
   /**
-   * @todo 企业管理/客户查询 列表
+   * @todo 客户管理/客户查询 列表
    * @param params
    * @method get
    * @return {promise}
@@ -459,7 +459,79 @@ class API extends Server {
   }
 
   /**
-   * @todo 企业管理/我的客户 列表
+   * @todo 客户管理/原合作 列表
+   * @param params
+   * @method get
+   * @return {promise}
+   */
+  async customerFormerList(params = {}) {
+    try {
+      let result = await this.axios('get', `/customerFormerList`, {
+        ...initPage,
+        ...params
+      });
+      return result
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
+   * @todo 客户管理/未合作 列表
+   * @param params
+   * @method get
+   * @return {promise}
+   */
+  async customerBeingList(params = {}) {
+    try {
+      let result = await this.axios('get', `/customerBeingList`, {
+        ...initPage,
+        ...params
+      });
+      return result
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
+   * @todo 客户管理/未合作 列表
+   * @param params
+   * @method get
+   * @return {promise}
+   */
+  async customerExpectedList(params = {}) {
+    try {
+      let result = await this.axios('get', `/customerExpectedList`, {
+        ...initPage,
+        ...params
+      });
+      return result
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
+   * @todo 客户管理/公库 列表
+   * @param params
+   * @method get
+   * @return {promise}
+   */
+  async customerPubList(params = {}) {
+    try {
+      let result = await this.axios('get', `/customerPubList`, {
+        ...initPage,
+        ...params
+      });
+      return result
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
+   * @todo 客户管理/我的客户 列表
    * @param params
    * @method get
    * @return {promise}
@@ -477,7 +549,7 @@ class API extends Server {
   }
 
   /**
-   * @todo 企业管理/我的客户 列表
+   * @todo 客户管理/我的客户 列表
    * @param params
    * @method get
    * @return {promise}
