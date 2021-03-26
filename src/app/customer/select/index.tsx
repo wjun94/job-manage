@@ -6,7 +6,9 @@ import Table from './table'
 import SearchBar from './search-bar'
 import { CompanySelectNode } from '@/app/interface'
 import ContactTableModal from '@/component/contact-table-modal'
+import { setData } from '@/store/company/desc/action'
 import './index.scss'
+import { Button } from 'antd'
 
 export interface P extends RouteComponentProps {
     pageSize: number
@@ -15,15 +17,20 @@ export interface P extends RouteComponentProps {
     setPageSize: Function
     init: Function
     setList: Function
+    setData: Function
     setPaginationProps: Function
     setCurrent: Function
     paginationProps: any,
     list: CompanySelectNode[]
+    data: any
 }
 
 @(connect((state: any) => {
-    return ({ ...state.customerNotReducer })
+    return ({ ...state.customerNotReducer, data: state.companyDescReducer.data })
 }, (dispatch) => ({
+    setData(data: {}) {
+        dispatch(setData(data))
+    },
     setList(list: []) {
         dispatch(setList(list))
     },
@@ -121,7 +128,7 @@ export default class Home extends React.Component<P, any> {
         const { companyId } = node
         this.props.history.push({ pathname: '/company/desc', search: companyId ? `companyId=${companyId}` : '' })
     }
-    
+
     /**
      * @todo 点击联系人
      * @param node 节点属性
@@ -135,12 +142,18 @@ export default class Home extends React.Component<P, any> {
         })
     }
 
+    onAdd = async () => {
+        await this.props.setData(null)
+        this.props.history.push({ pathname: '/company/edit' })
+    }
+
     render() {
         const { paginationProps, list } = this.props
         const { contactList, isModalVisible } = this.state
         return <>
             <SearchBar />
             <div className='customer-select app-container'>
+                <Button type='primary' onClick={this.onAdd} className='add'>新增单位</Button>
                 <Table onContact={this.onContact} onOptions={this.onOptions} onNodeClick={this.onCompany} pagination={paginationProps} list={list} />
             </div>
             <ContactTableModal onCancel={() => this.setState({ isModalVisible: false })} isModalVisible={isModalVisible} list={contactList} />

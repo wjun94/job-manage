@@ -459,6 +459,22 @@ class API extends Server {
   }
 
   /**
+   * @todo 创建单位
+   * @param params
+   * @method post
+   * @return {promise}
+   */
+  async createCompany(params = {}) {
+    try {
+      let result = await this.axios('POST', `/createCompany`, params);
+      message.success('创建成功')
+      return result.data
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  /**
    * @todo 客户管理/原合作 列表
    * @param params
    * @method get

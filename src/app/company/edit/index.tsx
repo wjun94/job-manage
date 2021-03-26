@@ -17,10 +17,11 @@ const { TextArea } = Input
 
 export interface P extends RouteComponentProps {
   data: FormNode
-  setData: (node: Node) => void
+  setData: (node: Node | {}) => void
 }
 
 export interface Node {
+  companyId: string
   name: string
   ind: string
   scale: string
@@ -48,8 +49,8 @@ export interface FormNode extends Node {
 class App extends React.Component<P> {
 
   async componentDidMount() {
-    if (!this.props.data) {
-      const id = window.$utils.getHashQuery('companyId')
+    const id = window.$utils.getHashQuery('companyId')
+    if (!this.props.data && id) {
       const data = await window.$api.companyDesc({ id })
       await this.props.setData(data)
     }
@@ -59,8 +60,8 @@ class App extends React.Component<P> {
     const [prov, city, area] = values.address
     const { data } = this.props
     const { foundAt } = values
-    const params = { ...data, ...values, prov, city, area, amount: Number(values.amount), foundAt: foundAt ? moment(foundAt).format('YYYY') : '' }
-    await window.$api.updateCompanyInfo(params)
+    const params = { ...data, entrant: window.$user.name, ...values, prov, city, area, amount: Number(values.amount), foundAt: foundAt ? moment(foundAt).format('YYYY') : '' }
+    data && data.companyId ? await window.$api.updateCompanyInfo(params) : await window.$api.createCompany({ ...params, cInfo: params })
     this.props.setData(params)
     this.props.history.goBack()
   }
@@ -71,15 +72,18 @@ class App extends React.Component<P> {
       wrapperCol: { span: 10 },
     };
     const { data } = this.props
-    if (!data) return '';
-    if (data.foundAt) {
-      data.foundAt = moment(data.foundAt, "YYYY/MM")
+    let init
+    if (data && data.name) {
+      init = data as FormNode
+      if (data.foundAt) {
+        data.foundAt = moment(data.foundAt, "YYYY/MM")
+      }
+      const { prov, city, area } = init
+      init.address = [prov, city, area]
     }
-    const dt = data as FormNode
-    const { prov, city, area } = dt
-    dt.address = [prov, city, area]
+    console.log(data)
     return (
-      <Form {...layout} name="basic" onFinish={this.onFinish} initialValues={dt} className='company-info app-container animate'>
+      <Form {...layout} name="basic" onFinish={this.onFinish} initialValues={init || {}} className='company-info app-container animate'>
         <Form.Item
           label="单位名称"
           name="name"
@@ -103,6 +107,17 @@ class App extends React.Component<P> {
         >
           <Cascader placeholder="请选择所在城市" options={options} />
         </Form.Item>
+
+        {
+          !(data && data.companyId) && <Form.Item
+            label="单位号码"
+            name="phone"
+            rules={[{ required: true, message: '请输入单位号码' }]}
+          >
+            <Input placeholder="请输入单位号码" />
+          </Form.Item>
+        }
+
         <Form.Item
           label="详细地址"
           name="addr"
@@ -161,7 +176,7 @@ class App extends React.Component<P> {
         </Form.Item>
         <Col offset={6}>
           <Button onClick={() => this.props.history.goBack()}>返回</Button>
-          <Button htmlType="submit" type="primary">更新信息</Button>
+          <Button htmlType="submit" type="primary">{data && data.companyId ? '更新信息' : '创建'}</Button>
         </Col>
       </Form >
     );

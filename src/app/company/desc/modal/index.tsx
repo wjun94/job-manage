@@ -40,7 +40,7 @@ export default function Index(props: P) {
             <Form.Item name='manageId' rules={[{ required: true, message: '请选择单位联系人' }]}>
                 <Select allowClear placeholder="请选择单位联系人">
                     {
-                        list.map(v => <Option key={v.id} value={v.id}>{v.name}</Option>)
+                        list && list.map(v => <Option key={v.id} value={v.id}>{v.name}</Option>)
                     }
                 </Select>
             </Form.Item>
