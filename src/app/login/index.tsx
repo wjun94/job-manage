@@ -8,10 +8,10 @@ import * as React from 'react';
 import './index.scss';
 import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { FormProps } from '../types'
+import { RouteComponentProps } from 'react-router'
 import LeftPng from './left.png'
 
-class App extends React.Component<FormProps, {}> {
+class App extends React.Component<RouteComponentProps> {
   componentDidMount() {
     // if (window.$utils.getCookie("manageToken")) {
     //   this.props.history.push('/')

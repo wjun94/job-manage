@@ -5,11 +5,11 @@
 import * as React from 'react';
 import './index.scss';
 import { Form, Input, Button } from 'antd'
-import { FormProps } from '../../types'
+import { RouteComponentProps } from 'react-router'
 
 const { TextArea } = Input
 
-class App extends React.Component<FormProps, {}> {
+class App extends React.Component<RouteComponentProps> {
 
   handleSubmit = (values) => {
     window.$api.createMsg("POST", "createMsg", values).then(() => {
