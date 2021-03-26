@@ -1,7 +1,7 @@
 import React from 'react'
 import { RouteComponentProps } from 'react-router'
 import { connect } from 'react-redux'
-import { setCurrent, setList, setPageSize, init, setPagination, setPaginationProps } from '@/store/customer/away/action'
+import { setCurrent, setList, setPageSize, init, setPagination, setPaginationProps } from '@/store/customer/being/action'
 import SearchBar from './search-bar'
 import { CompanySelectNode } from '@/app/interface'
 import Table from './table'
@@ -22,7 +22,7 @@ export interface P extends RouteComponentProps {
 }
 
 @(connect((state: any) => {
-    return ({ ...state.customerAwayReducer })
+    return ({ ...state.customerBeingReducer })
 }, (dispatch) => ({
     setList(list: []) {
         dispatch(setList(list))

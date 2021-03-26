@@ -1,0 +1,5 @@
+export const SETCURRENT = 'appendCustomerAwaySetCurrent'
+export const PAGESIZE = 'appendCustomerAwayPageSize'
+export const SETLIST = 'setCustomerAwayList'
+export const PAGINATION = 'CustomerAwayPaginationProps'
+export const INIT = 'appendCustomerAwayInit'

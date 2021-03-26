@@ -8,8 +8,23 @@ import MessagePng from '../assets/images/message.png'
 import LogPng from '../assets/images/log.png'
 import SetPng from '../assets/images/set.png'
 
-const CustomerDoc = Loadable({
-    loader: () => import('../app/customer/doc'),
+const CustomerBeing = Loadable({
+    loader: () => import('../app/customer/being'),
+    loading: () => <div>Loading...</div>,
+});
+
+const CustomerExpected = Loadable({
+    loader: () => import('../app/customer/expected'),
+    loading: () => <div>Loading...</div>,
+});
+
+const CustomerFormer = Loadable({
+    loader: () => import('../app/customer/former'),
+    loading: () => <div>Loading...</div>,
+});
+
+const CustomerPub = Loadable({
+    loader: () => import('../app/customer/pub'),
     loading: () => <div>Loading...</div>,
 });
 
@@ -142,7 +157,10 @@ CustomerReserve.preload()
 CustomerToday.preload()
 CustomerNot.preload()
 UserModify.preload()
-CustomerDoc.preload()
+CustomerBeing.preload()
+CustomerExpected.preload()
+CustomerFormer.preload()
+CustomerPub.preload()
 UserSafety.preload()
 ContactList.preload()
 ContactEdit.preload()
@@ -214,19 +232,19 @@ export const routes = [
         }, {
             path: '/expected',
             title: '未合作',
-            component: CustomerDoc
+            component: CustomerExpected
         }, {
             path: '/being',
             title: '正合作',
-            component: CustomerDoc
+            component: CustomerBeing
         }, {
             path: '/former',
             title: '原合作',
-            component: CustomerDoc
+            component: CustomerFormer
         }, {
             path: '/pub',
             title: '公库',
-            component: CustomerDoc
+            component: CustomerPub
         }]
     },
     {

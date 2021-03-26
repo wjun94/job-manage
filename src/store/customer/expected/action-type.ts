@@ -1,0 +1,5 @@
+export const SETCURRENT = 'appendCustomerExpectedCurrent'
+export const PAGESIZE = 'appendCustomerExpectedPageSize'
+export const SETLIST = 'setCustomerExpectedList'
+export const PAGINATION = 'CustomerExpectedPaginationProps'
+export const INIT = 'appendCustomerExpectedInit'
