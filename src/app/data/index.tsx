@@ -160,13 +160,8 @@ export const typeArr: Node[] = setArr(['合资', '独资', '国有', '私营', '
 export const indArr: Node[] = setArr(['住宿和餐饮', '金融', '房地产', '互联网',
     '教育', '体育', '娱乐', '传统行业', '批发和零售', '交通运输', '采矿业', '制造业', '农业', '文化', '旅游'])
 
-export const sexArr: Node[] = setArr(['不限', '男', '女'])
 
 export const benfArr: string[] = ['五险一金', '假日福利', '双休', '单休', '单双休']
-
-export const educationArr: Node[] = setArr(['不限', '高中', '大专', '本科', '硕士', '博士'])
-
-export const expArr: Node[] = setArr(['不限', '实习生', '应届生', '1-3年', '3-5年', '5-10年', '10年以上'])
 
 export const recordArr = [{ label: "正常", value: 1 }, { label: "没联系上", value: 2 }, { label: "空号", value: 3 }, { label: "错号", value: 4 }]
 
