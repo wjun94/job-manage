@@ -12,6 +12,7 @@ import { Provider } from 'react-redux'
 import Api from '@/api/api'
 import * as Utils from '@/utils/index'
 import moment from 'moment'
+import './mock'
 import 'moment/locale/zh-cn';
 
 moment.locale('zh-cn');
