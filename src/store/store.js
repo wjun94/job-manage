@@ -1,7 +1,5 @@
-import {
-    createStore,
-    combineReducers,
-} from 'redux'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 import customerSelectReducer from './customer/select/reducer'
 import customerNotReducer from './customer/not/reducer'
 import customerMeReducer from './customer/me/reducer'
@@ -20,22 +18,23 @@ import instituteMaturityReducer from './institute/maturity/reducer'
 import companyDescReducer from './company/desc/reducer'
 
 export default createStore(
-    combineReducers({
-        ...customerSelectReducer,
-        ...customerReserveReducer,
-        ...customerMeReducer,
-        ...companyDescReducer,
-        ...customerNotReducer,
-        ...customerTodayReducer,
-        ...customerAwayReducer,
-        ...customerPubReducer,
-        ...customerFormerReducer,
-        ...customerBeingReducer,
-        ...customerExpectedReducer,
-        ...instituteAllReducer,
-        ...instituteNotReducer,
-        ...instituteExperienceReducer,
-        ...instituteCooperationReducer,
-        ...instituteMaturityReducer,
-    }),
+  combineReducers({
+    ...customerSelectReducer,
+    ...customerReserveReducer,
+    ...customerMeReducer,
+    ...companyDescReducer,
+    ...customerNotReducer,
+    ...customerTodayReducer,
+    ...customerAwayReducer,
+    ...customerPubReducer,
+    ...customerFormerReducer,
+    ...customerBeingReducer,
+    ...customerExpectedReducer,
+    ...instituteAllReducer,
+    ...instituteNotReducer,
+    ...instituteExperienceReducer,
+    ...instituteCooperationReducer,
+    ...instituteMaturityReducer,
+  }),
+  applyMiddleware(thunk)
 )
