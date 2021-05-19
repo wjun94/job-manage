@@ -9,7 +9,6 @@ export interface P {
   list: CompanySelectNode[] | any
   pagination: TablePaginationConfig | any
   onNodeClick: Function
-  onOptions: Function
   onContact: Function
 }
 
@@ -22,7 +21,7 @@ export interface Node {
 }
 
 export default function Index(props: P) {
-  const { pagination, list, onOptions, onContact } = props
+  const { pagination, list, onContact } = props
   const columns = [
     {
       title: '客户信息',
@@ -70,20 +69,6 @@ export default function Index(props: P) {
       render: (addAt) => <span>{addAt ? moment(addAt).calendar() : '-'}</span>,
     },
     {
-      title: '业务员',
-      dataIndex: 'manage',
-      render: (manage) => <span>{manage ? manage?.name : '-'}</span>,
-    },
-    {
-      title: '剩余脱库',
-      dataIndex: 'addAt1',
-      render: (_, record) => (
-        <span>
-          {record.addAt ? window.$utils.distanceTime(record.addAt, 1, 'year') + '天' : '-'}
-        </span>
-      ),
-    },
-    {
       title: '合作状态',
       dataIndex: 'status',
       render: (txt: number, record) => {
@@ -128,9 +113,6 @@ export default function Index(props: P) {
       dataIndex: '',
       render: (_: any, record: CompanySelectNode) => (
         <>
-          <Button onClick={() => onOptions(record)} type="link">
-            {record.manage && record.manage?.name ? '踢出' : '加入'}
-          </Button>
           <Button onClick={() => onContact(record)} type="link">
             联系人
           </Button>

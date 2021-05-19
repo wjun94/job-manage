@@ -1,15 +1,12 @@
-import Server from './server';
-import {
-  message
-} from 'antd';
+import Server from './server'
+import { message } from 'antd'
 
 const initPage = {
   current: 1,
-  pageSize: 10
+  pageSize: 10,
 }
 
 class API extends Server {
-
   /**
    * @todo 踢出公司
    * @param params
@@ -18,11 +15,11 @@ class API extends Server {
    */
   async outCompany(params = {}) {
     try {
-      let result = await this.axios('PATCH', `/outCompany`, params);
-      message.success('踢出成功');
+      let result = await this.axios('PATCH', `/outCompany`, params)
+      message.success('踢出成功')
       return result.data
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -34,11 +31,11 @@ class API extends Server {
    */
   async addCompany(params = {}) {
     try {
-      let result = await this.axios('PATCH', `/addCompany`, params);
-      message.success('加入成功');
+      let result = await this.axios('PATCH', `/addCompany`, params)
+      message.success('加入成功')
       return result.data
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -50,11 +47,11 @@ class API extends Server {
    */
   async updateManageId(params = {}) {
     try {
-      let result = await this.axios('PATCH', `/updateManageId`, params);
-      message.success(params.manageId ? '加入成功' : '踢出成功', 1.5);
+      let result = await this.axios('PATCH', `/updateManageId`, params)
+      message.success(params.manageId ? '加入成功' : '踢出成功', 1.5)
       return result.data
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -66,11 +63,26 @@ class API extends Server {
    */
   async updateCompanyInfo(params = {}) {
     try {
-      let result = await this.axios('PATCH', `/updateCompanyInfo`, params);
-      message.success('更新成功', 1.5);
+      let result = await this.axios('PATCH', `/updateCompanyInfo`, params)
+      message.success('更新成功', 1.5)
       return result.data
     } catch (err) {
-      throw err;
+      throw err
+    }
+  }
+
+  /**
+   * @todo 管理员列表
+   * @param params
+   * @method get
+   * @return {promise}
+   */
+  async mngList() {
+    try {
+      let result = await this.axios('get', `/mngList`)
+      return result.data || []
+    } catch (err) {
+      throw err
     }
   }
 
@@ -83,11 +95,11 @@ class API extends Server {
   async serviceList(params = {}) {
     try {
       let result = await this.axios('get', `/serviceList`, {
-        ...params
-      });
+        ...params,
+      })
       return result.data || []
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -101,11 +113,11 @@ class API extends Server {
     try {
       let result = await this.axios('get', `/instituteMaturityList`, {
         ...initPage,
-        ...params
-      });
+        ...params,
+      })
       return result
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -119,11 +131,11 @@ class API extends Server {
     try {
       let result = await this.axios('get', `/instituteCooperationList`, {
         ...initPage,
-        ...params
-      });
+        ...params,
+      })
       return result
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -137,11 +149,11 @@ class API extends Server {
     try {
       let result = await this.axios('get', `/instituteExperienceList`, {
         ...initPage,
-        ...params
-      });
+        ...params,
+      })
       return result
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -155,11 +167,11 @@ class API extends Server {
     try {
       let result = await this.axios('get', `/instituteNotList`, {
         ...initPage,
-        ...params
-      });
+        ...params,
+      })
       return result
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -173,11 +185,11 @@ class API extends Server {
     try {
       let result = await this.axios('get', `/instituteAllList`, {
         ...initPage,
-        ...params
-      });
+        ...params,
+      })
       return result
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -191,11 +203,11 @@ class API extends Server {
     try {
       let result = await this.axios('get', `/customerNotList`, {
         ...initPage,
-        ...params
-      });
+        ...params,
+      })
       return result
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -207,10 +219,10 @@ class API extends Server {
    */
   async contact(params = {}) {
     try {
-      let result = await this.axios('get', `/contact`, params);
+      let result = await this.axios('get', `/contact`, params)
       return result.data
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -222,10 +234,10 @@ class API extends Server {
    */
   async createAdvtg(params = {}) {
     try {
-      let result = await this.axios('post', `/createAdvtg`, params);
+      let result = await this.axios('post', `/createAdvtg`, params)
       return result
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -237,11 +249,11 @@ class API extends Server {
    */
   async createExperience(params = {}) {
     try {
-      let result = await this.axios('post', `/createExperience`, params);
-      message.success("操作成功")
+      let result = await this.axios('post', `/createExperience`, params)
+      message.success('操作成功')
       return result
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -253,10 +265,10 @@ class API extends Server {
    */
   async createService(params = {}) {
     try {
-      let result = await this.axios('post', `/createService`, params);
+      let result = await this.axios('post', `/createService`, params)
       return result
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -268,10 +280,10 @@ class API extends Server {
    */
   async msgList(params = initPage) {
     try {
-      let result = await this.axios('get', `/msgList`, params);
+      let result = await this.axios('get', `/msgList`, params)
       return result
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -283,10 +295,10 @@ class API extends Server {
    */
   async loginLogList(params = initPage) {
     try {
-      let result = await this.axios('get', `/loginLogList`, params);
+      let result = await this.axios('get', `/loginLogList`, params)
       return result
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -298,10 +310,10 @@ class API extends Server {
    */
   async contactCompanyDesc(params = {}) {
     try {
-      let result = await this.axios('get', `/contactCompanyDesc`, params);
+      let result = await this.axios('get', `/contactCompanyDesc`, params)
       return result
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -313,10 +325,10 @@ class API extends Server {
    */
   async companyDesc(params = {}) {
     try {
-      let result = await this.axios('get', `/companyDesc`, params);
+      let result = await this.axios('get', `/companyDesc`, params)
       return result.data
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -328,11 +340,11 @@ class API extends Server {
    */
   async updateContact(params = {}) {
     try {
-      let result = await this.axios('patch', `/updateContact`, params);
-      message.success("操作成功")
+      let result = await this.axios('patch', `/updateContact`, params)
+      message.success('操作成功')
       return result
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -344,11 +356,11 @@ class API extends Server {
    */
   async createContact(params = {}) {
     try {
-      let result = await this.axios('post', `/createContact`, params);
-      message.success("操作成功")
+      let result = await this.axios('post', `/createContact`, params)
+      message.success('操作成功')
       return result
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -362,11 +374,11 @@ class API extends Server {
     try {
       let result = await this.axios('get', `/recordList`, {
         ...initPage,
-        ...params
-      });
+        ...params,
+      })
       return result
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -378,11 +390,11 @@ class API extends Server {
    */
   async createRecord(params = {}) {
     try {
-      let result = await this.axios('post', `/createRecord`, params);
-      message.success("添加成功")
+      let result = await this.axios('post', `/createRecord`, params)
+      message.success('添加成功')
       return result
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -397,10 +409,10 @@ class API extends Server {
       let result = await this.axios('get', `/contactList`, {
         ...initPage,
         ...params,
-      });
+      })
       return result
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -414,11 +426,11 @@ class API extends Server {
     try {
       let result = await this.axios('get', `/customerReserveList`, {
         ...initPage,
-        ...params
-      });
+        ...params,
+      })
       return result
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -432,11 +444,11 @@ class API extends Server {
     try {
       let result = await this.axios('get', `/customerTodayList`, {
         ...initPage,
-        ...params
-      });
+        ...params,
+      })
       return result
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -450,11 +462,11 @@ class API extends Server {
     try {
       let result = await this.axios('get', `/customerSelectList`, {
         ...initPage,
-        ...params
-      });
+        ...params,
+      })
       return result
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -466,11 +478,11 @@ class API extends Server {
    */
   async createCompany(params = {}) {
     try {
-      let result = await this.axios('POST', `/createCompany`, params);
+      let result = await this.axios('POST', `/createCompany`, params)
       message.success('创建成功')
       return result.data
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -484,11 +496,11 @@ class API extends Server {
     try {
       let result = await this.axios('get', `/customerFormerList`, {
         ...initPage,
-        ...params
-      });
+        ...params,
+      })
       return result
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -502,11 +514,11 @@ class API extends Server {
     try {
       let result = await this.axios('get', `/customerBeingList`, {
         ...initPage,
-        ...params
-      });
+        ...params,
+      })
       return result
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -520,11 +532,11 @@ class API extends Server {
     try {
       let result = await this.axios('get', `/customerExpectedList`, {
         ...initPage,
-        ...params
-      });
+        ...params,
+      })
       return result
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -538,11 +550,11 @@ class API extends Server {
     try {
       let result = await this.axios('get', `/customerPubList`, {
         ...initPage,
-        ...params
-      });
+        ...params,
+      })
       return result
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -556,11 +568,11 @@ class API extends Server {
     try {
       let result = await this.axios('get', `/customerAwayList`, {
         ...initPage,
-        ...params
-      });
+        ...params,
+      })
       return result
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -574,11 +586,11 @@ class API extends Server {
     try {
       let result = await this.axios('get', `/customerMeList`, {
         ...initPage,
-        ...params
-      });
+        ...params,
+      })
       return result
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 
@@ -590,12 +602,12 @@ class API extends Server {
    */
   async login(params = {}) {
     try {
-      let result = await this.axios('POST', `/login`, params);
+      let result = await this.axios('POST', `/login`, params)
       return result.data
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 }
 
-export default new API();
+export default new API()
