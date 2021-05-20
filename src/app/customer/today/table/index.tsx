@@ -38,17 +38,12 @@ export default function Index(props: P) {
       render: (prov) => <span>{prov || '-'}</span>,
     },
     {
-      title: '业务员',
-      dataIndex: 'manage',
-      render: (manage) => <span>{manage?.name || '-'}</span>,
+      title: '联系次数',
+      dataIndex: 'recordCount',
     },
     {
       title: '合作次数',
       dataIndex: 'serviceCount',
-    },
-    {
-      title: '联系次数',
-      dataIndex: 'recordCount',
     },
     {
       title: '联系时间',
@@ -73,23 +68,24 @@ export default function Index(props: P) {
     },
     {
       title: '合作状态',
-      dataIndex: 'status',
-      render: (txt: number, record) => {
+      dataIndex: 'service',
+      render: (service: { status: number }) => {
         let status = 0
         let title = '未合作'
-        if (txt === 3) {
-          status = 4
-          title = '体验到期'
-          if (window.$utils.distanceTime(record.experienceAt, record.day) > 0) {
-            title = '体验中'
-            status = 3
-          }
-        } else if (txt === 1) {
-          title = '合作到期'
-          status = 2
-          if (window.$utils.distanceTime(record.effectAt, record.month, 'month') > 0) {
-            title = '合作中'
-            status = 1
+        if (service) {
+          switch (service.status) {
+            case 1:
+              status = 1
+              title = '合作中'
+              break
+            case 2:
+              status = 2
+              title = '已到期'
+              break
+            case 3:
+              status = 3
+              title = '体验中'
+              break
           }
         }
         return (

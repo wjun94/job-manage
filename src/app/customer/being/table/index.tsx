@@ -75,15 +75,6 @@ export default function Index(props: P) {
       render: (manage) => <span>{manage ? manage?.name : '-'}</span>,
     },
     {
-      title: '剩余脱库',
-      dataIndex: 'addAt1',
-      render: (_, record) => (
-        <span>
-          {record.addAt ? window.$utils.distanceTime(record.addAt, 1, 'year') + '天' : '-'}
-        </span>
-      ),
-    },
-    {
       title: '操作选项',
       width: 180,
       dataIndex: '',

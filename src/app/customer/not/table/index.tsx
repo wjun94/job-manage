@@ -47,11 +47,14 @@ export default function Index(props: P) {
         let status = 0
         let title = '未合作'
         if (service) {
-          console.log(service.status)
           switch (service.status) {
             case 1:
               status = 1
               title = '合作中'
+              break
+            case 2:
+              status = 2
+              title = '已到期'
               break
             case 3:
               status = 3

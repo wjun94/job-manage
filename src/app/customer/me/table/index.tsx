@@ -52,11 +52,6 @@ export default function Index(props: P) {
         ),
     },
     {
-      title: '业务员',
-      dataIndex: 'manage',
-      render: (manage) => (manage ? manage?.name : '-'),
-    },
-    {
       title: '合作次数',
       dataIndex: 'serviceCount',
     },
@@ -75,11 +70,6 @@ export default function Index(props: P) {
       ),
     },
     {
-      title: '联系次数',
-      dataIndex: 'recordCount',
-      render: (recordCount) => <span>{recordCount}</span>,
-    },
-    {
       title: '剩余脱库',
       dataIndex: 'addAt1',
       render: (_, record) => (
@@ -89,17 +79,25 @@ export default function Index(props: P) {
       ),
     },
     {
+      title: '联系次数',
+      dataIndex: 'recordCount',
+      render: (recordCount) => <span>{recordCount}</span>,
+    },
+    {
       title: '合作状态',
       dataIndex: 'service',
       render: (service: { status: number }) => {
         let status = 0
         let title = '未合作'
         if (service) {
-          console.log(service.status)
           switch (service.status) {
             case 1:
               status = 1
               title = '合作中'
+              break
+            case 2:
+              status = 2
+              title = '已到期'
               break
             case 3:
               status = 3
