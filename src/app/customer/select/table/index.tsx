@@ -6,7 +6,7 @@ import { recordArr } from '@/app/data'
 
 export interface P {
   list: CompanySelectNode[] | any
-  pagination: TablePaginationConfig | any
+  pagination?: false | TablePaginationConfig
   onNodeClick: Function
   onOptions: Function
   onContact: Function

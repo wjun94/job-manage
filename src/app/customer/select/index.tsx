@@ -38,6 +38,7 @@ export interface P extends RouteComponentProps {
   },
   (dispatch) => ({
     setData(data: {}) {
+      // 跳转编辑单位信息tab缓存数据
       dispatch(setData(data))
     },
     setList(list: []) {
@@ -166,12 +167,16 @@ export default class Home extends React.Component<P, any> {
     this.props.history.push({ pathname: '/company/edit' })
   }
 
+  onSearch = (values) => {
+    console.log(values)
+  }
+
   render() {
     const { paginationProps, list } = this.props
     const { contactList, isModalVisible, loading } = this.state
     return (
       <>
-        <SearchBar />
+        <SearchBar onFinish={this.onSearch} />
         <div className="customer-select app-container">
           <Button type="primary" onClick={this.onAdd} className="add">
             新增单位

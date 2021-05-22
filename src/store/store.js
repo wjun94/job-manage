@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import commonReducer from './common/reducer'
-import customerSelectReducer from './customer/select/reducer'
+import { customerSelectReducer } from './customer/select/reducer'
 import customerNotReducer from './customer/not/reducer'
 import customerMeReducer from './customer/me/reducer'
 import customerTodayReducer from './customer/today/reducer'
