@@ -1,9 +1,21 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Form, Input, Button, Select } from 'antd'
 import { typeArr, statusArr } from '@/app/data'
 import options from '@/app/data/cities'
-import type { P, ColumnsNode } from './data.d'
 import './index.scss'
+
+export interface ColumnsNode {
+  title?: string
+  name: string
+  valueType: string
+  valueEnum?: { label: string; value: number | string }[]
+}
+
+export interface P {
+  columns?: ColumnsNode[]
+  onFinish: (values: any) => void
+  init?: Object // 初始值
+}
 
 const { Option } = Select
 
@@ -42,8 +54,11 @@ export const initColumns: ColumnsNode[] = [
 ]
 
 export default function Index(props: P) {
-  const { columns = initColumns, onFinish } = props
-  let formEl: any = useRef()
+  const { columns = initColumns, onFinish, init = null } = props
+  useEffect(() => {
+    init && formEl.setFieldsValue(init)
+  }, [init])
+  let formEl: any = useRef(null)
   const [prov, setProv] = useState<any>('')
   const citys = options.find((v) => v.value === prov)?.children
   return (

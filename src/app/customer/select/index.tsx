@@ -9,8 +9,9 @@ import {
   setPagination,
   setPaginationProps,
 } from '@/store/customer/not/action'
+import type { MngNode } from '@/app/common.d'
 import Table from './table'
-import SearchBar from '@/component/search-bar'
+import SearchBar, { initColumns } from '@/component/search-bar'
 import { CompanySelectNode } from '@/app/interface'
 import ContactTableModal from '@/component/contact-table-modal'
 import { setData } from '@/store/company/desc/action'
@@ -30,11 +31,16 @@ export interface P extends RouteComponentProps {
   paginationProps: any
   list: CompanySelectNode[]
   data: any
+  mngList: MngNode[]
 }
 
 @(connect(
   (state: any) => {
-    return { ...state.customerNotReducer, data: state.companyDescReducer.data }
+    return {
+      ...state.customerNotReducer,
+      data: state.companyDescReducer.data,
+      mngList: state.commonReducer.mngList, // 业务员列表
+    }
   },
   (dispatch) => ({
     setData(data: {}) {
@@ -67,6 +73,19 @@ export default class Home extends React.Component<P, any> {
     isModalVisible: false,
     loading: true,
   }
+
+  searchColums = [
+    ...initColumns,
+    {
+      name: 'manage',
+      title: '业务人员',
+      valueType: 'select',
+      valueEnum: [
+        { label: '全部', value: 'all' },
+        ...this.props.mngList.map((v) => ({ label: v.name, value: v.id })),
+      ],
+    },
+  ]
 
   async componentDidMount() {
     this.getData()
@@ -162,11 +181,18 @@ export default class Home extends React.Component<P, any> {
     })
   }
 
+  /**
+   * @todo 新建单位
+   * */
   onAdd = async () => {
     await this.props.setData(null)
     this.props.history.push({ pathname: '/company/edit' })
   }
 
+  /**
+   * @todo 点击搜索
+   * @param values 表单数据
+   */
   onSearch = (values) => {
     console.log(values)
   }
@@ -176,7 +202,7 @@ export default class Home extends React.Component<P, any> {
     const { contactList, isModalVisible, loading } = this.state
     return (
       <>
-        <SearchBar onFinish={this.onSearch} />
+        <SearchBar onFinish={this.onSearch} columns={this.searchColums} />
         <div className="customer-select app-container">
           <Button type="primary" onClick={this.onAdd} className="add">
             新增单位

@@ -1,7 +1,7 @@
 import { COMMONMNGLIST } from './action-type'
 
 const initState = {
-  mngList: [], // 管理员列表
+  mngList: [], // 业务员列表
 }
 
 const commonReducer = (state = initState, action: any) => {
