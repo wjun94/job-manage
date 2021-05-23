@@ -1,7 +1,7 @@
 import React from 'react'
 import { Table, Button } from 'antd'
 import { TablePaginationConfig } from 'antd/lib/table/interface'
-import { InstituteNotNode } from '@/app/interface'
+import { InstituteNotNode } from '@/app/common.d'
 import { indArr, scaleArr } from '@/app/data'
 import moment from 'moment'
 import './index.scss'

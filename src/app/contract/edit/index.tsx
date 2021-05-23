@@ -5,7 +5,7 @@
 import * as React from 'react'
 import './index.scss'
 import { Form, Input, Radio, Select, DatePicker, Button, message } from 'antd'
-import { InstituteAllNode as Node, AdvtgNode } from '@/app/interface'
+import { InstituteAllNode as Node, AdvtgNode } from '@/app/common.d'
 import { typeArr, contractArr, combinationArr, paymentTimeArr } from '@/app/data'
 import Table from './table'
 import moment from 'moment'

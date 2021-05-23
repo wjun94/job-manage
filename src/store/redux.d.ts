@@ -1,9 +1,10 @@
 import { TablePaginationConfig } from 'antd/lib/table/interface'
 
-interface CommonType1 {
+interface CommonType1<T> {
   total: number
   pageSize: number
   current: number
   paginationProps: false | TablePaginationConfig
-  list: []
+  list: T[]
+  params: Object
 }

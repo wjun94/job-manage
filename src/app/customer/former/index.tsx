@@ -10,7 +10,7 @@ import {
   setPaginationProps,
 } from '@/store/customer/former/action'
 import SearchBar from './search-bar'
-import { CompanySelectNode } from '@/app/interface'
+import { CompanySelectNode } from '@/app/common.d'
 import Table from './table'
 import ContactTableModal from '@/component/contact-table-modal'
 import './index.scss'

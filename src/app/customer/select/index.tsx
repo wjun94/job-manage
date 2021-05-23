@@ -1,5 +1,4 @@
 import React from 'react'
-import { RouteComponentProps } from 'react-router'
 import { connect } from 'react-redux'
 import {
   setCurrent,
@@ -12,15 +11,14 @@ import {
 import type { MngNode } from '@/app/common.d'
 import Table from './table'
 import SearchBar, { initColumns } from '@/component/search-bar'
-import { CompanySelectNode } from '@/app/interface'
+import { CompanySelectNode } from '@/app/common.d'
 import ContactTableModal from '@/component/contact-table-modal'
 import { setData } from '@/store/company/desc/action'
 import './index.scss'
 import { Button } from 'antd'
+import type { CommonType1 } from '@/store/redux'
 
-export interface P extends RouteComponentProps {
-  pageSize: number
-  current: number
+export interface P extends CommonType1<CompanySelectNode> {
   setPagination: Function
   setPageSize: Function
   init: Function
@@ -28,10 +26,9 @@ export interface P extends RouteComponentProps {
   setData: Function
   setPaginationProps: Function
   setCurrent: Function
-  paginationProps: any
-  list: CompanySelectNode[]
   data: any
   mngList: MngNode[]
+  history: any
 }
 
 @(connect(
@@ -93,12 +90,14 @@ export default class Home extends React.Component<P, any> {
 
   /**
    * @todo 获取列表数据
+   * @param params 请求参数
    */
-  getData = async () => {
+  getData = async (params = this.props.params) => {
     const { current, pageSize } = this.props
     const { data, total } = await window.$api.customerSelectList({
       current: current,
       pageSize: pageSize,
+      ...params,
     })
     const paginationProps = {
       showSizeChanger: true,
@@ -202,7 +201,7 @@ export default class Home extends React.Component<P, any> {
     const { contactList, isModalVisible, loading } = this.state
     return (
       <>
-        <SearchBar onFinish={this.onSearch} columns={this.searchColums} />
+        <SearchBar init={this.props.params} onFinish={this.onSearch} columns={this.searchColums} />
         <div className="customer-select app-container">
           <Button type="primary" onClick={this.onAdd} className="add">
             新增单位

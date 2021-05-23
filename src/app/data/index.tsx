@@ -1,4 +1,4 @@
-import { CombinationNode } from '@/app/interface'
+import { CombinationNode } from '@/app/common.d'
 
 export interface Node {
   label: string

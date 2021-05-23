@@ -1,7 +1,7 @@
 import React from 'react'
 import { Table, Button, Badge } from 'antd'
 import { TablePaginationConfig } from 'antd/lib/table/interface'
-import { CompanySelectNode } from '@/app/interface'
+import { CompanySelectNode } from '@/app/common.d'
 
 export interface P {
   list: CompanySelectNode[] | any
