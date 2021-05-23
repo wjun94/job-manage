@@ -8,7 +8,7 @@ import {
   init,
   setPagination,
   setPaginationProps,
-} from '@/store/customer/select/action'
+} from '@/store/customer/not/action'
 import Table from './table'
 import { CompanySelectNode } from '@/app/common.d'
 import ContactTableModal from '@/component/contact-table-modal'

@@ -1,48 +1,42 @@
-import {
-    INIT,
-    SETLIST,
-    SETCURRENT,
-    PAGESIZE,
-    PAGINATION,
-} from './action-type'
+import { INIT, SETLIST, SETCURRENT, PAGESIZE, PaginationProps, PARAMS } from './action-type'
 
 export const init = () => {
-    return {
-        type: INIT,
-    }
+  return {
+    type: INIT,
+  }
 }
 
 export const setList = (list: [] = []) => {
-    return {
-        type: SETLIST,
-        list: [...list]
-    }
+  return {
+    type: SETLIST,
+    list: [...list],
+  }
 }
 
 export const setCurrent = (current: number = 1) => {
-    return {
-        type: SETCURRENT,
-        current
-    }
+  return {
+    type: SETCURRENT,
+    current,
+  }
 }
 
 export const setPageSize = (pageSize: number = 10) => {
-    return {
-        type: PAGESIZE,
-        pageSize
-    }
-}
-
-export const setPagination = (pagination: {}) => {
-    return {
-        type: PAGINATION,
-        pagination
-    }
+  return {
+    type: PAGESIZE,
+    pageSize,
+  }
 }
 
 export const setPaginationProps = (paginationProps: {}) => {
-    return {
-        type: PAGINATION,
-        paginationProps
-    }
+  return {
+    type: PaginationProps,
+    paginationProps,
+  }
+}
+
+export const setParams = (params: {}) => {
+  return {
+    type: PARAMS,
+    params,
+  }
 }

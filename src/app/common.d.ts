@@ -117,3 +117,13 @@ export interface ContactNode {
   phone: string // 手机号码
   fixedNum: string // 固定电话
 }
+
+export interface MngListParams {
+  manageId: string
+  name?: string
+  prov?: string
+  city?: string
+  companyId?: string
+  type?: number
+  status?: number
+}

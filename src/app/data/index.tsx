@@ -163,7 +163,7 @@ export const combinationArr = [
   },
 ]
 
-export const statusArr: Node[] = setArr(['已合作', '未合作', '体验中', '已到期', '已终止'])
+export const statusArr: Node[] = setArr(['已合作', '已到期', '体验中', '未合作'])
 
 export const contractArr: Node[] = setArr(['标准合同', '非标准合同', '自定义合同'])
 

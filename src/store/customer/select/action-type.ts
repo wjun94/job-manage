@@ -1,5 +1,7 @@
 export const SETCURRENT = 'appendCustomerSelectSetCurrent'
 export const PAGESIZE = 'appendCustomerSelectPageSize'
 export const SETLIST = 'setCustomerSelectList'
-export const PAGINATION = 'CustomerSelectPaginationProps'
+export const PAGINATION = 'CustomerSelectPagination'
+export const PaginationProps = 'CustomerSelectPaginationProps'
+export const PARAMS = 'CustomerSelectParams'
 export const INIT = 'appendCustomerSelectInit'

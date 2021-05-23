@@ -35,8 +35,8 @@ export const initColumns: ColumnsNode[] = [
     valueType: 'city',
   },
   {
-    name: 'id',
-    title: '单位ID',
+    name: 'companyId',
+    title: '单位编号',
     valueType: 'input',
   },
   {

@@ -4,10 +4,9 @@ import {
   setCurrent,
   setList,
   setPageSize,
-  init,
-  setPagination,
   setPaginationProps,
-} from '@/store/customer/not/action'
+  setParams,
+} from '@/store/customer/select/action'
 import type { MngNode } from '@/app/common.d'
 import Table from './table'
 import SearchBar, { initColumns } from '@/component/search-bar'
@@ -19,13 +18,12 @@ import { Button } from 'antd'
 import type { CommonType1 } from '@/store/redux'
 
 export interface P extends CommonType1<CompanySelectNode> {
-  setPagination: Function
   setPageSize: Function
-  init: Function
   setList: Function
   setData: Function
   setPaginationProps: Function
   setCurrent: Function
+  setParams: Function
   data: any
   mngList: MngNode[]
   history: any
@@ -34,21 +32,22 @@ export interface P extends CommonType1<CompanySelectNode> {
 @(connect(
   (state: any) => {
     return {
-      ...state.customerNotReducer,
+      ...state.customerSelectReducer,
       data: state.companyDescReducer.data,
       mngList: state.commonReducer.mngList, // 业务员列表
     }
   },
   (dispatch) => ({
+    setParams(data: {}) {
+      // 跳转编辑单位信息tab缓存数据
+      dispatch(setParams(data))
+    },
     setData(data: {}) {
       // 跳转编辑单位信息tab缓存数据
       dispatch(setData(data))
     },
     setList(list: []) {
       dispatch(setList(list))
-    },
-    setPagination(obj: {}) {
-      dispatch(setPagination(obj))
     },
     setPaginationProps(obj: {}) {
       dispatch(setPaginationProps(obj))
@@ -58,9 +57,6 @@ export interface P extends CommonType1<CompanySelectNode> {
     },
     setPageSize(pageSize: number) {
       dispatch(setPageSize(pageSize))
-    },
-    init() {
-      dispatch(init())
     },
   })
 ) as any)
@@ -74,11 +70,11 @@ export default class Home extends React.Component<P, any> {
   searchColums = [
     ...initColumns,
     {
-      name: 'manage',
+      name: 'manageId',
       title: '业务人员',
       valueType: 'select',
       valueEnum: [
-        { label: '全部', value: 'all' },
+        { label: '全部', value: '' },
         ...this.props.mngList.map((v) => ({ label: v.name, value: v.id })),
       ],
     },
@@ -90,10 +86,9 @@ export default class Home extends React.Component<P, any> {
 
   /**
    * @todo 获取列表数据
-   * @param params 请求参数
    */
-  getData = async (params = this.props.params) => {
-    const { current, pageSize } = this.props
+  getData = async () => {
+    const { current, pageSize, params } = this.props
     const { data, total } = await window.$api.customerSelectList({
       current: current,
       pageSize: pageSize,
@@ -192,8 +187,10 @@ export default class Home extends React.Component<P, any> {
    * @todo 点击搜索
    * @param values 表单数据
    */
-  onSearch = (values) => {
+  onSearch = async (values) => {
     console.log(values)
+    await this.props.setParams(values)
+    this.getData()
   }
 
   render() {

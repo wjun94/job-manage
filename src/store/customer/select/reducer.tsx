@@ -1,5 +1,5 @@
 import type { CommonType1 } from '@/store/redux.d'
-import { INIT, SETLIST, SETCURRENT, PAGESIZE, PAGINATION } from './action-type'
+import { INIT, SETLIST, SETCURRENT, PAGESIZE, PaginationProps, PARAMS } from './action-type'
 import { CompanySelectNode } from '@/app/common.d'
 
 const initState: CommonType1<CompanySelectNode> = {
@@ -8,10 +8,10 @@ const initState: CommonType1<CompanySelectNode> = {
   current: 1,
   paginationProps: {},
   list: [],
-  params: { manage: 'all' }, // 接口请求参数
+  params: { manageId: '' }, // 接口请求参数
 }
 
-export const customerSelectReducer = (state = initState, action: any) => {
+const customerSelectReducer = (state = initState, action: any) => {
   switch (action.type) {
     case SETLIST:
       return {
@@ -28,10 +28,17 @@ export const customerSelectReducer = (state = initState, action: any) => {
         ...state,
         pageSize: action.pageSize,
       }
-    case PAGINATION:
+    case PaginationProps:
       return {
         ...state,
         paginationProps: action.paginationProps,
+      }
+    case PARAMS:
+      // 点击搜索，清空页码
+      return {
+        ...state,
+        params: action.params,
+        current: 1,
       }
     case INIT:
       return {
@@ -45,3 +52,9 @@ export const customerSelectReducer = (state = initState, action: any) => {
       return state
   }
 }
+
+const result = {
+  customerSelectReducer,
+}
+
+export default result
