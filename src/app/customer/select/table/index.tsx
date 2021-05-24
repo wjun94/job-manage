@@ -3,7 +3,6 @@ import { Table, Button, Badge } from 'antd'
 import { TablePaginationConfig } from 'antd/lib/table/interface'
 import { CompanySelectNode } from '@/app/common.d'
 import { recordArr } from '@/app/data'
-import moment from 'moment'
 
 export interface P {
   list: CompanySelectNode[] | any
@@ -107,12 +106,7 @@ export default function Index(props: P) {
     {
       title: '剩余脱库',
       dataIndex: 'expiredAt',
-      render: (txt: number) => {
-        var d = moment.duration(txt, 'ms')
-        return (
-          Math.floor(d.asDays()) + '天' + d.hours() + '时' + d.minutes() + '分' + d.seconds() + '秒'
-        )
-      },
+      render: (txt: number) => window.$utils.ms2day(txt),
     },
     {
       title: '操作选项',
