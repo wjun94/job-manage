@@ -1,18 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { HashRouter as Router, Switch, Route, RouteProps } from 'react-router-dom'
 import routes from './route'
-import { connect } from 'react-redux'
-import { setMngList } from '@/store/common/action'
 
-export interface P {
-  setMngList: () => void
-}
-
-function App(props: P) {
-  const { setMngList } = props
-  useEffect(() => {
-    setMngList()
-  }, [setMngList])
+function App() {
   return (
     <Router>
       <React.Suspense fallback={<div>Loading...</div>}>
@@ -33,8 +23,4 @@ function App(props: P) {
   )
 }
 
-export default connect(null, (dispatch) => ({
-  setMngList() {
-    dispatch(setMngList() as any)
-  },
-}))(App)
+export default App

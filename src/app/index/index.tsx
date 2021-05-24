@@ -6,6 +6,8 @@ import { RouteComponentProps } from 'react-router'
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons'
 import './index.scss'
 import routes, { routes as tabs } from '../../route/child'
+import { connect } from 'react-redux'
+import { setMngList } from '@/store/common/action'
 
 const { SubMenu } = Menu
 const { Header, Sider, Content } = Layout
@@ -17,7 +19,16 @@ export interface S {
   title: string[]
 }
 
-export default class SiderDemo extends React.Component<RouteComponentProps, S> {
+export interface P extends RouteComponentProps {
+  setMngList: () => void
+}
+
+@(connect(null, (dispatch) => ({
+  setMngList() {
+    dispatch(setMngList() as any)
+  },
+})) as any)
+export default class SiderDemo extends React.Component<P, S> {
   state = {
     collapsed: false,
     defaultOpenKeys: ['/company'],
@@ -42,6 +53,10 @@ export default class SiderDemo extends React.Component<RouteComponentProps, S> {
       defaultSelectedKeys: selectedKeys,
       defaultOpenKeys: [openKeys],
     })
+  }
+
+  componentDidMount() {
+    this.props.setMngList()
   }
 
   /**

@@ -60,7 +60,7 @@ class App extends React.Component<P> {
     const [prov, city, area] = values.address
     const { data } = this.props
     const { foundAt } = values
-    const params = { ...data, entrant: window.$user.name, ...values, prov, city, area, amount: Number(values.amount), foundAt: foundAt ? moment(foundAt).format('YYYY') : '' }
+    const params = { ...data, manageId: window.$user.id,entrant: window.$user.name, ...values, prov, city, area, amount: Number(values.amount), foundAt: foundAt ? moment(foundAt).format('YYYY') : '' }
     data && data.companyId ? await window.$api.updateCompanyInfo(params) : await window.$api.createCompany({ ...params, cInfo: params })
     this.props.setData(params)
     this.props.history.goBack()
@@ -81,7 +81,6 @@ class App extends React.Component<P> {
       const { prov, city, area } = init
       init.address = [prov, city, area]
     }
-    console.log(data)
     return (
       <Form {...layout} name="basic" onFinish={this.onFinish} initialValues={init || {}} className='company-info app-container animate'>
         <Form.Item
