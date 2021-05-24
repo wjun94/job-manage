@@ -73,10 +73,7 @@ export default class Home extends React.Component<P, any> {
       name: 'manageId',
       title: '业务人员',
       valueType: 'select',
-      valueEnum: [
-        { label: '全部', value: '' },
-        ...this.props.mngList.map((v) => ({ label: v.name, value: v.id })),
-      ],
+      valueEnum: this.props.mngList.map((v) => ({ label: v.name, value: v.id })),
     },
   ]
 
@@ -88,6 +85,9 @@ export default class Home extends React.Component<P, any> {
    * @todo 获取列表数据
    */
   getData = async () => {
+    this.setState({
+      loading: true,
+    })
     const { current, pageSize, params } = this.props
     const { data, total } = await window.$api.customerSelectList({
       current: current,
@@ -188,7 +188,6 @@ export default class Home extends React.Component<P, any> {
    * @param values 表单数据
    */
   onSearch = async (values) => {
-    console.log(values)
     await this.props.setParams(values)
     this.getData()
   }

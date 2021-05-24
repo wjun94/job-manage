@@ -125,7 +125,14 @@ export default function Index(props: P) {
           <Button type="primary" htmlType="submit">
             搜索
           </Button>
-          <Button onClick={() => formEl.resetFields()}>重置</Button>
+          <Button
+            onClick={() => {
+              onFinish({})
+              formEl.resetFields()
+            }}
+          >
+            重置
+          </Button>
         </Form.Item>
       </Form>
     </Row>

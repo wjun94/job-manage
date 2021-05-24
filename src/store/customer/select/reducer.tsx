@@ -8,7 +8,7 @@ const initState: CommonType1<CompanySelectNode> = {
   current: 1,
   paginationProps: {},
   list: [],
-  params: { manageId: '' }, // 接口请求参数
+  params: {}, // 接口请求参数
 }
 
 const customerSelectReducer = (state = initState, action: any) => {
