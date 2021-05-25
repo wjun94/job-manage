@@ -130,22 +130,24 @@ export default class Home extends React.Component<P, any> {
    * @param node
    * @memberof table
    */
-  onOptions = (node: CompanySelectNode) => {
-    const isOut = node.manage && node.manage.name
+  onOptions = async (node: CompanySelectNode) => {
+    const isOut = node.cStatus !== 1
     if (isOut) {
       // 踢出
-      window.$api.outCompany({
+      await window.$api.outCompany({
         companyId: node.companyId,
       })
     } else {
       // 加入
-      window.$api.addCompany({
+      await window.$api.addCompany({
         companyId: node.companyId,
       })
     }
     node.manage = {
-      name: isOut ? '' : window.$user.name,
+      name: window.$user.name,
+      id: window.$user.id,
     }
+    node.expiredAt = 60 * 60 * 24 * 1000 * (isOut ? 7 : 365)
     this.props.setList(this.props.list)
   }
 

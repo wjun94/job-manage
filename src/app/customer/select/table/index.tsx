@@ -106,7 +106,14 @@ export default function Index(props: P) {
     {
       title: '剩余脱库',
       dataIndex: 'expiredAt',
-      render: (txt: number) => window.$utils.ms2day(txt),
+      render: (txt: number, record: CompanySelectNode) =>
+        record.cStatus === 2 && txt > 0 ? (txt ? window.$utils.ms2day(txt) : '-') : '-',
+    },
+    {
+      title: '剩余可加入',
+      dataIndex: 'expiredAt',
+      render: (txt: number, record: CompanySelectNode) =>
+        record.cStatus === 3 ? (txt ? window.$utils.ms2day(txt) : '-') : '-',
     },
     {
       title: '操作选项',
@@ -114,8 +121,19 @@ export default function Index(props: P) {
       dataIndex: '',
       render: (_: any, record: CompanySelectNode) => (
         <>
-          <Button onClick={() => onOptions(record)} type="link">
-            {record.manage && record.manage?.name ? '踢出' : '加入'}
+          <Button
+            disabled={
+              !!(
+                record.cStatus === 3 ||
+                (record.manage && record.manage.id !== window.$user.id && record.cStatus === 2)
+              )
+            }
+            onClick={() => onOptions(record)}
+            type="link"
+          >
+            {record.cStatus === 2 && record.manage && record.manage.id === window.$user.id
+              ? '踢出'
+              : '加入'}
           </Button>
           <Button onClick={() => onContact(record)} type="link">
             联系人

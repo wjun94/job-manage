@@ -5,25 +5,14 @@ export interface MngNode {
 
 export interface CompanySelectNode {
   companyId: string
-  salesId: string
-  createAt: string
-  entrant: string
+  expiredAt: number
+  manage: null | { name: stromg; id?: string }
   name: string
-  prov: string
-  status: number
-  sales: {
-    // 售后
-    name: string
-  }
-  manage: {
-    // 业务员
-    name: string
-  }
-  record: {
-    // 通话状态
-    status: number
-  }
-  recordCount: number // 联系次数
+  record: null | { createAt: string; status: number }
+  recordCount: number
+  service: null | { name: string }
+  serviceCount: number
+  cStatus: number
 }
 
 export interface AdvtgNode {
