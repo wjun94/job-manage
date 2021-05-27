@@ -106,14 +106,14 @@ export default function Index(props: P) {
     {
       title: '剩余脱库',
       dataIndex: 'expiredAt',
-      render: (txt: number, record: CompanySelectNode) =>
-        record.cStatus === 2 && txt > 0 ? (txt ? window.$utils.ms2day(txt) : '-') : '-',
+      render: (txt: number, { cStatus }) =>
+        cStatus === 2 && txt > 0 ? (txt ? window.$utils.ms2day(txt) : '-') : '-',
     },
     {
       title: '剩余可加入',
       dataIndex: 'expiredAt',
-      render: (txt: number, record: CompanySelectNode) =>
-        record.cStatus === 3 ? (txt ? window.$utils.ms2day(txt) : '-') : '-',
+      render: (txt: number, { cStatus }) =>
+        cStatus === 3 && txt > 0 ? (txt ? window.$utils.ms2day(txt) : '-') : '-',
     },
     {
       title: '操作选项',

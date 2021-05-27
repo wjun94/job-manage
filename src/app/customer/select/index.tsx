@@ -147,6 +147,7 @@ export default class Home extends React.Component<P, any> {
       name: window.$user.name,
       id: window.$user.id,
     }
+    node.cStatus = node.cStatus === 2 ? 3 : 2
     node.expiredAt = 60 * 60 * 24 * 1000 * (isOut ? 7 : 365)
     this.props.setList(this.props.list)
   }
